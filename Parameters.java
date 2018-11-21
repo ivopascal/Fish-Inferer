@@ -2,8 +2,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
-public class WaterPanel extends JPanel{
-	public WaterPanel(Model m){
+public class Parameters extends JPanel
+{
+	public Parameters(Model m)
+	{
 		SpringLayout layout = new SpringLayout();
         this.setLayout(layout);
         
@@ -11,8 +13,5 @@ public class WaterPanel extends JPanel{
         this.add(new JTextField("pH", 15));
         this.add(new JTextField("GH", 15));
         this.add(new JTextField("other param", 15));
-		
 	}
-	
-	
 }

@@ -4,7 +4,8 @@ public class Model
 	private int aquarium_width;
 	private int aquarium_length;
 	
-    public Model(){
+    public Model()
+    {
 		aquarium_length = 0;
 		aquarium_width  = 0;
 	}
