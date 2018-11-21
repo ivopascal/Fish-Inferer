@@ -1,7 +1,10 @@
+
 public class main 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+		Model m = new Model();
+        MainFrame f = new MainFrame(m);
+        
     }
 }
