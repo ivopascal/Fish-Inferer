@@ -2,16 +2,16 @@
 public class Model
 {
 	// Frame (GUI) dimensions
-	public int totalWidth = 1050;
-	public int totalHeight = 680;
+	int totalWidth = 1050;
+	int totalHeight = 680;
 	// Parameters (GUI) dimensions
-	public int paramsWidth = 150;
+	int paramsWidth = 150;
 
 	// Parameters
 	private int aquarium_width;
 	private int aquarium_length;
 	
-    public Model()
+    Model()
     {
 		aquarium_length = 0;
 		aquarium_width  = 0;

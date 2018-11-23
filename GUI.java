@@ -2,11 +2,13 @@ import javax.swing.JFrame;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 
-public class GUI extends JFrame
+class GUI extends JFrame
 {
-	public GUI(Model m)
+	GUI(Model m)
 	{
 		Dimension size = new Dimension(m.totalWidth, m.totalHeight);
+		this.setLayout(new BorderLayout());
+		this.setPreferredSize(size);
 
 		Fishtank fishtank = new Fishtank(m);
 		this.add(fishtank, BorderLayout.CENTER);
@@ -14,9 +16,8 @@ public class GUI extends JFrame
 		this.add(params, BorderLayout.WEST);
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setPreferredSize(size);
-		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		this.pack();
 	}
 }

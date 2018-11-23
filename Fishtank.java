@@ -12,7 +12,7 @@ public class Fishtank extends JPanel
 	private int imageWidth;
 	private int imageHeight;
 
-	public Fishtank(Model m)
+	Fishtank(Model m)
 	{
 		this.m = m;
 		this.img = getImage();
@@ -21,9 +21,6 @@ public class Fishtank extends JPanel
 
 		Dimension size = new Dimension(this.imageWidth, this.imageHeight);
 		setPreferredSize(size);
-		setMinimumSize(size);
-		setMaximumSize(size);
-		setSize(size);
 		setLayout(null);
 	}
 
