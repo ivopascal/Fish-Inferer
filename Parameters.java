@@ -1,22 +1,26 @@
-import java.awt.Dimension;
-
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SpringLayout;
+import java.awt.*;
+import javax.swing.*;
 
 class Parameters extends JPanel
 {
 	Parameters(Model m)
 	{
-		// these are stacking directly on top of each other...
-        this.add(new JTextField("Temperature", 15));
-        this.add(new JTextField("pH", 15));
-        this.add(new JTextField("GH", 15));
-        this.add(new JTextField("other param", 15));
+		// parameters can also go in the model
+		String[] parameters = {"Temp", "pH", "GH", "X", "Y", "Z"};
+		// find a way to resize the height of each row?
+		GridLayout layout = new GridLayout(parameters.length, 1);
+		this.setLayout(layout);
 
-		SpringLayout layout = new SpringLayout();
+		for (String parameter : parameters)
+		{
+			JLabel l = new JLabel(parameter);
+			this.add(l);
+			JTextField t = new JTextField(10);
+			l.setLabelFor(t);
+			this.add(t);
+		}
+
 		Dimension size = new Dimension(m.paramsWidth, m.totalHeight);
-		setLayout(layout);
-		setPreferredSize(size);
+		this.setPreferredSize(size);
 	}
 }
