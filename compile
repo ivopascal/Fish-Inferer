@@ -1,0 +1,6 @@
+#!/bin/bash
+
+mkdir target
+mkdir target/img
+cp  ./src/img/* ./target/img/
+javac $(find . -name '*.java') -d target/
