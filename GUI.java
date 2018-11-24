@@ -2,19 +2,30 @@ import javax.swing.JFrame;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 
-public class GUI extends JFrame
+class GUI extends JFrame
 {
-	public GUI(Model m)
+	// this is some ugly shit but it works (barely)
+	GUI(Model m)
 	{
-		Fishtank fishtank = new Fishtank();
+		Dimension size = new Dimension(m.totalWidth, m.totalHeight);
+		this.setLayout(new BorderLayout());
+		this.setPreferredSize(size);
+
+		Fishtank fishtank = new Fishtank(m);
 		this.add(fishtank, BorderLayout.CENTER);
 		Parameters params = new Parameters(m);
-		this.add(params, BorderLayout.LINE_START);
+		this.add(params, BorderLayout.WEST);
+		InfoButtons buttons = new InfoButtons(m);
+		this.add(buttons, BorderLayout.EAST);
+		InfoSection info = new InfoSection(m);
+		this.add(info, BorderLayout.SOUTH);
+
+		this.setResizable(false);
+		this.setTitle("The Aquarium Diagnoser");
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setPreferredSize(new Dimension(1050, 680));
-		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		this.pack();
 	}
 }
