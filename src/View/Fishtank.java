@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Font;
 
+import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -13,15 +14,23 @@ public class Fishtank extends JPanel
 	private String InfoText;
 	private int imageWidth;
 	private int imageHeight;
+	private String buttonText;
 
 	Fishtank(Model m)
 	{
+		
 		this.m = m;
 		this.img = getImage();
 		this.imageWidth = this.img.getWidth(null);
 		this.imageHeight = this.img.getHeight(null);
 		this.InfoText = "Here are some instructions and general info";
 		Dimension size = new Dimension(this.imageWidth, this.imageHeight);
+
+		buttonText = "Add Fish";
+		JButton addFishButton = new JButton(buttonText);
+		addFishButton.setPreferredSize(new Dimension(this.imageWidth, m.totalHeight/2 - this.imageHeight/2));
+		this.add(addFishButton);
+
 		setPreferredSize(size);
 		setLayout(null);
 	}

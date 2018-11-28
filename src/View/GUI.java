@@ -11,14 +11,15 @@ class GUI extends JFrame
 		this.setLayout(new BorderLayout());
 		this.setPreferredSize(size);
 
+		//AddFishPanel addFish = new AddFishPanel(m);
+                //this.add(addFish, BorderLayout.PAGE_START);
+
 		Fishtank fishtank = new Fishtank(m);
 		this.add(fishtank, BorderLayout.CENTER);
 		Parameters params = new Parameters(m);
 		this.add(params, BorderLayout.WEST);
 		InfoButtons buttons = new InfoButtons(m);
 		this.add(buttons, BorderLayout.EAST);
-		//InfoSection info = new InfoSection(m);
-		//this.add(info, BorderLayout.CENTER);
 
 		this.setResizable(false);
 		this.setTitle("The Aquarium Diagnoser");
