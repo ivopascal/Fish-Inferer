@@ -1,6 +1,7 @@
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -9,6 +10,7 @@ public class Fishtank extends JPanel
 {
 	private Model m;
 	private Image img;
+	private String InfoText;
 	private int imageWidth;
 	private int imageHeight;
 
@@ -18,7 +20,7 @@ public class Fishtank extends JPanel
 		this.img = getImage();
 		this.imageWidth = this.img.getWidth(null);
 		this.imageHeight = this.img.getHeight(null);
-
+		this.InfoText = "Here are some instructions and general info";
 		Dimension size = new Dimension(this.imageWidth, this.imageHeight);
 		setPreferredSize(size);
 		setLayout(null);
@@ -34,5 +36,7 @@ public class Fishtank extends JPanel
 		int xStart = m.totalWidth/2 - this.imageWidth/2 - m.paramsWidth;
 		int yStart = m.totalHeight/2 - this.imageHeight/2;
 		g.drawImage(img, xStart, yStart, null);
+		g.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		g.drawString(InfoText, xStart , img.getHeight(this) + yStart+g.getFontMetrics().getHeight());
 	}
 }

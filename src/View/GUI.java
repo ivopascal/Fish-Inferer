@@ -17,8 +17,8 @@ class GUI extends JFrame
 		this.add(params, BorderLayout.WEST);
 		InfoButtons buttons = new InfoButtons(m);
 		this.add(buttons, BorderLayout.EAST);
-		InfoSection info = new InfoSection(m);
-		this.add(info, BorderLayout.SOUTH);
+		//InfoSection info = new InfoSection(m);
+		//this.add(info, BorderLayout.CENTER);
 
 		this.setResizable(false);
 		this.setTitle("The Aquarium Diagnoser");
