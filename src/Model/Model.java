@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
 
 public class Model
 {
@@ -10,11 +13,12 @@ public class Model
 	// Parameters
 	private int aquarium_width;
 	private int aquarium_length;
-	
+
+	private ArrayList<String> fishNames = new ArrayList();
+	private Fishtank tankPanel;
+
     Model()
     {
-		aquarium_length = 0;
-		aquarium_width  = 0;
 	}
 	
 	public void set_aquarium_width(int width){
@@ -34,5 +38,15 @@ public class Model
 
 	public void addFishByString(String FishName){
 		System.out.println(FishName);
+		fishNames.add(FishName);
+		tankPanel.loadFish();
+	}
+
+	public ArrayList<String> getAllFishByString(){
+		return fishNames;
+	}
+
+	public void addTankPanel(Fishtank tankPanel){
+		this.tankPanel = tankPanel;
 	}
 }
