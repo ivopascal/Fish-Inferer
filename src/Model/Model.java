@@ -31,4 +31,8 @@ public class Model
 	public int get_aquarium_length(){
 		return aquarium_length;
 	}
+
+	public void addFishByString(String FishName){
+		System.out.println(FishName);
+	}
 }

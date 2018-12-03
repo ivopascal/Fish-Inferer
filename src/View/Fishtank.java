@@ -2,10 +2,15 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Font;
+import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+
+/*
+	FishTank panel holds the picture of the aquarium, as well as the explanatoin text and the add fish button
+*/
 
 public class Fishtank extends JPanel
 {
@@ -19,7 +24,8 @@ public class Fishtank extends JPanel
 	Fishtank(Model m)
 	{
 		
-		this.m = m;
+		this.setLayout(new FlowLayout());
+                this.m = m;
 		this.img = getImage();
 		this.imageWidth = this.img.getWidth(null);
 		this.imageHeight = this.img.getHeight(null);
@@ -29,10 +35,11 @@ public class Fishtank extends JPanel
 		buttonText = "Add Fish";
 		JButton addFishButton = new JButton(buttonText);
 		addFishButton.setPreferredSize(new Dimension(this.imageWidth, m.totalHeight/2 - this.imageHeight/2));
+		addFishButton.addActionListener(new addFishAction(m));
 		this.add(addFishButton);
 
 		setPreferredSize(size);
-		setLayout(null);
+		//setLayout(null);
 	}
 
 	private Image getImage()

@@ -11,10 +11,7 @@ class GUI extends JFrame
 		this.setLayout(new BorderLayout());
 		this.setPreferredSize(size);
 
-		//AddFishPanel addFish = new AddFishPanel(m);
-                //this.add(addFish, BorderLayout.PAGE_START);
-
-		Fishtank fishtank = new Fishtank(m);
+		Fishtank fishtank = new Fishtank(m); 	//This handles the picture, the bottomtext and the addFishButton
 		this.add(fishtank, BorderLayout.CENTER);
 		Parameters params = new Parameters(m);
 		this.add(params, BorderLayout.WEST);
