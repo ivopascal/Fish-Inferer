@@ -1,10 +1,10 @@
 Resize text boxes					-	Travis
 Resize buttons						-	Travis		
 Move text to within centre instead of below		-	Ivo	-Done
-Fit frame to picture	(Keep space for add fish button)-	Travis
+Fit frame to picture	(Keep space for add fish button)-	Travis  -Done
 Add observer operation, JTextField -> Model		-	Travis
 Add Fish UI						-	Ivo	-Done
-Show Fish						-	Ivo
+Show Fish						-	Ivo	-Done
 Add Fish class and template logic			-	Helma					-	
 Implement template fish with parameter requirements	-	Helma
 Add problem notification to fish			-	Helma
