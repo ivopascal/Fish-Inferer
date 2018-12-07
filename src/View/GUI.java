@@ -22,8 +22,9 @@ class GUI extends JFrame
 		this.setTitle("The Aquarium Diagnoser");
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-		this.pack();
+		
 	}
 }

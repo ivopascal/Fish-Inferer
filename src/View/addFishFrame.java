@@ -24,7 +24,7 @@ class addFishFrame extends JFrame
 		this.m = m;
 		this.setLayout(new FlowLayout());
 		Dimension size = new Dimension(m.totalWidth, m.totalHeight);
-		this.setPreferredSize(size);
+		//this.setPreferredSize(size);
 		fishNames = m.getAllFishByString();
 
 		addFish("GoldFish");
@@ -35,9 +35,9 @@ class addFishFrame extends JFrame
 		this.setTitle("Select a fish to add");
 
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-		this.pack();
 	}
 
 	public void addFish(String fishName){
