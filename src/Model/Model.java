@@ -1,3 +1,4 @@
+import java.awt.geom.FlatteningPathIterator;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -13,12 +14,41 @@ public class Model
 	// Parameters
 	private int aquarium_width;
 	private int aquarium_length;
+	private String[] parameterStrings = {"Temp  ", "pH  ", "GH  ", "X  ", "Y  ", "Z  "};
 
-	private ArrayList<String> fishNames = new ArrayList();
+	private ArrayList<String> fishNames = new ArrayList<>();
+	private ArrayList<Param> parameters = new ArrayList<>();
 	private Fishtank tankPanel;
 
     Model()
     {
+    	makeParameters();
+	}
+
+	private void makeParameters()
+	{
+		for (String parameterString : this.parameterStrings)
+		{
+			Param p = new Param(parameterString,null);
+			this.parameters.add(p);
+		}
+	}
+
+	public void updateParameter(String paramName, Float newValue)
+	{
+		for (Param p : this.parameters)
+		{
+			if (p.name.equals(paramName))
+			{
+				p.value = newValue;
+				System.out.println("Name: " + p.name + " - New Value: " + p.value);
+			}
+		}
+	}
+
+	public String[] getParameterStrings()
+	{
+		return parameterStrings;
 	}
 	
 	public void set_aquarium_width(int width){
@@ -48,5 +78,17 @@ public class Model
 
 	public void addTankPanel(Fishtank tankPanel){
 		this.tankPanel = tankPanel;
+	}
+}
+
+class Param
+{
+	public String name;
+	public Float value;
+
+	public Param(String name, Float value)
+	{
+		this.name = name;
+		this.value = value;
 	}
 }
