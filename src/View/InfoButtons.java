@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 class InfoButtons extends JPanel
 {
@@ -15,6 +16,11 @@ class InfoButtons extends JPanel
 		{
 			JButton l = new JButton(parameter);
 			this.add(l);
+			
+			///ADDED
+			if(parameter=="Why are my fish dying?") {
+				l.addActionListener(new addButtonAction(m));
+			}
 		}
 
 		Dimension size = new Dimension(m.paramsWidth, m.totalHeight);
@@ -22,3 +28,6 @@ class InfoButtons extends JPanel
 
 	}
 }
+
+
+

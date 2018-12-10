@@ -19,7 +19,10 @@ public class Model
 	private ArrayList<String> fishNames = new ArrayList<>();
 	private ArrayList<Param> parameters = new ArrayList<>();
 	private Fishtank tankPanel;
-
+	
+	///ADDED
+	private ArrayList<Fish> mrBubbles = new ArrayList<>();
+	
     Model()
     {
     	makeParameters();
@@ -44,6 +47,7 @@ public class Model
 				System.out.println("Name: " + p.name + " - New Value: " + p.value);
 			}
 		}
+		
 	}
 
 	public String[] getParameterStrings()
@@ -69,7 +73,14 @@ public class Model
 	public void addFishByString(String FishName){
 		System.out.println(FishName);
 		fishNames.add(FishName);
+		
+		///ADDED
+		Fish dory= new Fish(FishName);
+		///ADDED
+		this.mrBubbles.add(dory);
+		
 		tankPanel.loadFish();
+		
 	}
 
 	public ArrayList<String> getAllFishByString(){
@@ -78,6 +89,38 @@ public class Model
 
 	public void addTankPanel(Fishtank tankPanel){
 		this.tankPanel = tankPanel;
+	}
+	
+	///ADDED
+	public void warn() {
+		for (String s: this.fishNames) {
+			checkWarnings(s);
+		}
+	}
+	
+	public void checkWarnings(String FishName) {
+		
+		///ADDED
+		double aquariumTemp=1000, aquariumpH=1000;
+		
+		for (Param p: this.parameters) {
+			
+			if(p.name.equals("Temp  ") && p.value !=null)  {
+				aquariumTemp=p.value;
+				
+			}
+			if(p.name.equals("pH  ") && p.value !=null) {
+				aquariumpH=p.value;
+			}
+		}
+		if (aquariumTemp!=1000 && aquariumpH !=1000) {
+			for (Fish dory : this.mrBubbles) {
+				if(dory.getFishName()==FishName) {
+					dory.fishWarning(FishName, aquariumTemp, aquariumpH);
+				}
+			}
+		}
+		
 	}
 }
 
