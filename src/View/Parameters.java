@@ -9,12 +9,12 @@ class Parameters extends JPanel
 {
 	Parameters(Model m)
 	{
-		// parameters can also go in the model
 		this.setLayout(new FlowLayout());
 
+		// for each changeable parameter in the model
 		for (String parameter : m.getParameterStrings())
 		{
-			// make a new panel for each label + textfield so they appear next to each other
+			// make a new panel so that the labels and textfields appear next to each other
 			JPanel paramPanel = new JPanel();
 			paramPanel.setLayout(new GridBagLayout());
 
@@ -24,7 +24,7 @@ class Parameters extends JPanel
 			paramPanel.add(l);
 
 			// and the textfield
-			JFormattedTextField t = new JFormattedTextField(new DecimalFormat(("##.###")));
+			JFormattedTextField t = new JFormattedTextField();
 			t.setColumns(5);
 			l.setLabelFor(t);
 			t.getDocument().addDocumentListener(new parameterAction(m, t, parameter));
@@ -72,10 +72,14 @@ class parameterAction implements DocumentListener
 	private void updateParameter()
 	{
 		Float value = null;
-		System.out.println(this.input.getText());
-		if (!this.input.getText().equals(""))
+		String inputString = this.input.getText();
+		if (!inputString.equals(""))
 		{
-			value = Float.parseFloat(this.input.getText());
+			try {
+				value = Float.parseFloat(inputString);
+			} catch (NumberFormatException e) {
+				System.out.println("Invalid Input!");
+			}
 		}
 		m.updateParameter(param, value);
 	}
