@@ -65,7 +65,7 @@ public class Fishtank extends JPanel
 		fishImages = new ArrayList();
 		for(int i=0; i < fishNames.size(); i++){
 			System.out.println("Requesting: " + "img/"+fishNames.get(i)+".png");
-			String fishAdres = "src/img/"+fishNames.get(i)+".png";
+			String fishAdres = "img/"+fishNames.get(i)+".png";
 			Image fishImage = new ImageIcon(fishAdres).getImage();
 			fishImages.add(fishImage);
 		}
