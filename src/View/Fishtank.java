@@ -1,16 +1,14 @@
-import java.util.ArrayList;
-
-import java.lang.Math;
-
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Font;
-import java.awt.FlowLayout;
+import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
+
 
 /*
 	FishTank panel holds the picture of the aquarium, as well as the explanatoin text and the add fish button
@@ -67,7 +65,7 @@ public class Fishtank extends JPanel
 		fishImages = new ArrayList();
 		for(int i=0; i < fishNames.size(); i++){
 			System.out.println("Requesting: " + "img/"+fishNames.get(i)+".png");
-			String fishAdres = "img/"+fishNames.get(i)+".png";
+			String fishAdres = "src/img/"+fishNames.get(i)+".png";
 			Image fishImage = new ImageIcon(fishAdres).getImage();
 			fishImages.add(fishImage);
 		}
