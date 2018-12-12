@@ -10,3 +10,13 @@ Implement template fish with parameter requirements	-	Helma
 Add problem notification to fish			-	Helma
 
 
+Next TODO:
+Move information to bottom			- Travis
+Make info appear without submit&addfish		- Travis
+Change add fish to buttons	- Ivo
+Remove Fish(double click)	- Ivo
+Add recommended value		- Helma
+Create info popups		- Helma
+Prohobit fish with tooltips	- Ivo
+Fit add Fish button		- Travis
+
