@@ -1,0 +1,66 @@
+Temperature	- Adjust thermostat
+Nitrite		- Nitrite too high -> water change 30% weekly, or bacterial starter should be near 0
+Nitrate		- Plant food, too high-> green water. Too high -> water change 30% weekly, more plants, less food, less fish(?)
+
+pH		-  too high -> add peat, too low-> baking soda
+GH(Mg & Ca)	-  Expert says it's not important  
+KH		- Expert says it's not important
+Chlorine	- If chlorine =/= 0, use chlorine treatment on water changes
+
+width, breadth, height
+
+Important: number of fish for each species!!
+
+Moonfish						-	
+GOldfish						-	
+Guppy(Canibals)(M/F)					-	
+Endler fish						-	
+Red cherry shrimp (Eaten by all fish, except endler)	-	
+Crystal shrimp (Eaten by all fish, except endler)	-	
+Cardinal fish						-	
+Fire neon (vuurneon)					-	
+Algae eater						-	
+Corydoras						-	
+Beta (M) (Keep alone) in (60x30x30)			-	
+Beta (F)						-	
+Molly							-	
+Platys							-	
+
+Mystery fish
+
+Big fish eats small fish!
+
+Algae:
+	Visually detectable (brown hairs, green water, green threads, red algae)
+	Brown hairs - Low CO2 -> moving water, adding bubles or CO2
+	Green water/threads: Too much light & overfeeding
+	
+Lighting:
+	Have lighting, aquarium intended
+	8 hours of light (7 if algae) (at Daytime!)
+		
+	
+Stress:
+	Decolorizes
+	Plants/structures
+	Big&scary fish
+	Having same species
+	Have regular lighting	
+	(Can cause diseases)
+
+General maintenance:
+	Water changes
+	(recommended) Use vacuum thing
+	Clean filter
+	/Have timed lighting
+	Have grit (holds bacteria)
+	Cycle aquarium before adding fish
+	No fish bowls	
+	(optional) plant food
+
+Diseases:
+	Fin rot
+	Zwemblaas ontsteking
+	Google other diseases
+	
+
