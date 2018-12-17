@@ -164,6 +164,33 @@ public class Model
 		}
 		return true;
 	}
+
+	public String canAddFishProblems(String FishName){
+                Fish compfish = new Fish(FishName);
+                System.out.println("Number of fish: " + mrBubbles.size());
+
+		String output = "";
+                for(Fish f: mrBubbles){
+                        if(     compfish.getMinTemp() >= f.getMaxTemp()){
+                                System.out.println("Can't add " + FishName + " because " + f.fishName + " prefers colder water.");
+                                output = output + "Can't add " + FishName + " because " + f.fishName + " prefers colder water." + "\n";
+                        }
+                        if(     compfish.getMaxTemp() <= f.getMinTemp()){
+                                System.out.println("Can't add " + FishName + " because " + f.fishName + " prefers warmer water.");
+				output = output + "Can't add " + FishName + " because " + f.fishName + " prefers warmer water." + "\n";
+                        }
+                        if(     compfish.getMinpH() >= f.getMaxpH()){
+                                System.out.println("Can't add " + FishName + " because " + f.fishName + " prefers lower pH.");
+				output = output + "Can't add " + FishName + " because " + f.fishName + " prefers lower pH." + "\n";
+                        }
+                        if(     compfish.getMaxpH() <= f.getMinpH()){
+                                System.out.println("Can't add " + FishName + " because " + f.fishName + " prefers higher pH.");
+				output = output + "Can't add " + FishName + " because " + f.fishName + " prefers lower pH." + "\n";
+                        }
+                }
+                return output;
+        }
+
 }
 
 class Param

@@ -1,5 +1,5 @@
 import javax.swing.AbstractAction;
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 
 /**
@@ -10,13 +10,15 @@ import java.awt.event.ActionEvent;
 public class addFishAction extends AbstractAction
 {
 	private Model model;
-	public addFishAction(Model m){
+	private Fishtank fishtank;
+	public addFishAction(Model m, Fishtank fishtank){
 		this.model = m;
+		this.fishtank = fishtank;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e){
-		JFrame addFishFrame = new addFishFrame(model);
+		JPanel addFishPanel = new addFishPanel(model, fishtank);
 	}
 
 

@@ -30,6 +30,8 @@ public class Fishtank extends JPanel
 	private ArrayList<Fish_image> fishImages = new ArrayList();
 	private ArrayList<Fish_area> fishAreas = new ArrayList();
 	private fishRemover fishRemover;
+	private JButton addFishButton;
+	private JPanel addFishPanel;
 	Fishtank(Model m)
 	{
 
@@ -45,9 +47,9 @@ public class Fishtank extends JPanel
 		loadFish();
 
 		buttonText = "Add Fish";
-		JButton addFishButton = new JButton(buttonText);
+		this.addFishButton = new JButton(buttonText);
 		addFishButton.setPreferredSize(new Dimension(this.imageWidth, m.totalHeight/2 - this.imageHeight/2));
-		addFishButton.addActionListener(new addFishAction(m));
+		addFishButton.addActionListener(new addFishAction(m, this));
 		this.add(addFishButton);
 		this.fishRemover = new fishRemover(fishAreas, this);
 		setPreferredSize(size);
@@ -98,6 +100,19 @@ public class Fishtank extends JPanel
 
 	public void removeFish(String name){
 		m.removeFishByString(name);
+	}
+
+	public void setAddFishPanel(JPanel addFishPanel){
+		addFishPanel.setPreferredSize(new Dimension(this.imageWidth, m.totalHeight/2 - this.imageHeight/2));
+		this.remove(addFishButton);
+		this.add(addFishPanel);
+		this.addFishPanel = addFishPanel;
+		validate();
+	}
+	public void setAddFishButton(){
+		this.remove(addFishPanel);
+		this.add(addFishButton);
+		validate();
 	}
 }
 
