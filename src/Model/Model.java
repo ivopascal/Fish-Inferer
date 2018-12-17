@@ -84,17 +84,18 @@ public class Model
 	}
 
 	public void removeFishByString(String FishName){
-		
+		System.out.println("Removing fish from model");
 
 		//Remove fish from fishNames
 		fishNames.remove(FishName);
 		//Remove fish from mrBubbles
 		for(Fish f : mrBubbles){
 			if(f.fishName == FishName){
+				
 				mrBubbles.remove(f);
-				return;
 			}
 		}
+		System.out.println("Removed fish");
 		tankPanel.loadFish();
 	}
 

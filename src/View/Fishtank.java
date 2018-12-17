@@ -108,6 +108,7 @@ public class Fishtank extends JPanel
 		this.add(addFishPanel);
 		this.addFishPanel = addFishPanel;
 		validate();
+		//fishRemover = new fishRemover(fishAreas, this);
 	}
 	public void setAddFishButton(){
 		this.remove(addFishPanel);
@@ -153,10 +154,13 @@ class fishRemover extends MouseInputAdapter implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e){
+		System.out.println("Registering a click");
 		if(e.getClickCount() == 2){
+			System.out.println("Double click");
 			for(Fish_area f : fishAreas){
 				if(e.getX() >= f.x && e.getX() <= f.x + f.width
 					&& e.getY() >= f.y && e.getY() <= f.y + f.height){
+					System.out.println("Removing fish " + f.name);
 					fishtank.removeFish(f.name);
 				} 
 			}

@@ -34,6 +34,14 @@ class addFishPanel extends JPanel
 		addFish("GoldFish");
 		addFish("Corydora");
 		addFish("Beta");
+		addFish("Cardinal");
+		addFish("Endler");
+		addFish("FireNeon");
+		addFish("Guppy");
+		addFish("MoonFish");
+		addFish("Pleco");
+		addFish("Red Cherry Shrimp");
+		addFish("Red Crystal Shrimp");
 
 		fishtank.setAddFishPanel(this);
 

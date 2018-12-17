@@ -35,7 +35,9 @@ public class Fish {
 			this.tempMin=70;
 			this.tempMax=80;
 			break;
-			
+		default:
+			this.tempMin = 0;
+			this.tempMax = 100;	
 		}
 	}
 	
@@ -62,7 +64,9 @@ public class Fish {
 			this.pHMin=7;
 			this.pHMax=9;
 			break;
-			
+		default:
+			this.pHMin = 0;
+			this.pHMax = 100;
 		}
 	}
 	
