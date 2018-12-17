@@ -83,6 +83,17 @@ public class Model
 		
 	}
 
+	public void removeFishByString(String FishName){
+		
+
+		//Remove fish from fishNames
+		fishNames.remove(FishName);
+		//Remove fish from mrBubbles
+		Fish remove_fish = new Fish(FishName);
+		this.mrBubbles.remove(remove_fish);
+		tankPanel.loadFish();
+	}
+
 	public ArrayList<String> getAllFishByString(){
 		return fishNames;
 	}

@@ -14,7 +14,7 @@ Next TODO:
 Move information to bottom			- Travis
 Make info appear without submit&addfish		- Travis
 Change add fish to buttons	- Ivo
-Remove Fish(double click)	- Ivo
+Remove Fish(double click)	- Ivo		-done
 Add recommended value		- Helma
 Create info popups		- Helma
 Prohobit fish with tooltips	- Ivo
