@@ -89,8 +89,12 @@ public class Model
 		//Remove fish from fishNames
 		fishNames.remove(FishName);
 		//Remove fish from mrBubbles
-		Fish remove_fish = new Fish(FishName);
-		this.mrBubbles.remove(remove_fish);
+		for(Fish f : mrBubbles){
+			if(f.fishName == FishName){
+				mrBubbles.remove(f);
+				return;
+			}
+		}
 		tankPanel.loadFish();
 	}
 
@@ -132,6 +136,33 @@ public class Model
 			}
 		}
 		
+	}
+
+	public boolean canAddFish(String FishName){
+		Fish compfish = new Fish(FishName);
+		System.out.println("Number of fish: " + mrBubbles.size());
+		
+		for(Fish f: mrBubbles){
+			if(     compfish.getMinTemp() >= f.getMaxTemp()){
+				System.out.println("Can't add " + FishName + " because " + f.fishName + " prefers colder water.");
+				return false;
+			}
+			if(	compfish.getMaxTemp() <= f.getMinTemp()){
+				System.out.println("Can't add " + FishName + " because " + f.fishName + " prefers warmer water.");
+                                return false;
+
+			}
+			if(	compfish.getMinpH() >= f.getMaxpH()){
+				System.out.println("Can't add " + FishName + " because " + f.fishName + " prefers lower pH.");
+                                return false;
+
+			}
+			if(	compfish.getMaxpH() <= f.getMinpH()){
+				System.out.println("Can't add " + FishName + " because " + f.fishName + " prefers higher pH.");
+				return false;
+			}
+		}
+		return true;
 	}
 }
 

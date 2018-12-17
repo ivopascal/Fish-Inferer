@@ -42,7 +42,7 @@ class addFishFrame extends JFrame
 
 	public void addFish(String fishName){
 		JButton fishButton = new JButton(fishName);
-		if(fishNames.contains(fishName)){
+		if(!m.canAddFish(fishName) || fishNames.contains(fishName)){
 			fishButton.setEnabled(false);
 		}
 		fishButton.addActionListener(new fishButtonAction(m, fishName, this));

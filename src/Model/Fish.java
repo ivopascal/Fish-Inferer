@@ -39,11 +39,11 @@ public class Fish {
 		}
 	}
 	
-	public double getMinTemp(String fishName) {
+	public double getMinTemp() {
 		return tempMin;
 	}
 	
-	public double getMaxTemp(String fishName) {
+	public double getMaxTemp() {
 		return tempMax;
 	}
 	
@@ -66,11 +66,11 @@ public class Fish {
 		}
 	}
 	
-	public double getMinpH(String fishName) {
+	public double getMinpH() {
 		return pHMin;
 	}
 	
-	public double getMaxpH(String fishName) {
+	public double getMaxpH() {
 		return pHMax;
 	}
 	
