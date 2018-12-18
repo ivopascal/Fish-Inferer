@@ -1,3 +1,8 @@
+package View;
+
+import Controller.addButtonAction;
+import Model.Model;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

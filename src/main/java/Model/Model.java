@@ -1,29 +1,30 @@
-import java.awt.geom.FlatteningPathIterator;
-import java.util.ArrayList;
+package Model;
 
-import javax.swing.JPanel;
+import View.Fishtank;
+
+import java.util.ArrayList;
 
 public class Model
 {
 	// Frame (GUI) dimensions
-	int totalWidth = 1050;
-	int totalHeight = 680;
+	public int totalWidth = 1050;
+	public int totalHeight = 680;
 	// Parameters (GUI) dimensions
-	int paramsWidth = 150;
+	public int paramsWidth = 150;
 
 	// Parameters
 	private int aquarium_width;
 	private int aquarium_length;
 	private String[] parameterStrings = {"Temp  ", "pH  ", "GH  ", "X  ", "Y  ", "Z  "};
 
-	private ArrayList<String> fishNames = new ArrayList<>();
-	private ArrayList<Param> parameters = new ArrayList<>();
+	private ArrayList<String> fishNames = new ArrayList<String>();
+	private ArrayList<Param> parameters = new ArrayList<Param>();
 	private Fishtank tankPanel;
 	
 	///ADDED
-	private ArrayList<Fish> mrBubbles = new ArrayList<>();
+	private ArrayList<Fish> mrBubbles = new ArrayList<Fish>();
 	
-    Model()
+    public Model()
     {
     	makeParameters();
 	}
@@ -192,16 +193,4 @@ public class Model
                 return output;
         }
 
-}
-
-class Param
-{
-	public String name;
-	public Float value;
-
-	public Param(String name, Float value)
-	{
-		this.name = name;
-		this.value = value;
-	}
 }

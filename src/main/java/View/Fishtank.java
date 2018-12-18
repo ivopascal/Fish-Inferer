@@ -1,3 +1,8 @@
+package View;
+
+import Controller.addFishAction;
+import Model.Model;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -6,6 +11,7 @@ import java.awt.Image;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -27,8 +33,8 @@ public class Fishtank extends JPanel
 	private String buttonText;
 
 	private ArrayList<String> fishNames;
-	private ArrayList<Fish_image> fishImages = new ArrayList();
-	private ArrayList<Fish_area> fishAreas = new ArrayList();
+	private ArrayList<Fish_image> fishImages = new ArrayList<Fish_image>();
+	private ArrayList<Fish_area> fishAreas = new ArrayList<Fish_area>();
 	private fishRemover fishRemover;
 	private JButton addFishButton;
 	private JPanel addFishPanel;
@@ -64,14 +70,26 @@ public class Fishtank extends JPanel
 
 	private Image getTankImage()
 	{
-		return new ImageIcon("img/fishtank.png").getImage();
+        System.out.println("why?!");
+        URL url1 = getClass().getResource("fishtank.png");
+        URL url2 = getClass().getResource("resources/img/fishtank.png");
+        URL url3 = getClass().getResource("main/resources/img/fishtank.png");
+        URL url4 = getClass().getResource("src/main/resources/img/fishtank.png");
+        System.out.println("url1: "+url1);
+        System.out.println("url2: "+url2);
+        System.out.println("url3: "+url3);
+        System.out.println("url4: "+url4);
+        String path = getClass().getResource("img/fishtank.png").getFile();
+        System.out.println("path: "+path);
+        Image image = new ImageIcon(url1).getImage();
+		return image; //new ImageIcon("fishtank.png").getImage();
 	}
 
 	private void loadFishImages(){
-		fishImages = new ArrayList();
+		fishImages = new ArrayList<Fish_image>();
 		for(int i=0; i < fishNames.size(); i++){
-			System.out.println("Requesting: " + "img/"+fishNames.get(i)+".png");
-			String fishAdres = "img/"+fishNames.get(i)+".png";
+			System.out.println("Requesting: " + "img/" +fishNames.get(i)+".png");
+			String fishAdres = "img/" +fishNames.get(i)+".png";
 			Image fishImage = new ImageIcon(fishAdres).getImage();
 			fishImages.add(new Fish_image(fishNames.get(i),fishImage));
 		}

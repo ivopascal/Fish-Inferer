@@ -1,11 +1,15 @@
+package View;
+
+import Model.Model;
+
 import javax.swing.JFrame;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 
-class GUI extends JFrame
+public class GUI extends JFrame
 {
 	// this is some ugly shit but it works (barely)
-	GUI(Model m)
+	public GUI(Model m)
 	{
 		Dimension size = new Dimension(m.totalWidth, m.totalHeight);
 		this.setLayout(new BorderLayout());

@@ -1,14 +1,14 @@
+package View;
+
+import Model.Model;
+
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.AbstractAction;
 
 
-import java.awt.Dimension;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 
@@ -16,13 +16,13 @@ import java.awt.GridLayout;
 	addFishFrame opens a selector GUI where a button can be clicked to pick a fish
 	The name of this fish is passed to the model as a string, from where the fish data should be computed
 */
-class addFishPanel extends JPanel
+public class addFishPanel extends JPanel
 {
 	private Model m;
 	private ArrayList<String> fishNames;
 	private Fishtank fishtank;
 
-	addFishPanel(Model m, Fishtank fishtank)
+	public addFishPanel(Model m, Fishtank fishtank)
 	{
 		this.m = m;
 		this.fishtank = fishtank;
@@ -79,7 +79,7 @@ class fishButtonAction extends AbstractAction{
 		this.fishtank = fishtank;
 	}
 
-	@Override
+//	@Override
 	public void actionPerformed(ActionEvent e){
 		m.addFishByString(fishName);
 		fishtank.setAddFishButton();

@@ -1,3 +1,5 @@
+package Model;
+
 public class Fish {
 
 	public String fishName;
@@ -21,23 +23,19 @@ public class Fish {
 	}
 	
 	public void setPrefferedTemp(String fishName) {
-		
-		switch(fishName) {
-		case "GoldFish": 
-			this.tempMin=68;
-			this.tempMax=74;
-			break;
-		case "Corydora":
-			this.tempMin=74;
-			this.tempMax=80;
-			break;
-		case "Beta":
-			this.tempMin=70;
-			this.tempMax=80;
-			break;
-		default:
+
+		if ("GoldFish".equals(fishName)) {
+			this.tempMin = 68;
+			this.tempMax = 74;
+		} else if ("Corydora".equals(fishName)) {
+			this.tempMin = 74;
+			this.tempMax = 80;
+		} else if ("Beta".equals(fishName)) {
+			this.tempMin = 70;
+			this.tempMax = 80;
+		} else {
 			this.tempMin = 0;
-			this.tempMax = 100;	
+			this.tempMax = 100;
 		}
 	}
 	
@@ -50,21 +48,17 @@ public class Fish {
 	}
 	
 	public void setPrefferedpH(String fishName) {
-		
-		switch(fishName) {
-		case "GoldFish": 
-			this.pHMin=7;
-			this.pHMax=8.4;
-			break;
-		case "Corydora":
-			this.pHMin=7;
-			this.pHMax=8;
-			break;
-		case "Beta":
-			this.pHMin=7;
-			this.pHMax=9;
-			break;
-		default:
+
+		if ("GoldFish".equals(fishName)) {
+			this.pHMin = 7;
+			this.pHMax = 8.4;
+		} else if ("Corydora".equals(fishName)) {
+			this.pHMin = 7;
+			this.pHMax = 8;
+		} else if ("Beta".equals(fishName)) {
+			this.pHMin = 7;
+			this.pHMax = 9;
+		} else {
 			this.pHMin = 0;
 			this.pHMax = 100;
 		}

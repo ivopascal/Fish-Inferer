@@ -1,3 +1,7 @@
+package View;
+
+import Model.Model;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.text.DecimalFormat;

@@ -1,3 +1,6 @@
+import Model.Model;
+import View.GUI;
+
 public class FishInferer
 {
     public static void main( String[] args )
@@ -5,11 +8,11 @@ public class FishInferer
 		Model m = new Model();
 	    GUI gui = new GUI(m);
 	    
-	    String mrBubbles = "GoldFish";
+//	    String mrBubbles = "GoldFish";
 	    
-	    Fish dory = new Fish(mrBubbles);
+//	    Fish dory = new Fish(mrBubbles);
 	    
-	    dory.fishWarning(mrBubbles, 10, 10);
+//	    dory.fishWarning(mrBubbles, 10, 10);
 	    
 	    
     }

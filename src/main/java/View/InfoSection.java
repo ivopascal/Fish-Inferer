@@ -1,3 +1,7 @@
+package View;
+
+import Model.Model;
+
 import javax.swing.*;
 import java.awt.*;
 
