@@ -70,19 +70,9 @@ public class Fishtank extends JPanel
 
 	private Image getTankImage()
 	{
-        System.out.println("why?!");
-        URL url1 = getClass().getResource("fishtank.png");
-        URL url2 = getClass().getResource("resources/img/fishtank.png");
-        URL url3 = getClass().getResource("main/resources/img/fishtank.png");
-        URL url4 = getClass().getResource("src/main/resources/img/fishtank.png");
-        System.out.println("url1: "+url1);
-        System.out.println("url2: "+url2);
-        System.out.println("url3: "+url3);
-        System.out.println("url4: "+url4);
-        String path = getClass().getResource("img/fishtank.png").getFile();
-        System.out.println("path: "+path);
-        Image image = new ImageIcon(url1).getImage();
-		return image; //new ImageIcon("fishtank.png").getImage();
+        URL url = getClass().getResource("/img/fishtank.png");
+        System.out.println("url1: "+url);
+		return new ImageIcon(url).getImage(); //new ImageIcon("fishtank.png").getImage();
 	}
 
 	private void loadFishImages(){
