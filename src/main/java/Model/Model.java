@@ -3,10 +3,11 @@ package Model;
 import View.Fishtank;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
-public class Model
-{
+public class Model {
 	// Frame (GUI) dimensions
 	public int totalWidth = 1050;
 	public int totalHeight = 680;
@@ -22,52 +23,50 @@ public class Model
 	private String[] fishStrings = {"Red Crystal Shrimp", "Red Cherry Shrimp", "Pleco",
 			"MoonFish", "Guppy", "FireNeon", "Endler", "Cardinal", "Beta", "Corydora", "GoldFish"};
 
-	private ArrayList<String> fishNames = new ArrayList<String>();
 	private ArrayList<Fish> fish = new ArrayList<Fish>();
 	private ArrayList<Param> parameters = new ArrayList<Param>();
 	private Fishtank tankPanel;
 
-    public Model()
-    {
-    	makeParameters();
+	public Model() {
+		makeParameters();
 	}
 
-	private void makeParameters()
-	{
-		for (String parameterString : this.parameterStrings)
-		{
-			Param p = new Param(parameterString,null);
+	private void makeParameters() {
+		for (String parameterString : this.parameterStrings) {
+			Param p = new Param(parameterString, null);
 			this.parameters.add(p);
 		}
 	}
 
-	public void updateParameter(String paramName, Float newValue)
-	{
-		for (Param p : this.parameters)
-		{
-			if (p.name.equals(paramName))
-			{
+	public void updateParameter(String paramName, Float newValue) {
+		for (Param p : this.parameters) {
+			if (p.name.equals(paramName)) {
 				p.value = newValue;
 				System.out.println("Name: " + p.name + " - New Value: " + p.value);
 			}
 		}
 	}
 
-	public String[] getParameterStrings() { return parameterStrings; }
-	public String[] getFishStrings() { return fishStrings; }
-	public String[] getInfoButtonStrings() { return infoButtonStrings; }
+	public String[] getParameterStrings() {
+		return parameterStrings;
+	}
 
-	public void addFishByString(String FishName)
-	{
+	public String[] getFishStrings() {
+		return fishStrings;
+	}
+
+	public String[] getInfoButtonStrings() {
+		return infoButtonStrings;
+	}
+
+	public void addFishByString(String FishName) {
 		System.out.println(FishName);
 		fish.add(new Fish(FishName));
 		tankPanel.loadFish();
 	}
 
-	public void removeFishByString(String FishName)
-	{
+	public void removeFishByString(String FishName) {
 		System.out.println("Removing fish from model");
-
 		Iterator<Fish> it = fish.iterator();
 		while (it.hasNext()) {
 			Fish f = it.next();
@@ -75,52 +74,86 @@ public class Model
 				it.remove();
 			}
 		}
-
 		System.out.println("Removed fish");
 		tankPanel.loadFish();
 	}
 
-	public ArrayList<Fish> getFish()
-	{
-    	return fish;
+	public ArrayList<Fish> getFish() {
+		return fish;
 	}
-	public void addTankPanel(Fishtank tankPanel) { this.tankPanel = tankPanel; }
-	
-	public void warn()
-	{
-		for (Fish f: this.fish)
-		{
-			checkWaterWarningsPerFish(f);
-		}
+
+	public void addTankPanel(Fishtank tankPanel) {
+		this.tankPanel = tankPanel;
+	}
+
+	public void warn() {
+		checkWaterWarnings();
 		checkSocialWarnings();
 	}
-	
-	private void checkWaterWarningsPerFish(Fish f)
-	{
-		for (Param p: this.parameters)
-		{
-			if (p.name.equals("Temp  ") && p.value != null )
-			{
-				if (p.value > f.getMaxTemp() || p.value < f.getMinTemp())
-					System.out.println("WARNING for " + f.getFishName() + ": Temp is " + p.value +
-							", but should be between " + f.getMinTemp() + " and " + f.getMaxTemp());
-			}
-			if (p.name.equals("pH  ") && p.value != null )
-			{
-				if (p.value > f.getMaxpH() || p.value < f.getMinpH())
-					System.out.println("WARNING for " + f.getFishName() + ": pH is " + p.value +
-							", but should be between " + f.getMinpH() + " and " + f.getMaxpH());
+
+	private void checkWaterWarnings() {
+		Set checkDuplicates = new HashSet();
+		// for each fish
+		for (Fish f : fish) {
+			if (checkDuplicates.add(f) == true) {
+				// for each parameter
+				for (Param p : this.parameters) {
+					// check if the parameter value is within the limits of the requirements for the fish
+					if (p.name.equals("Temp  ") && p.value != null) {
+						if (p.value > f.getMaxTemp() || p.value < f.getMinTemp())
+							System.out.println("WARNING for " + f.getFishName() + ": Temp is " + p.value +
+									", but should be between " + f.getMinTemp() + " and " + f.getMaxTemp());
+					}
+					if (p.name.equals("pH  ") && p.value != null) {
+						if (p.value > f.getMaxpH() || p.value < f.getMinpH())
+							System.out.println("WARNING for " + f.getFishName() + ": pH is " + p.value +
+									", but should be between " + f.getMinpH() + " and " + f.getMaxpH());
+					}
+				}
 			}
 		}
 	}
 
-	private void checkSocialWarnings()
-	{
-		System.out.println("To be Implemented");
-		// for each fish, do
-			// check compatibility with each other type of fish
-			// check correct min/max group size of same type fish
+	private void checkSocialWarnings() {
+		// a set does not allow duplicates. if it is possible to add X to it, then X is new to it
+		Set checkDuplicates1 = new HashSet();
+		Set checkDuplicates2 = new HashSet();
+		int fishCount = 0;
+
+		// for each (unique) fish
+		for (Fish f : fish) {
+			if (checkDuplicates1.add(f) == true) {
+				fishCount++;
+				for (Fish f2 : fish) {
+					if (checkDuplicates2.add(f2) == true) {
+						// if there is another fish that could eat this fish, print a warning
+						if (f.getPredators().contains(f2.getFishName())) {
+							System.out.println("The " + f2.getFishName() + " will eat the " + f.getFishName() + "!");
+						}
+					} else {
+						fishCount++;
+					}
+				}
+				// if there are too many, or not enough of this fish, print a warning
+				if (fishCount > f.getMaxGroupSize() || fishCount < f.getMinGroupSize()) {
+					System.out.println("There are currently " + fishCount + " " + f.getFishName() + "'s, but they need " +
+							"to be in a group of at least " + f.getMinGroupSize() + " and at most " + f.getMaxGroupSize());
+				}
+				fishCount = 0;
+			}
+		}
 	}
+}
+
+
+
+
+
+
+
+
+
+
 /*
 	public boolean canAddFish(String FishName)
 	{
@@ -176,4 +209,3 @@ public class Model
                 return output;
         }
 */
-}
