@@ -2,6 +2,7 @@ package View;
 
 import Controller.addFishAction;
 import Model.Model;
+import Model.Fish;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -20,7 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.event.MouseInputAdapter;
 
 /*
-	FishTank panel holds the picture of the aquarium, as well as the explanatoin text and the add fish button
+	FishTank panel holds the picture of the aquarium, as well as the explanation text and the add fish button
 */
 
 public class Fishtank extends JPanel
@@ -30,20 +31,21 @@ public class Fishtank extends JPanel
 	private String InfoText;
 	private int imageWidth;
 	private int imageHeight;
-	private String buttonText;
 
-	private ArrayList<String> fishNames;
+	private ArrayList<Fish> fish;
 	private ArrayList<Fish_image> fishImages = new ArrayList<Fish_image>();
 	private ArrayList<Fish_area> fishAreas = new ArrayList<Fish_area>();
+
 	private fishRemover fishRemover;
 	private JButton addFishButton;
 	private JPanel addFishPanel;
+
 	Fishtank(Model m)
 	{
 
 		this.setLayout(new FlowLayout());
-                this.m = m;
-		m.addTankPanel(this);
+		this.m = m;
+		this.m.addTankPanel(this);
 		this.tankImg = getTankImage();
 		this.imageWidth = this.tankImg.getWidth(null);
 		this.imageHeight = this.tankImg.getHeight(null);
@@ -52,36 +54,38 @@ public class Fishtank extends JPanel
 
 		loadFish();
 
-		buttonText = "Add Fish";
+		String buttonText = "Add Fish";
 		this.addFishButton = new JButton(buttonText);
-		addFishButton.setPreferredSize(new Dimension(this.imageWidth, m.totalHeight/2 - this.imageHeight/2));
-		addFishButton.addActionListener(new addFishAction(m, this));
+		this.addFishButton.setPreferredSize(new Dimension(this.imageWidth, m.totalHeight/2 - this.imageHeight/2));
+		this.addFishButton.addActionListener(new addFishAction(m, this));
 		this.add(addFishButton);
 		this.fishRemover = new fishRemover(fishAreas, this);
 		setPreferredSize(size);
 		
 	}
 
-	public void loadFish(){
-		System.out.println("Panel requesting fishNames");
-		fishNames = m.getAllFishByString();
+	public void loadFish()
+	{
+		System.out.println("Panel requesting fish");
+		fish = m.getFish();
 		loadFishImages();
 	}
 
 	private Image getTankImage()
 	{
         URL url = getClass().getResource("/img/fishtank.png");
-        System.out.println("url1: "+url);
-		return new ImageIcon(url).getImage(); //new ImageIcon("fishtank.png").getImage();
+		return new ImageIcon(url).getImage();
 	}
 
-	private void loadFishImages(){
+	private void loadFishImages()
+	{
 		fishImages = new ArrayList<Fish_image>();
-		for(int i=0; i < fishNames.size(); i++){
-			System.out.println("Requesting: " + "img/" +fishNames.get(i)+".png");
-			String fishAdres = "img/" +fishNames.get(i)+".png";
-			Image fishImage = new ImageIcon(fishAdres).getImage();
-			fishImages.add(new Fish_image(fishNames.get(i),fishImage));
+		for (Fish f : fish)
+		{
+			System.out.println("Requesting: " + "/img/" + f.getFishName() + ".png");
+			URL fishAddress = getClass().getResource("/img/" + f.getFishName() + ".png");
+			Image fishImage = new ImageIcon(fishAddress).getImage();
+			fishImages.add(new Fish_image(f.getFishName(), fishImage));
 		}
 		System.out.println("Panel requesting fishImages");
 		this.repaint();
@@ -93,12 +97,14 @@ public class Fishtank extends JPanel
 		int yStart = m.totalHeight/2 - this.imageHeight/2;
 		g.drawImage(tankImg, xStart, yStart, null);
 		g.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		g.drawString(InfoText, xStart , tankImg.getHeight(this) + yStart+g.getFontMetrics().getHeight());
+		g.drawString(InfoText, xStart , tankImg.getHeight(this) + yStart + g.getFontMetrics().getHeight());
 
 		fishAreas.clear();
-		for(int i=0; i < fishImages.size(); i++){
+		for (int i = 0; i < fishImages.size(); i++)
+		{
 			System.out.println("Drawing fish no " + i);
-			double x = xStart + Math.random() * (tankImg.getWidth(this) - 70);//min + Math.random()  * (max-min)
+			// Random num between min and max: min + Math.random()  * (max-min)
+			double x = xStart + Math.random() * (tankImg.getWidth(this) - 70);
 			double y = yStart + Math.random() * (tankImg.getHeight(this) - 70);
 			g.drawImage(fishImages.get(i).image, (int)x, (int)y, 70,70,  null);
 			fishAreas.add(new Fish_area(fishImages.get(i).name, x, y, 70, 70));
@@ -106,11 +112,13 @@ public class Fishtank extends JPanel
 		fishRemover.update_fish(fishAreas);
 	}
 
-	public void removeFish(String name){
+	void removeFish(String name)
+	{
 		m.removeFishByString(name);
 	}
 
-	public void setAddFishPanel(JPanel addFishPanel){
+	public void setAddFishPanel(JPanel addFishPanel)
+	{
 		addFishPanel.setPreferredSize(new Dimension(this.imageWidth, m.totalHeight/2 - this.imageHeight/2));
 		this.remove(addFishButton);
 		this.add(addFishPanel);
@@ -118,15 +126,17 @@ public class Fishtank extends JPanel
 		validate();
 		//fishRemover = new fishRemover(fishAreas, this);
 	}
-	public void setAddFishButton(){
+
+	public void setAddFishButton()
+	{
 		this.remove(addFishPanel);
 		this.add(addFishButton);
 		validate();
 	}
 }
 
-class Fish_area{
-
+class Fish_area
+{
 	public String name;
 	public double x,y,width,height;
 
@@ -139,21 +149,25 @@ class Fish_area{
 	}
 }
 
-class Fish_image{
+class Fish_image
+{
 	public String name;
 	public Image image;
 
-	public Fish_image(String name, Image image){
+	public Fish_image(String name, Image image)
+	{
 		this.name = name;
 		this.image = image;
 	} 
 }
 
-class fishRemover extends MouseInputAdapter implements MouseListener{
+class fishRemover extends MouseInputAdapter implements MouseListener
+{
+	public ArrayList<Fish_area> fishAreas;
+	public Fishtank fishtank;
 
-	private ArrayList<Fish_area> fishAreas;
-	private Fishtank fishtank;
-	public fishRemover(ArrayList<Fish_area> fishAreas, Fishtank fishtank){
+	public fishRemover(ArrayList<Fish_area> fishAreas, Fishtank fishtank)
+	{
 		this.fishAreas = fishAreas;
 		this.fishtank = fishtank;
 		fishtank.addMouseMotionListener(this);
@@ -161,19 +175,21 @@ class fishRemover extends MouseInputAdapter implements MouseListener{
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e){
+	public void mouseClicked(MouseEvent e)
+	{
 		System.out.println("Registering a click");
-		if(e.getClickCount() == 2){
+		if (e.getClickCount() == 2)
+		{
 			System.out.println("Double click");
-			for(Fish_area f : fishAreas){
-				if(e.getX() >= f.x && e.getX() <= f.x + f.width
-					&& e.getY() >= f.y && e.getY() <= f.y + f.height){
+			for (Fish_area f : fishAreas)
+			{
+				if (e.getX() >= f.x && e.getX() <= f.x + f.width
+						&& e.getY() >= f.y && e.getY() <= f.y + f.height)
+				{
 					System.out.println("Removing fish " + f.name);
 					fishtank.removeFish(f.name);
-				} 
+				}
 			}
-
-
 		}
 	}
 	
@@ -181,14 +197,9 @@ class fishRemover extends MouseInputAdapter implements MouseListener{
 		this.fishAreas = fishAreas;
 	}
 
-	public void mousePressed(MouseEvent e){
-	}
-	public void mouseExited(MouseEvent e){
-    	}
-    	public void mouseEntered(MouseEvent e){
-    	}
-	public void mouseReleased(MouseEvent e){
-	}
-	public void mouseDragged(MouseEvent e){
-	}
+	public void mousePressed(MouseEvent e){}
+	public void mouseExited(MouseEvent e){}
+	public void mouseEntered(MouseEvent e){}
+	public void mouseReleased(MouseEvent e){}
+	public void mouseDragged(MouseEvent e){}
 }

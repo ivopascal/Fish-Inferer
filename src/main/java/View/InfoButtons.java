@@ -5,32 +5,29 @@ import Model.Model;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
-class InfoButtons extends JPanel
+public class InfoButtons extends JPanel
 {
-	InfoButtons(Model m)
+	public InfoButtons(Model m)
 	{
 		// parameters can also go in the model
-		String[] buttons = {"Why are my fish dying?", "Algae Info", "Stress", "Lighting"};
-		// find a way to resize the height of each row?
+		String[] buttons = m.getInfoButtonStrings();
 		GridLayout layout = new GridLayout(buttons.length, 1);
 		this.setLayout(layout);
 
-		for (String parameter : buttons)
+		for (String buttonText : buttons)
 		{
-			JButton l = new JButton(parameter);
+			JButton l = new JButton(buttonText);
 			this.add(l);
-			
-			///ADDED
-			if(parameter=="Why are my fish dying?") {
+
+			if(buttonText.equals("Why are my fish dying?"))
+			{
 				l.addActionListener(new addButtonAction(m));
 			}
 		}
 
 		Dimension size = new Dimension(m.paramsWidth, m.totalHeight);
 		this.setPreferredSize(size);
-
 	}
 }
 

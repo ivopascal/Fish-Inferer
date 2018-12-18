@@ -3,8 +3,6 @@ package View;
 import Model.Model;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.text.DecimalFormat;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -47,11 +45,11 @@ class Parameters extends JPanel
 
 class parameterAction implements DocumentListener
 {
-	Model m;
-	JFormattedTextField input;
-	String param;
+	private Model m;
+	private JFormattedTextField input;
+	private String param;
 
-	parameterAction(Model m, JFormattedTextField text, String param)
+	public parameterAction(Model m, JFormattedTextField text, String param)
 	{
 		this.m = m;
 		this.input = text;

@@ -3,6 +3,7 @@ package Model;
 import View.Fishtank;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Model
 {
@@ -15,15 +16,17 @@ public class Model
 	// Parameters
 	private int aquarium_width;
 	private int aquarium_length;
+	private int aquarium_depth;
+	private String[] infoButtonStrings = {"Why are my fish dying?", "Algae Info", "Stress", "Lighting"};
 	private String[] parameterStrings = {"Temp  ", "pH  ", "GH  ", "X  ", "Y  ", "Z  "};
+	private String[] fishStrings = {"Red Crystal Shrimp", "Red Cherry Shrimp", "Pleco",
+			"MoonFish", "Guppy", "FireNeon", "Endler", "Cardinal", "Beta", "Corydora", "GoldFish"};
 
 	private ArrayList<String> fishNames = new ArrayList<String>();
+	private ArrayList<Fish> fish = new ArrayList<Fish>();
 	private ArrayList<Param> parameters = new ArrayList<Param>();
 	private Fishtank tankPanel;
-	
-	///ADDED
-	private ArrayList<Fish> mrBubbles = new ArrayList<Fish>();
-	
+
     public Model()
     {
     	makeParameters();
@@ -48,99 +51,79 @@ public class Model
 				System.out.println("Name: " + p.name + " - New Value: " + p.value);
 			}
 		}
-		
 	}
 
-	public String[] getParameterStrings()
+	public String[] getParameterStrings() { return parameterStrings; }
+	public String[] getFishStrings() { return fishStrings; }
+	public String[] getInfoButtonStrings() { return infoButtonStrings; }
+
+	public void addFishByString(String FishName)
 	{
-		return parameterStrings;
-	}
-	
-	public void set_aquarium_width(int width){
-		this.aquarium_width = width;
-	}
-
-	public void set_aquarium_length(int length){
-		this.aquarium_length = length;
-	}
-	
-	public int get_aquarium_width(){
-		return aquarium_width;
-	}
-	public int get_aquarium_length(){
-		return aquarium_length;
-	}
-
-	public void addFishByString(String FishName){
 		System.out.println(FishName);
-		fishNames.add(FishName);
-		
-		///ADDED
-		Fish dory= new Fish(FishName);
-		///ADDED
-		this.mrBubbles.add(dory);
-		
+		fish.add(new Fish(FishName));
 		tankPanel.loadFish();
-		
 	}
 
-	public void removeFishByString(String FishName){
+	public void removeFishByString(String FishName)
+	{
 		System.out.println("Removing fish from model");
 
-		//Remove fish from fishNames
-		fishNames.remove(FishName);
-		//Remove fish from mrBubbles
-		for(Fish f : mrBubbles){
-			if(f.fishName == FishName){
-				
-				mrBubbles.remove(f);
+		Iterator<Fish> it = fish.iterator();
+		while (it.hasNext()) {
+			Fish f = it.next();
+			if (f.getFishName().equals(FishName)) {
+				it.remove();
 			}
 		}
+
 		System.out.println("Removed fish");
 		tankPanel.loadFish();
 	}
 
-	public ArrayList<String> getAllFishByString(){
-		return fishNames;
+	public ArrayList<Fish> getFish()
+	{
+    	return fish;
 	}
-
-	public void addTankPanel(Fishtank tankPanel){
-		this.tankPanel = tankPanel;
+	public void addTankPanel(Fishtank tankPanel) { this.tankPanel = tankPanel; }
+	
+	public void warn()
+	{
+		for (Fish f: this.fish)
+		{
+			checkWaterWarningsPerFish(f);
+		}
+		checkSocialWarnings();
 	}
 	
-	///ADDED
-	public void warn() {
-		for (String s: this.fishNames) {
-			checkWarnings(s);
-		}
-	}
-	
-	public void checkWarnings(String FishName) {
-		
-		///ADDED
-		double aquariumTemp=1000, aquariumpH=1000;
-		
-		for (Param p: this.parameters) {
-			
-			if(p.name.equals("Temp  ") && p.value !=null)  {
-				aquariumTemp=p.value;
-				
+	private void checkWaterWarningsPerFish(Fish f)
+	{
+		for (Param p: this.parameters)
+		{
+			if (p.name.equals("Temp  ") && p.value != null )
+			{
+				if (p.value > f.getMaxTemp() || p.value < f.getMinTemp())
+					System.out.println("WARNING for " + f.getFishName() + ": Temp is " + p.value +
+							", but should be between " + f.getMinTemp() + " and " + f.getMaxTemp());
 			}
-			if(p.name.equals("pH  ") && p.value !=null) {
-				aquariumpH=p.value;
+			if (p.name.equals("pH  ") && p.value != null )
+			{
+				if (p.value > f.getMaxpH() || p.value < f.getMinpH())
+					System.out.println("WARNING for " + f.getFishName() + ": pH is " + p.value +
+							", but should be between " + f.getMinpH() + " and " + f.getMaxpH());
 			}
 		}
-		if (aquariumTemp!=1000 && aquariumpH !=1000) {
-			for (Fish dory : this.mrBubbles) {
-				if(dory.getFishName()==FishName) {
-					dory.fishWarning(FishName, aquariumTemp, aquariumpH);
-				}
-			}
-		}
-		
 	}
 
-	public boolean canAddFish(String FishName){
+	private void checkSocialWarnings()
+	{
+		System.out.println("To be Implemented");
+		// for each fish, do
+			// check compatibility with each other type of fish
+			// check correct min/max group size of same type fish
+	}
+/*
+	public boolean canAddFish(String FishName)
+	{
 		Fish compfish = new Fish(FishName);
 		System.out.println("Number of fish: " + mrBubbles.size());
 		
@@ -192,5 +175,5 @@ public class Model
                 }
                 return output;
         }
-
+*/
 }

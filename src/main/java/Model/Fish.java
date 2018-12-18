@@ -1,29 +1,26 @@
 package Model;
 
-public class Fish {
-
+public class Fish
+{
 	public String fishName;
-	private double length;
 	private double tempMin, tempMax;
 	private double pHMin, pHMax;
-	
-	
-	public Fish(String fishName){
-		this.fishName=fishName;
-		
+
+	public Fish(String fishName)
+	{
+		this.fishName = fishName;
 		System.out.println("A wild " + fishName + " appears!");
 		
-		setPrefferedTemp(fishName);
-		setPrefferedpH(fishName);
-		
+		setPreferredTemp(fishName);
+		setPreferredpH(fishName);
 	}
 	
 	public String getFishName() {
 		return fishName;
 	}
 	
-	public void setPrefferedTemp(String fishName) {
-
+	private void setPreferredTemp(String fishName)
+	{
 		if ("GoldFish".equals(fishName)) {
 			this.tempMin = 68;
 			this.tempMax = 74;
@@ -47,8 +44,8 @@ public class Fish {
 		return tempMax;
 	}
 	
-	public void setPrefferedpH(String fishName) {
-
+	private void setPreferredpH(String fishName)
+	{
 		if ("GoldFish".equals(fishName)) {
 			this.pHMin = 7;
 			this.pHMax = 8.4;
@@ -71,8 +68,10 @@ public class Fish {
 	public double getMaxpH() {
 		return pHMax;
 	}
-	
-	public void fishWarning(String fishName, double aquariumTemp, double aquariumpH) {
+
+/*
+	public void fishWarning(String fishName, Model m)
+	{
 		if(aquariumTemp<tempMin || aquariumTemp>tempMax) {
 			System.out.println("Warning: incorrect temperature");
 			System.out.println("Range for " + fishName + " should be between " + tempMin + " and " + tempMax + ", but is " + aquariumTemp);
@@ -83,5 +82,5 @@ public class Fish {
 			
 		}
 	}
-	
+*/
 }

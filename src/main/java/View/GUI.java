@@ -8,14 +8,13 @@ import java.awt.BorderLayout;
 
 public class GUI extends JFrame
 {
-	// this is some ugly shit but it works (barely)
 	public GUI(Model m)
 	{
 		Dimension size = new Dimension(m.totalWidth, m.totalHeight);
 		this.setLayout(new BorderLayout());
 		this.setPreferredSize(size);
 
-		Fishtank fishtank = new Fishtank(m); 	//This handles the picture, the bottomtext and the addFishButton
+		Fishtank fishtank = new Fishtank(m);
 		this.add(fishtank, BorderLayout.CENTER);
 		Parameters params = new Parameters(m);
 		this.add(params, BorderLayout.WEST);
@@ -29,6 +28,5 @@ public class GUI extends JFrame
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-		
 	}
 }
