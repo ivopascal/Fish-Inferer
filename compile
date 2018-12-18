@@ -1,11 +1,3 @@
 #!/bin/bash
 
-if [ ! -d target ]; then
- 	mkdir target;
-fi
-
-if [ ! -d target/img ]; then
-	mkdir target/img;
-fi
-cp  ./src/img/* ./target/img/;
-javac $(find . -name '*.java') -d target/;
+mvn compile

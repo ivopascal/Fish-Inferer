@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd target
-java FishInferer
+mvn exec:java -Dexec.mainClass="FishInferer"
+
