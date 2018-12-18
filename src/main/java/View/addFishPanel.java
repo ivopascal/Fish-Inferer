@@ -1,14 +1,11 @@
-import java.util.ArrayList;
+package View;
 
-import javax.swing.JFrame;
+import Model.Model;
+
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.AbstractAction;
 
-
-import java.awt.Dimension;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 
@@ -16,32 +13,21 @@ import java.awt.GridLayout;
 	addFishFrame opens a selector GUI where a button can be clicked to pick a fish
 	The name of this fish is passed to the model as a string, from where the fish data should be computed
 */
-class addFishPanel extends JPanel
+public class addFishPanel extends JPanel
 {
 	private Model m;
-	private ArrayList<String> fishNames;
 	private Fishtank fishtank;
 
-	addFishPanel(Model m, Fishtank fishtank)
+	public addFishPanel(Model m, Fishtank fishtank)
 	{
 		this.m = m;
 		this.fishtank = fishtank;
-		//this.setPreferredSize(size);
-                this.setLayout(new GridLayout());
+		this.setLayout(new GridLayout());
 
-		fishNames = m.getAllFishByString();
-
-		addFish("GoldFish");
-		addFish("Corydora");
-		addFish("Beta");
-		addFish("Cardinal");
-		addFish("Endler");
-		addFish("FireNeon");
-		addFish("Guppy");
-		addFish("MoonFish");
-		addFish("Pleco");
-		addFish("Red Cherry Shrimp");
-		addFish("Red Crystal Shrimp");
+		for (String fishName : m.getFishStrings())
+		{
+			addFish(fishName);
+		}
 
 		fishtank.setAddFishPanel(this);
 
@@ -54,8 +40,14 @@ class addFishPanel extends JPanel
 		//this.setVisible(true);
 	}
 
-	public void addFish(String fishName){
+	public void addFish(String fishName)
+	{
 		JButton fishButton = new JButton(fishName);
+
+		// we should always allow adding because otherwise we run into problems when
+		// adding one fish although there need to be at least X of them. I think we
+		// should just show the warnings instead, and make them as informative as possible
+/*
 		if(!m.canAddFish(fishName) || fishNames.contains(fishName)){
 			fishButton.setEnabled(false);
 			if(fishNames.contains(fishName)){
@@ -64,25 +56,29 @@ class addFishPanel extends JPanel
 				fishButton.setToolTipText(m.canAddFishProblems(fishName));
 			}
 		}
+*/
 		fishButton.addActionListener(new fishButtonAction(m, fishName, fishtank));
 		this.add(fishButton);
 	}
 }
 
-class fishButtonAction extends AbstractAction{
+class fishButtonAction extends AbstractAction
+{
 	Model m;
 	String fishName;
 	Fishtank fishtank;
-	fishButtonAction(Model m, String fishName, Fishtank fishtank){
+
+	fishButtonAction(Model m, String fishName, Fishtank fishtank)
+	{
 		this.m = m;
 		this.fishName = fishName;
 		this.fishtank = fishtank;
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e){
+	public void actionPerformed(ActionEvent e)
+	{
 		m.addFishByString(fishName);
 		fishtank.setAddFishButton();
 	}
-
 }

@@ -1,3 +1,9 @@
+package Controller;
+
+import Model.Model;
+import View.Fishtank;
+import View.addFishPanel;
+
 import javax.swing.AbstractAction;
 import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
@@ -16,7 +22,7 @@ public class addFishAction extends AbstractAction
 		this.fishtank = fishtank;
 	}
 
-	@Override
+//	@Override
 	public void actionPerformed(ActionEvent e){
 		JPanel addFishPanel = new addFishPanel(model, fishtank);
 	}

@@ -1,17 +1,20 @@
+package View;
+
+import Model.Model;
+
 import javax.swing.JFrame;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 
-class GUI extends JFrame
+public class GUI extends JFrame
 {
-	// this is some ugly shit but it works (barely)
-	GUI(Model m)
+	public GUI(Model m)
 	{
 		Dimension size = new Dimension(m.totalWidth, m.totalHeight);
 		this.setLayout(new BorderLayout());
 		this.setPreferredSize(size);
 
-		Fishtank fishtank = new Fishtank(m); 	//This handles the picture, the bottomtext and the addFishButton
+		Fishtank fishtank = new Fishtank(m);
 		this.add(fishtank, BorderLayout.CENTER);
 		Parameters params = new Parameters(m);
 		this.add(params, BorderLayout.WEST);
@@ -25,6 +28,5 @@ class GUI extends JFrame
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-		
 	}
 }
