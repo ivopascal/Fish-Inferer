@@ -2,10 +2,7 @@ package Model;
 
 import View.Fishtank;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 public class Model {
 	// Frame (GUI) dimensions
