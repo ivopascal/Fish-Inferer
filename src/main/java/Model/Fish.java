@@ -106,6 +106,26 @@ public class Fish {
 	public ArrayList<String> getPredators() {
 		return predators;
 	}
+
+	// I need this and equals to remove duplicates via a hashset
+    // just ignore this stuff
+	@Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.getFishName().hashCode();
+        return result;
+    }
+
+    // again, just pretend this isnt here :)
+    @Override
+    public boolean equals(Object o) {
+	    if (o == this) return true;
+	    if (!(o instanceof Fish)) {
+	        return false;
+        }
+	    Fish f = (Fish) o;
+        return f.getFishName().equals(this.getFishName());
+    }
 }
 
 
