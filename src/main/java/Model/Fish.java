@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class Fish {
-	public String fishName;
+	private String fishName;
 	private double tempMin, tempMax;
 	private double pHMin, pHMax;
 	private int minGroupSize, maxGroupSize;
