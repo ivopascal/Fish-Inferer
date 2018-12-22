@@ -23,6 +23,7 @@ public class Model {
 	private ArrayList<Fish> fish = new ArrayList<Fish>();
 	private ArrayList<Param> parameters = new ArrayList<Param>();
 	private Fishtank tankPanel;
+	private Output printer = new Output();
 
 	public Model() {
 		makeParameters();
@@ -39,7 +40,6 @@ public class Model {
 		for (Param p : this.parameters) {
 			if (p.name.equals(paramName)) {
 				p.value = newValue;
-				System.out.println("Name: " + p.name + " - New Value: " + p.value);
 			}
 		}
 	}
@@ -47,6 +47,7 @@ public class Model {
 	public String[] getParameterStrings() {
 		return parameterStrings;
 	}
+	public ArrayList<Param> getParameters() { return parameters; }
 
 	public String[] getFishStrings() {
 		return fishStrings;
@@ -57,13 +58,11 @@ public class Model {
 	}
 
 	public void addFishByString(String FishName) {
-		System.out.println(FishName);
 		fish.add(new Fish(FishName));
 		tankPanel.loadFish();
 	}
 
 	public void removeFishByString(String FishName) {
-		System.out.println("Removing fish from model");
 		Iterator<Fish> it = fish.iterator();
 		while (it.hasNext()) {
 			Fish f = it.next();
@@ -71,7 +70,6 @@ public class Model {
 				it.remove();
 			}
 		}
-		System.out.println("Removed fish");
 		tankPanel.loadFish();
 	}
 
@@ -84,27 +82,32 @@ public class Model {
 	}
 
 	public void warn() {
+		printer.resetWarnings();
 		checkWaterWarnings();
 		checkSocialWarnings();
+		printer.printWarnings();
 	}
 
 	private void checkWaterWarnings() {
-		Set checkDuplicates = new HashSet();
-		// for each fish
+		// a set does not allow duplicates. if it is possible to add X to it, then X is new to it
+		Set checkDuplicates = new HashSet<Fish>();
+		// for each fishtype
 		for (Fish f : fish) {
-			if (checkDuplicates.add(f) == true) {
+			if (checkDuplicates.add(f)) {
 				// for each parameter
 				for (Param p : this.parameters) {
 					// check if the parameter value is within the limits of the requirements for the fish
 					if (p.name.equals("Temp  ") && p.value != null) {
 						if (p.value > f.getMaxTemp() || p.value < f.getMinTemp())
-							System.out.println("WARNING for " + f.getFishName() + ": Temp is " + p.value +
-									", but should be between " + f.getMinTemp() + " and " + f.getMaxTemp());
+							printer.addWaterWarning("TEMP", f, p.value);
+//							System.out.println("WARNING: For " + f.getFishName() + ", the Temp is " + p.value +
+//									", but should be between " + f.getMinTemp() + " and " + f.getMaxTemp());
 					}
 					if (p.name.equals("pH  ") && p.value != null) {
 						if (p.value > f.getMaxpH() || p.value < f.getMinpH())
-							System.out.println("WARNING for " + f.getFishName() + ": pH is " + p.value +
-									", but should be between " + f.getMinpH() + " and " + f.getMaxpH());
+							printer.addWaterWarning("PH", f, p.value);
+//							System.out.println("WARNING: For " + f.getFishName() + ", the pH is " + p.value +
+//									", but should be between " + f.getMinpH() + " and " + f.getMaxpH());
 					}
 				}
 			}
@@ -113,30 +116,29 @@ public class Model {
 
 	private void checkSocialWarnings() {
 		// a set does not allow duplicates. if it is possible to add X to it, then X is new to it
-		Set checkDuplicates1 = new HashSet();
-		Set checkDuplicates2 = new HashSet();
-		int fishCount = 0;
+		Set checkDuplicates1 = new HashSet<Fish>();
+		Set checkDuplicates2 = new HashSet<Fish>();
 
-		// for each (unique) fish
+		// for each fishtype
 		for (Fish f : fish) {
-			if (checkDuplicates1.add(f) == true) {
-				fishCount++;
+			if (checkDuplicates1.add(f)) {
+				// for each other fishtype
 				for (Fish f2 : fish) {
-					if (checkDuplicates2.add(f2) == true) {
+					if (checkDuplicates2.add(f2)) {
 						// if there is another fish that could eat this fish, print a warning
-						if (f.getPredators().contains(f2.getFishName())) {
-							System.out.println("The " + f2.getFishName() + " will eat the " + f.getFishName() + "!");
-						}
-					} else {
-						fishCount++;
+						if (f.getPredators().contains(f2.getFishName()))
+							printer.addSocialWarning(f, f2);
+//							System.out.println("WARNING: The " + f2.getFishName() + " will eat the " + f.getFishName() + "!");
 					}
 				}
+				// clear the second duplicate check, else we will skip some fish on the next outer for loop iteration
+				checkDuplicates2 = new HashSet();
 				// if there are too many, or not enough of this fish, print a warning
-				if (fishCount > f.getMaxGroupSize() || fishCount < f.getMinGroupSize()) {
-					System.out.println("There are currently " + fishCount + " " + f.getFishName() + "'s, but they need " +
-							"to be in a group of at least " + f.getMinGroupSize() + " and at most " + f.getMaxGroupSize());
-				}
-				fishCount = 0;
+				int fishCount = Collections.frequency(fish, f);
+				if (fishCount > f.getMaxGroupSize() || fishCount < f.getMinGroupSize())
+					printer.addSocialWarning(f, fishCount);
+//					System.out.println("WARNING: There are currently " + fishCount + " " + f.getFishName() + "'s, but they need " +
+//							"to be in a group of at least " + f.getMinGroupSize() + " and at most " + f.getMaxGroupSize());
 			}
 		}
 	}

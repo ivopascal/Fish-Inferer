@@ -66,7 +66,6 @@ public class Fishtank extends JPanel
 
 	public void loadFish()
 	{
-		System.out.println("Panel requesting fish");
 		fish = m.getFish();
 		loadFishImages();
 	}
@@ -82,12 +81,10 @@ public class Fishtank extends JPanel
 		fishImages = new ArrayList<Fish_image>();
 		for (Fish f : fish)
 		{
-			System.out.println("Requesting: " + "/img/" + f.getFishName() + ".png");
 			URL fishAddress = getClass().getResource("/img/" + f.getFishName() + ".png");
 			Image fishImage = new ImageIcon(fishAddress).getImage();
 			fishImages.add(new Fish_image(f.getFishName(), fishImage));
 		}
-		System.out.println("Panel requesting fishImages");
 		this.repaint();
 	}
 
@@ -102,7 +99,6 @@ public class Fishtank extends JPanel
 		fishAreas.clear();
 		for (int i = 0; i < fishImages.size(); i++)
 		{
-			System.out.println("Drawing fish no " + i);
 			// Random num between min and max: min + Math.random()  * (max-min)
 			double x = xStart + Math.random() * (tankImg.getWidth(this) - 70);
 			double y = yStart + Math.random() * (tankImg.getHeight(this) - 70);
@@ -177,16 +173,15 @@ class fishRemover extends MouseInputAdapter implements MouseListener
 	@Override
 	public void mouseClicked(MouseEvent e)
 	{
-		System.out.println("Registering a click");
 		if (e.getClickCount() == 2)
 		{
-			System.out.println("Double click");
+			// double click registered
 			for (Fish_area f : fishAreas)
 			{
 				if (e.getX() >= f.x && e.getX() <= f.x + f.width
 						&& e.getY() >= f.y && e.getY() <= f.y + f.height)
 				{
-					System.out.println("Removing fish " + f.name);
+					// remove fish
 					fishtank.removeFish(f.name);
 				}
 			}
