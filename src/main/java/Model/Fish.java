@@ -15,7 +15,6 @@ public class Fish {
 
 		setPreferredTemp(fishName);
 		setPreferredpH(fishName);
-		System.out.println(succes);
 		setGroupSizeRequirements(fishName);
 		setPredators(fishName);
 	}
