@@ -1,6 +1,8 @@
 package View;
 
 import Model.Model;
+import Controller.addFishAction;
+
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -8,6 +10,8 @@ import javax.swing.AbstractAction;
 
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
+import java.awt.Dimension;
+
 
 /*
 	addFishFrame opens a selector GUI where a button can be clicked to pick a fish
@@ -16,28 +20,20 @@ import java.awt.GridLayout;
 public class addFishPanel extends JPanel
 {
 	private Model m;
-	private Fishtank fishtank;
+	private JButton addFishButton;
 
-	public addFishPanel(Model m, Fishtank fishtank)
+	public addFishPanel(Model m)
 	{
 		this.m = m;
-		this.fishtank = fishtank;
 		this.setLayout(new GridLayout());
 
-		for (String fishName : m.getFishStrings())
-		{
-			addFish(fishName);
-		}
+		
 
-		fishtank.setAddFishPanel(this);
-
-		//this.setResizable(false);
-		//this.setTitle("Select a fish to add");
-
-		//this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		//this.pack();
-		//this.setLocationRelativeTo(null);
-		//this.setVisible(true);
+		
+		String buttonText = "Add Fish";
+		this.addFishButton = new JButton(buttonText);
+		this.addFishButton.addActionListener(new addFishAction(m, this));
+		this.add(addFishButton);
 	}
 
 	public void addFish(String fishName)
@@ -57,8 +53,28 @@ public class addFishPanel extends JPanel
 			}
 		}
 */
-		fishButton.addActionListener(new fishButtonAction(m, fishName, fishtank));
+		fishButton.addActionListener(new fishButtonAction(m, fishName, this));
 		this.add(fishButton);
+	}
+	
+	public void setAddFishButton(){
+		this.removeAll();
+		this.add(addFishButton);
+		revalidate();
+		this.repaint();
+		
+		
+	}
+	
+	public void setAddFishPanel(){
+		this.remove(addFishButton);
+		for (String fishName : m.getFishStrings())
+		{
+			addFish(fishName);
+		}
+		revalidate();
+		this.repaint();
+		
 	}
 }
 
@@ -66,19 +82,19 @@ class fishButtonAction extends AbstractAction
 {
 	Model m;
 	String fishName;
-	Fishtank fishtank;
+	addFishPanel panel;
 
-	fishButtonAction(Model m, String fishName, Fishtank fishtank)
+	fishButtonAction(Model m, String fishName, addFishPanel panel)
 	{
 		this.m = m;
 		this.fishName = fishName;
-		this.fishtank = fishtank;
+		this.panel = panel;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		m.addFishByString(fishName);
-		fishtank.setAddFishButton();
+		panel.setAddFishButton();
 	}
 }

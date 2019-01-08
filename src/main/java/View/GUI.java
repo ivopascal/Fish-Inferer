@@ -14,8 +14,8 @@ public class GUI extends JFrame
 		this.setLayout(new BorderLayout());
 		this.setPreferredSize(size);
 
-		Fishtank fishtank = new Fishtank(m);
-		this.add(fishtank, BorderLayout.CENTER);
+		CenterPanel centerPanel = new CenterPanel(m);
+		this.add(centerPanel, BorderLayout.CENTER);
 		Parameters params = new Parameters(m);
 		this.add(params, BorderLayout.WEST);
 		InfoButtons buttons = new InfoButtons(m);

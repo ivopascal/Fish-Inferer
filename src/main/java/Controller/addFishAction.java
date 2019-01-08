@@ -16,15 +16,15 @@ import java.awt.event.ActionEvent;
 public class addFishAction extends AbstractAction
 {
 	private Model model;
-	private Fishtank fishtank;
-	public addFishAction(Model m, Fishtank fishtank){
+	private addFishPanel afp;
+	public addFishAction(Model m, addFishPanel afp){
 		this.model = m;
-		this.fishtank = fishtank;
+		this.afp = afp;
 	}
 
 //	@Override
 	public void actionPerformed(ActionEvent e){
-		JPanel addFishPanel = new addFishPanel(model, fishtank);
+		afp.setAddFishPanel();
 	}
 
 

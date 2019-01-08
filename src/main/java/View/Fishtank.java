@@ -1,6 +1,6 @@
 package View;
 
-import Controller.addFishAction;
+
 import Model.Model;
 import Model.Fish;
 
@@ -28,7 +28,7 @@ public class Fishtank extends JPanel
 {
 	private Model m;
 	private Image tankImg;
-	private String InfoText;
+
 	private int imageWidth;
 	private int imageHeight;
 
@@ -37,8 +37,8 @@ public class Fishtank extends JPanel
 	private ArrayList<Fish_area> fishAreas = new ArrayList<Fish_area>();
 
 	private fishRemover fishRemover;
-	private JButton addFishButton;
-	private JPanel addFishPanel;
+
+	
 
 	Fishtank(Model m)
 	{
@@ -49,16 +49,12 @@ public class Fishtank extends JPanel
 		this.tankImg = getTankImage();
 		this.imageWidth = this.tankImg.getWidth(null);
 		this.imageHeight = this.tankImg.getHeight(null);
-		this.InfoText = "Here are some instructions and general info";
+		
 		Dimension size = new Dimension(this.imageWidth, this.imageHeight);
 
 		loadFish();
 
-		String buttonText = "Add Fish";
-		this.addFishButton = new JButton(buttonText);
-		this.addFishButton.setPreferredSize(new Dimension(this.imageWidth, m.totalHeight/2 - this.imageHeight/2));
-		this.addFishButton.addActionListener(new addFishAction(m, this));
-		this.add(addFishButton);
+		
 		this.fishRemover = new fishRemover(fishAreas, this);
 		setPreferredSize(size);
 		
@@ -90,12 +86,9 @@ public class Fishtank extends JPanel
 
 	public void paintComponent(Graphics g)
 	{
-		int xStart = m.totalWidth/2 - this.imageWidth/2 - m.paramsWidth;
-		int yStart = m.totalHeight/2 - this.imageHeight/2;
+		int xStart = 0;
+		int yStart = 0;
 		g.drawImage(tankImg, xStart, yStart, null);
-		g.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		g.drawString(InfoText, xStart , tankImg.getHeight(this) + yStart + g.getFontMetrics().getHeight());
-
 		fishAreas.clear();
 		for (int i = 0; i < fishImages.size(); i++)
 		{
@@ -111,23 +104,6 @@ public class Fishtank extends JPanel
 	void removeFish(String name)
 	{
 		m.removeFishByString(name);
-	}
-
-	public void setAddFishPanel(JPanel addFishPanel)
-	{
-		addFishPanel.setPreferredSize(new Dimension(this.imageWidth, m.totalHeight/2 - this.imageHeight/2));
-		this.remove(addFishButton);
-		this.add(addFishPanel);
-		this.addFishPanel = addFishPanel;
-		validate();
-		//fishRemover = new fishRemover(fishAreas, this);
-	}
-
-	public void setAddFishButton()
-	{
-		this.remove(addFishPanel);
-		this.add(addFishButton);
-		validate();
 	}
 }
 
