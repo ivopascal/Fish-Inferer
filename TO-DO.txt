@@ -13,10 +13,20 @@ Add problem notification to fish			-	Helma
 Next TODO:
 Move information to bottom			- Travis
 Make info appear without submit&addfish		- Travis
-Change add fish to buttons	- Ivo
+Change add fish to buttons	- Ivo		-done
 Remove Fish(double click)	- Ivo		-done
 Add recommended value		- Helma
 Create info popups		- Helma
-Prohobit fish with tooltips	- Ivo		-Needs tooltip
+Prohobit fish with tooltips	- Ivo		-plans changes
 Fit add Fish button		- Travis
+
+New TODO:
+	Add gender requirements to social requirements (i.e. 1 Guppy (M) need 3 guppy (F)) 
+	Distinguish gender for guppy and Betta
+	Make info boxes + add texts
+	Add a point system to make sure the tank isn't overfull (points/liter, different points per fish)
+	Add width+depth+height
+	Add simple checks for nitrite, nitrate and Chlorine ( <0.5)
+	Add more fish
+	
 

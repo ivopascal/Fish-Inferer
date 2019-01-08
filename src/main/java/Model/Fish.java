@@ -15,6 +15,7 @@ public class Fish {
 
 		setPreferredTemp(fishName);
 		setPreferredpH(fishName);
+		System.out.println(succes);
 		setGroupSizeRequirements(fishName);
 		setPredators(fishName);
 	}
@@ -24,18 +25,57 @@ public class Fish {
 	}
 
 	private void setPreferredTemp(String fishName) {
-		if ("GoldFish".equals(fishName)) {
-			this.tempMin = 68;
-			this.tempMax = 74;
-		} else if ("Corydora".equals(fishName)) {
-			this.tempMin = 74;
-			this.tempMax = 80;
-		} else if ("Beta".equals(fishName)) {
-			this.tempMin = 70;
-			this.tempMax = 80;
-		} else {
-			this.tempMin = 0;
-			this.tempMax = 100;
+		switch(fishName){
+			case "Goldfish":
+				this.tempMin = 18.89;
+				this.tempMax = 22.22;
+				break;
+
+			case "Corydora":
+				this.tempMin = 23.33;
+				this.tempMax = 26.66;
+				break;
+			case "Betta (M)":
+				this.tempMin = 23.89;
+				this.tempMax = 26.67;
+				break;
+			case "Betta (F)":
+				this.tempMin = 23.89;
+				this.tempMax = 26.67;
+				break;
+			case "Guppy (M)":
+				this.tempMin = 22;
+				this.tempMax = 26;
+				break;
+			case "Guppy (F)":
+				this.tempMin = 22;
+				this.tempMax = 26;
+				break;
+			case "Cardinal":
+				this.tempMin = 22.78;
+				this.tempMax = 27.22;
+				break;
+			case "Endler":
+				this.tempMin = 22;
+				this.tempMax = 26;
+				break;
+			case "Endler (F)":
+				this.tempMin = 22;
+				this.tempMax = 26;
+				break;
+			case "Fire neon":
+				this.tempMin = 22;
+				this.tempMax = 28;
+				break;
+			case "Moon fish":
+				this.tempMin = 23.9;
+				this.tempMax = 27.8;
+				break;
+			default:
+				System.out.println("Using default value for " + fishName);
+				this.tempMin = 0;
+				this.tempMax = 100;
+				break;
 		}
 	}
 
@@ -48,18 +88,59 @@ public class Fish {
 	}
 
 	private void setPreferredpH(String fishName) {
-		if ("GoldFish".equals(fishName)) {
-			this.pHMin = 7;
-			this.pHMax = 8.4;
-		} else if ("Corydora".equals(fishName)) {
-			this.pHMin = 7;
-			this.pHMax = 8;
-		} else if ("Beta".equals(fishName)) {
-			this.pHMin = 7;
-			this.pHMax = 9;
-		} else {
-			this.pHMin = 0;
-			this.pHMax = 100;
+		switch(fishName){
+			case "Goldfish":
+				this.pHMin = 7.2;
+				this.pHMax = 7.8;
+				break;
+			case "Corydora":
+				this.pHMin = 7.0;
+				this.pHMax = 8.0;
+				break;
+			case "Betta (M)":
+				this.pHMin = 6.0;
+				this.pHMax = 7.5;
+				break;
+			case "Betta (F)":
+				this.pHMin = 6.0;
+				this.pHMax = 7.5;
+				break;
+			case "Guppy (M)":
+				this.pHMin = 6.7;
+				this.pHMax = 8.5;
+				break;
+			case "Guppy (F)":
+				this.pHMin = 6.7;
+				this.pHMax = 8.5;
+				break;
+			case "Cardinal":
+				this.pHMin = 5;
+				this.pHMax = 6;
+				break;
+			case "Endler (M)":
+				this.pHMin = 6.7;
+				this.pHMax = 8.5;
+				break;
+			case "Endler (F)":
+				this.pHMin = 6.7;
+				this.pHMax = 8.5;
+				break;
+			case "Fire neon":
+				this.pHMin = 6.0;
+				this.pHMax = 7.5;
+				break;
+			case "Moon fish":
+				this.pHMin = 7.2;
+				this.pHMax = 8.5;
+				break;
+			
+
+			default:
+				System.out.println("Using default value for " +fishName);
+				this.pHMin = 0;
+				this.pHMax = 14;
+				break;
+
 		}
 	}
 
@@ -72,12 +153,52 @@ public class Fish {
 	}
 
 	public void setGroupSizeRequirements(String fishName) {
-		if ("MoonFish".equals(fishName)) {
-			this.maxGroupSize = 15;
-			this.minGroupSize = 6;
-		} else {
-			this.maxGroupSize = 5;
-			this.minGroupSize = 1;
+		switch(fishName){
+			case "Moon fish":
+				this.minGroupSize = 5;
+				this.maxGroupSize = 99;
+				break;
+			case "Goldfish":
+				this.minGroupSize = 3;
+				this.maxGroupSize = 99;
+				break;
+			case "Corydora":
+				this.minGroupSize = 6;
+				this.maxGroupSize = 99;
+				break;
+			case "Betta (M)":
+				this.minGroupSize = 1;
+				this.maxGroupSize = 1;
+				break;
+			case "Betta (F)":
+				this.minGroupSize = 3;
+				this.maxGroupSize = 99;
+				break;
+			case "Guppy (M)":
+				this.minGroupSize = 1;
+				this.maxGroupSize = 99;
+				break;
+			case "Guppy (F)":
+				this.minGroupSize = 3;
+				this.maxGroupSize = 99;
+				break;
+			case "Cardinal":
+				this.minGroupSize = 6;
+				this.maxGroupSize = 99;
+				break;
+			case "Endler (M)":
+				this.minGroupSize = 1;
+				this.maxGroupSize = 99;
+				break;
+			case "Endler (F)":
+				this.minGroupSize = 3;
+				this.maxGroupSize = 99;
+				break;
+		
+			default:
+				this.minGroupSize = 1;
+				this.maxGroupSize = 99;
+				break;
 		}
 	}
 
@@ -90,16 +211,41 @@ public class Fish {
 	}
 
 	public void setPredators(String fishName) {
-		if ("Red Crystal Shrimp".equals(fishName) || "Red Cherry Shrimp".equals(fishName)) {
-			this.predators.add("Pleco");
-			this.predators.add("MoonFish");
-			this.predators.add("Guppy");
-			this.predators.add("FireNeon");
-			this.predators.add("Endler");
-			this.predators.add("Cardinal");
-			this.predators.add("GoldFish");
-			this.predators.add("Beta");
-			this.predators.add("Corydora");
+		switch(fishName){
+			case "Red Crystal Shrimp":
+				//this.predators.add("Pleco");
+				this.predators.add("Moon fish");
+				this.predators.add("Guppy");
+				this.predators.add("Fire neon");
+				//this.predators.add("Endler"); 
+				//Endlers are the only fish too small to eat shrimp	
+				this.predators.add("Cardinal");
+				this.predators.add("GoldFish");
+				this.predators.add("Betta (M)");
+				//this.predators.add("Corydora");
+				break;
+			case "Red Cherry Shrimp":
+				//this.predators.add("Pleco");	
+				this.predators.add("Moon fish");
+				this.predators.add("Guppy");
+				this.predators.add("Fire neon");
+				//this.predators.add("Endler"); 
+				//Endlers are the only fish too small to eat shrimp	
+				this.predators.add("Cardinal");
+				this.predators.add("Goldfish");
+				this.predators.add("Betta (M)");
+				this.predators.add("Betta (F)");
+				//this.predators.add("Corydora");
+				break;
+			case "Guppy":
+				this.predators.add("Moon fish");
+				break;
+			case "Endler":
+				this.predators.add("Betta (M)");
+				this.predators.add("Moon fish");
+				break;
+			default:
+				break;
 		}
 	}
 
