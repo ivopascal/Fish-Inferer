@@ -18,7 +18,7 @@ public class Model {
 	private String[] infoButtonStrings = {"Why are my fish dying?", "Algae Info", "Stress", "Lighting"};
 	private String[] parameterStrings = {"Temp  ", "pH  ", "GH  ", "X  ", "Y  ", "Z  "};
 	private String[] fishStrings = {"Red Crystal Shrimp", "Red Cherry Shrimp", "Pleco",
-			"MoonFish", "Guppy", "FireNeon", "Endler", "Cardinal", "Beta", "Corydora", "GoldFish"};
+			"Moon fish", "Platy", "Guppy (M)", "Guppy (F)" , "Fire neon", "Endler", "Cardinal", "Betta (M)", "Betta (F)" , "Corydora", "Goldfish", "Molly"};
 
 	private ArrayList<Fish> fish = new ArrayList<Fish>();
 	private ArrayList<Param> parameters = new ArrayList<Param>();

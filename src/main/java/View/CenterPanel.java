@@ -36,7 +36,7 @@ public class CenterPanel extends JPanel
 		c.gridy = 0;
 		c.gridx = 0;
 		c.anchor = GridBagConstraints.PAGE_START;
-		c.ipady = 200; //Determines the height of the AddFish
+		//c.ipady = 150; //Determines the height of the AddFish
 		this.add(addPanel, c);
 		c.ipady = 0;
 		c.gridy = 1;
@@ -44,8 +44,9 @@ public class CenterPanel extends JPanel
 		c.weighty = 1;
 		this.add(fishTank, c);
 		c.weightx = 0;
-		c.weighty = 0;
+		c.weighty = 1;
 		c.gridy = 2;
+		c.anchor = GridBagConstraints.PAGE_START;
 		this.add(textPanel, c);
 		
 	}

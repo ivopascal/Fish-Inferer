@@ -1,8 +1,9 @@
 package View;
 
 import javax.swing.JPanel;
-import javax.swing.BoxLayout;
+import java.awt.GridLayout;
 import javax.swing.JLabel;
+import javax.swing.JButton;
 import java.awt.Dimension;
 
 
@@ -20,8 +21,13 @@ public class TextPanel extends JPanel
 	
 	public TextPanel(Model m){
 		this.m = m;
-		this.add(new JLabel("Yabadabadoo"));
+		this.setLayout(new GridLayout());
+		this.add(new JButton("Yabadabadoo"));
 		this.InfoText = "Here are some instructions and general info";
+		
+		Dimension size = new Dimension(500,200);
+		setPreferredSize(size);
+
 	}
 	
 	
