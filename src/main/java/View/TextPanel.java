@@ -22,7 +22,7 @@ public class TextPanel extends JPanel
 	public TextPanel(Model m){
 		this.m = m;
 		this.setLayout(new GridLayout());
-		this.add(new JButton("Yabadabadoo"));
+		this.add(new JLabel("Yabadabadoo"));
 		this.InfoText = "Here are some instructions and general info";
 		
 		Dimension size = new Dimension(500,200);
