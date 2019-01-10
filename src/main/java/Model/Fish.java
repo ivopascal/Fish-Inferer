@@ -26,21 +26,21 @@ public class Fish {
 	private void setPreferredTemp(String fishName) {
 		switch(fishName){
 			case "Goldfish":
-				this.tempMin = 18.89;
-				this.tempMax = 22.22;
+				this.tempMin = 18.9;
+				this.tempMax = 22.2;
 				break;
 
 			case "Corydora":
-				this.tempMin = 23.33;
-				this.tempMax = 26.66;
+				this.tempMin = 23.3;
+				this.tempMax = 26.7;
 				break;
 			case "Betta (M)":
-				this.tempMin = 23.89;
-				this.tempMax = 26.67;
+				this.tempMin = 23.9;
+				this.tempMax = 26.7;
 				break;
 			case "Betta (F)":
-				this.tempMin = 23.89;
-				this.tempMax = 26.67;
+				this.tempMin = 23.9;
+				this.tempMax = 26.7;
 				break;
 			case "Guppy (M)":
 				this.tempMin = 22;
@@ -51,8 +51,8 @@ public class Fish {
 				this.tempMax = 26;
 				break;
 			case "Cardinal":
-				this.tempMin = 22.78;
-				this.tempMax = 27.22;
+				this.tempMin = 22.8;
+				this.tempMax = 27.2;
 				break;
 			case "Endler":
 				this.tempMin = 22;
@@ -71,7 +71,6 @@ public class Fish {
 				this.tempMax = 27.8;
 				break;
 			default:
-				System.out.println("Using default value for " + fishName);
 				this.tempMin = 0;
 				this.tempMax = 100;
 				break;
@@ -132,14 +131,10 @@ public class Fish {
 				this.pHMin = 7.2;
 				this.pHMax = 8.5;
 				break;
-			
-
 			default:
-				System.out.println("Using default value for " +fishName);
 				this.pHMin = 0;
 				this.pHMax = 14;
 				break;
-
 		}
 	}
 
@@ -216,8 +211,8 @@ public class Fish {
 				this.predators.add("Moon fish");
 				this.predators.add("Guppy");
 				this.predators.add("Fire neon");
-				//this.predators.add("Endler"); 
-				//Endlers are the only fish too small to eat shrimp	
+				//this.predators.add("Endler");
+				//Endlers are the only fish too small to eat shrimp
 				this.predators.add("Cardinal");
 				this.predators.add("GoldFish");
 				this.predators.add("Betta (M)");
@@ -272,26 +267,3 @@ public class Fish {
         return f.getFishName().equals(this.getFishName());
     }
 }
-
-
-
-
-
-
-
-
-
-/*
-	public void fishWarning(String fishName, Model m)
-	{
-		if(aquariumTemp<tempMin || aquariumTemp>tempMax) {
-			System.out.println("Warning: incorrect temperature");
-			System.out.println("Range for " + fishName + " should be between " + tempMin + " and " + tempMax + ", but is " + aquariumTemp);
-		}
-		if(aquariumpH<pHMin || aquariumpH>pHMax) {
-			System.out.println("Warning: incorrect pH value");
-			System.out.println("Range for " + fishName + " should be between " + pHMin + " and " + pHMax + ", but is " + aquariumpH);
-			
-		}
-	}
-*/

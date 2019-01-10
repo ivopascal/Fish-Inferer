@@ -4,15 +4,14 @@ import View.TextPanel;
 
 public class Output
 {
-    private String general;
     private String temp;
     private String pH;
-    private String groupSize;
+    private String social;
     private String predators;
 
     private int tempErrors;
     private int pHErrors;
-    private int groupSizeErrors;
+    private int socialErrors;
     private int predatorErrors;
 
     public TextPanel textPanel;
@@ -25,27 +24,40 @@ public class Output
 
     public void resetWarnings()
     {
-        general = "Current Warnings:";
-        temp = "Temperature Issues: None so far";
-        pH = "pH Issues: None so far";
-        groupSize = "GroupSize Issues: None so far";
-        predators = "Predator Issues: None so far";
+        temp = "Temperature Issues: \nNone so far";
+        pH = "pH Issues: \nNone so far";
+        social = "Social Issues: \nNone so far";
+        predators = "Predator Issues: \nNone so far";
 
         tempErrors = 0;
         pHErrors = 0;
-        groupSizeErrors = 0;
+        socialErrors = 0;
         predatorErrors = 0;
     }
 
     public void printWarnings()
     {
-//        System.out.println("\n" + general + "\n" + temp + "\n" + pH + "\n" + groupSize + "\n" + predators + "\n");
         textPanel.updateWarnings();
     }
 
-    public String getWarnings()
+    public String getTempWarnings()
     {
-        return "<html>" + general + "<br>" + temp + "<br>" + pH + "<br>" + groupSize + "<br>" + predators + "</html>";
+        return temp;
+    }
+
+    public String getpHWarnings()
+    {
+        return pH;
+    }
+
+    public String getSocialWarnings()
+    {
+        return social;
+    }
+
+    public String getPredatorsWarnings()
+    {
+        return predators;
     }
 
     private String removeNoneSoFar(String s)
@@ -59,31 +71,43 @@ public class Output
         {
             if (tempErrors == 0) temp = removeNoneSoFar(temp);
             tempErrors += 1;
-            temp += f.getFishName() + " --> (Temp: " + paramValue + " Min: " + f.getMinTemp() + " Max: " + f.getMaxTemp() + ") ";
+            temp += f.getMinTemp() + " < " + f.getFishName() + " < " + f.getMaxTemp() + "\n";
         }
         if (paramName.equals("PH"))
         {
             if (pHErrors == 0) pH = removeNoneSoFar(pH);
             pHErrors += 1;
-            pH += f.getFishName() + " --> (pH: " + paramValue + " Min: " + f.getMinpH() + " Max: " + f.getMaxpH() + ") ";
+            pH += f.getMinpH() + " < " + f.getFishName() + " < " + f.getMaxpH() + "\n";
         }
     }
 
-    // group size
-    public void addSocialWarning(Fish f, int fishCount)
+    // group size (social
+    public void addGroupSizeWarning(Fish f, int fishCount)
     {
-        if (groupSizeErrors == 0) groupSize = removeNoneSoFar(groupSize);
-        groupSizeErrors += 1;
-        groupSize += f.getFishName() + " --> (Count: " + fishCount +
-                " Min: " + f.getMinGroupSize() + " Max: " + f.getMaxGroupSize() + ") ";
+        if (socialErrors == 0) social = removeNoneSoFar(social);
+        socialErrors += 1;
+        social += "Min: " + f.getMinGroupSize() + " " + f.getFishName() + "'s. Current: " + fishCount + "\n";
+    }
+
+    // gender (social)
+    public void addGenderWarning(int maleCount, int femaleCount)
+    {
+        if (socialErrors == 0) social = removeNoneSoFar(social);
+        socialErrors += 1;
+        if (maleCount > 1 && femaleCount % maleCount == 0)
+        {
+            maleCount /= maleCount;
+            femaleCount /= maleCount;
+        }
+        social += "Guppy F:M ratio must be at \n    least 1:3. Currently " + maleCount + ":" + femaleCount + "\n";
     }
 
     // predators
     // combine these warnings? if two fish types eat one, say that in one warning not two
-    public void addSocialWarning(Fish smallerFish, Fish biggerFish)
+    public void addPredatorWarning(Fish smallerFish, Fish biggerFish)
     {
         if (predatorErrors == 0) predators = removeNoneSoFar(predators);
         predatorErrors += 1;
-        predators += "(" + biggerFish.getFishName() + " will eat " + smallerFish.getFishName() + ") ";
+        predators += biggerFish.getFishName() + " eats " + smallerFish.getFishName() + "\n";
     }
 }

@@ -21,7 +21,7 @@ public class InfoButtons extends JPanel
 			JButton l = new JButton(buttonText);
 			this.add(l);
 
-			if(buttonText.equals("Why are my fish dying?"))
+			if(buttonText.equals("> Analyze <"))
 			{
 				l.addActionListener(new addButtonAction(m));
 			}

@@ -1,16 +1,11 @@
 package View;
 
 import javax.swing.JPanel;
-import javax.swing.BoxLayout;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import java.awt.Dimension;
-
 
 import Model.Model;
-import View.TextPanel;
-import View.Fishtank;
 
 
 public class CenterPanel extends JPanel
