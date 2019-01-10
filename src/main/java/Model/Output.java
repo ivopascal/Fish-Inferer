@@ -6,12 +6,12 @@ public class Output
 {
     private String temp;
     private String pH;
-    private String groupSize;
+    private String social;
     private String predators;
 
     private int tempErrors;
     private int pHErrors;
-    private int groupSizeErrors;
+    private int socialErrors;
     private int predatorErrors;
 
     public TextPanel textPanel;
@@ -26,12 +26,12 @@ public class Output
     {
         temp = "Temperature Issues: \nNone so far";
         pH = "pH Issues: \nNone so far";
-        groupSize = "GroupSize Issues: \nNone so far";
+        social = "Social Issues: \nNone so far";
         predators = "Predator Issues: \nNone so far";
 
         tempErrors = 0;
         pHErrors = 0;
-        groupSizeErrors = 0;
+        socialErrors = 0;
         predatorErrors = 0;
     }
 
@@ -50,9 +50,9 @@ public class Output
         return pH;
     }
 
-    public String getGroupSizeWarnings()
+    public String getSocialWarnings()
     {
-        return groupSize;
+        return social;
     }
 
     public String getPredatorsWarnings()
@@ -81,17 +81,30 @@ public class Output
         }
     }
 
-    // group size
-    public void addSocialWarning(Fish f, int fishCount)
+    // group size (social
+    public void addGroupSizeWarning(Fish f, int fishCount)
     {
-        if (groupSizeErrors == 0) groupSize = removeNoneSoFar(groupSize);
-        groupSizeErrors += 1;
-        groupSize += "Min: " + f.getMinGroupSize() + " " + f.getFishName() + "'s. Current: " + fishCount + "\n";
+        if (socialErrors == 0) social = removeNoneSoFar(social);
+        socialErrors += 1;
+        social += "Min: " + f.getMinGroupSize() + " " + f.getFishName() + "'s. Current: " + fishCount + "\n";
+    }
+
+    // gender (social)
+    public void addGenderWarning(int maleCount, int femaleCount)
+    {
+        if (socialErrors == 0) social = removeNoneSoFar(social);
+        socialErrors += 1;
+        if (maleCount > 1 && femaleCount % maleCount == 0)
+        {
+            maleCount /= maleCount;
+            femaleCount /= maleCount;
+        }
+        social += "Guppy F:M ratio must be at \n    least 1:3. Currently " + maleCount + ":" + femaleCount + "\n";
     }
 
     // predators
     // combine these warnings? if two fish types eat one, say that in one warning not two
-    public void addSocialWarning(Fish smallerFish, Fish biggerFish)
+    public void addPredatorWarning(Fish smallerFish, Fish biggerFish)
     {
         if (predatorErrors == 0) predators = removeNoneSoFar(predators);
         predatorErrors += 1;

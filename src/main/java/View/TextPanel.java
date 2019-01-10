@@ -14,7 +14,7 @@ public class TextPanel extends JPanel
 {
 	private JTextArea tempWarnings = new JTextArea();
 	private JTextArea pHWarnings = new JTextArea();
-	private JTextArea groupSizeWarnings = new JTextArea();
+	private JTextArea socialWarnings = new JTextArea();
 	private JTextArea predatorsWarnings = new JTextArea();
 	private Output out;
 
@@ -22,7 +22,7 @@ public class TextPanel extends JPanel
 		this.out = out;
 		this.setLayout(new GridBagLayout());
 
-		// WIDTH = 750 to span aquarium width
+		// Total WIDTH ~ 750 to span aquarium pic
 		this.tempWarnings.setText(out.getTempWarnings());
 		this.tempWarnings.setPreferredSize(new Dimension(180, 200));
 		this.tempWarnings.setLineWrap(true);
@@ -33,10 +33,10 @@ public class TextPanel extends JPanel
 		this.pHWarnings.setLineWrap(true);
 		this.add(pHWarnings);
 
-		this.groupSizeWarnings.setText(out.getGroupSizeWarnings());
-		this.groupSizeWarnings.setPreferredSize(new Dimension(187, 200));
-		this.groupSizeWarnings.setLineWrap(true);
-		this.add(groupSizeWarnings);
+		this.socialWarnings.setText(out.getSocialWarnings());
+		this.socialWarnings.setPreferredSize(new Dimension(187, 200));
+		this.socialWarnings.setLineWrap(true);
+		this.add(socialWarnings);
 
 		this.predatorsWarnings.setText(out.getPredatorsWarnings());
 		this.predatorsWarnings.setPreferredSize(new Dimension(221, 200));
@@ -51,7 +51,7 @@ public class TextPanel extends JPanel
 	{
 		this.tempWarnings.setText(out.getTempWarnings());
 		this.pHWarnings.setText(out.getpHWarnings());
-		this.groupSizeWarnings.setText(out.getGroupSizeWarnings());
+		this.socialWarnings.setText(out.getSocialWarnings());
 		this.predatorsWarnings.setText(out.getPredatorsWarnings());
 	}
 }
