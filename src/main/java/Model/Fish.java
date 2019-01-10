@@ -211,8 +211,8 @@ public class Fish {
 				this.predators.add("Moon fish");
 				this.predators.add("Guppy");
 				this.predators.add("Fire neon");
-				//this.predators.add("Endler"); 
-				//Endlers are the only fish too small to eat shrimp	
+				//this.predators.add("Endler");
+				//Endlers are the only fish too small to eat shrimp
 				this.predators.add("Cardinal");
 				this.predators.add("GoldFish");
 				this.predators.add("Betta (M)");
@@ -267,26 +267,3 @@ public class Fish {
         return f.getFishName().equals(this.getFishName());
     }
 }
-
-
-
-
-
-
-
-
-
-/*
-	public void fishWarning(String fishName, Model m)
-	{
-		if(aquariumTemp<tempMin || aquariumTemp>tempMax) {
-			System.out.println("Warning: incorrect temperature");
-			System.out.println("Range for " + fishName + " should be between " + tempMin + " and " + tempMax + ", but is " + aquariumTemp);
-		}
-		if(aquariumpH<pHMin || aquariumpH>pHMax) {
-			System.out.println("Warning: incorrect pH value");
-			System.out.println("Range for " + fishName + " should be between " + pHMin + " and " + pHMax + ", but is " + aquariumpH);
-			
-		}
-	}
-*/
