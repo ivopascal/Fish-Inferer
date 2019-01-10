@@ -1,13 +1,10 @@
 package View;
 
 import javax.swing.JPanel;
-import java.awt.GridLayout;
+import java.awt.*;
 import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.Dimension;
 
-
-import Model.Model;
+import Model.Output;
 
 
 /*
@@ -16,19 +13,21 @@ import Model.Model;
  * */
 public class TextPanel extends JPanel
 {
-	private Model m;
-	private String InfoText;
-	
-	public TextPanel(Model m){
-		this.m = m;
-		this.setLayout(new GridLayout());
-		this.add(new JLabel("Yabadabadoo"));
-		this.InfoText = "Here are some instructions and general info";
-		
+	private JLabel warnings = new JLabel();
+	private Output out;
+
+	public TextPanel(Output out){
+		this.out = out;
+		this.setLayout(new GridBagLayout());
+		this.warnings.setText(out.getWarnings());
+		this.add(warnings);
+
 		Dimension size = new Dimension(500,200);
 		setPreferredSize(size);
-
 	}
 	
-	
+	public void updateWarnings()
+	{
+		this.warnings.setText(out.getWarnings());
+	}
 }

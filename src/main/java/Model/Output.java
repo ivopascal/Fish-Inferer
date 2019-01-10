@@ -1,6 +1,9 @@
 package Model;
 
-public class Output {
+import View.TextPanel;
+
+public class Output
+{
     private String general;
     private String temp;
     private String pH;
@@ -12,9 +15,12 @@ public class Output {
     private int groupSizeErrors;
     private int predatorErrors;
 
+    public TextPanel textPanel;
+
     public Output()
     {
         resetWarnings();
+        this.textPanel = new TextPanel(this);
     }
 
     public void resetWarnings()
@@ -33,7 +39,13 @@ public class Output {
 
     public void printWarnings()
     {
-        System.out.println("\n" + general + "\n" + temp + "\n" + pH + "\n" + groupSize + "\n" + predators + "\n");
+//        System.out.println("\n" + general + "\n" + temp + "\n" + pH + "\n" + groupSize + "\n" + predators + "\n");
+        textPanel.updateWarnings();
+    }
+
+    public String getWarnings()
+    {
+        return "<html>" + general + "<br>" + temp + "<br>" + pH + "<br>" + groupSize + "<br>" + predators + "</html>";
     }
 
     private String removeNoneSoFar(String s)

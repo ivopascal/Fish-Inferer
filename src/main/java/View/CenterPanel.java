@@ -20,17 +20,16 @@ public class CenterPanel extends JPanel
 	private addFishPanel addPanel;
 	private TextPanel textPanel;
 	
-	public CenterPanel(Model m){
+	public CenterPanel(Model m)
+	{
 		this.m = m;
-		//this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints c = new GridBagConstraints();
 		
 		this.setLayout(gbl);
 		addPanel = new addFishPanel(m);
 		fishTank = new Fishtank(m);
-		textPanel = new TextPanel(m);
-		
+		textPanel = m.printer.textPanel;
 		
 		c.fill = GridBagConstraints.BOTH;
 		c.gridy = 0;
@@ -48,8 +47,5 @@ public class CenterPanel extends JPanel
 		c.gridy = 2;
 		c.anchor = GridBagConstraints.PAGE_START;
 		this.add(textPanel, c);
-		
 	}
-	
-	
 }

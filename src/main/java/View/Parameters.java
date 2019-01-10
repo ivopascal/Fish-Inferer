@@ -22,7 +22,7 @@ class Parameters extends JPanel
 
 			// make the label
 			JLabel l = new JLabel(parameter, JLabel.TRAILING);
-			l.setPreferredSize(new Dimension(50, 50));
+			l.setPreferredSize(new Dimension(80, 50));
 			paramPanel.add(l);
 
 			// and the textfield
