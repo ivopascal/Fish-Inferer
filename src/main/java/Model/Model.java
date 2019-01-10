@@ -15,7 +15,7 @@ public class Model {
 	private int aquarium_width;
 	private int aquarium_length;
 	private int aquarium_height;
-	private String[] infoButtonStrings = {"Why are my fish dying?", "Algae Info", "Stress", "Lighting"};
+	private String[] infoButtonStrings = {"Why are my fish dying?", "Algae Info", "Stress", "Lighting", "General Cleaning"};
 	private String[] parameterStrings = {"Temp  ", "pH  ", "GH  ", "Nitrite  ", "Nitrate  ", "Chlorine  "};
 	private String[] fishStrings = {"Red Crystal Shrimp", "Red Cherry Shrimp", "Pleco",
 			"Moon fish", "Platy", "Guppy (M)", "Guppy (F)" , "Fire neon", "Endler", "Cardinal", "Betta (M)", "Betta (F)" , "Corydora", "Goldfish", "Molly"};
