@@ -17,9 +17,18 @@ class Parameters extends JPanel implements ActionListener
 	private Model m;
 	Parameters(Model m)
 	{
-		this.setLayout(new GridLayout(10,1));
+		GridBagLayout gbl = new GridBagLayout();
+		GridBagConstraints c = new GridBagConstraints();
+		this.setLayout(gbl);
 		this.m=m;
+		c.fill = GridBagConstraints.BOTH;
+		c.weightx = 0.5;
+		c.weighty = 0.5;
+
 		// for each changeable parameter in the model
+		JPanel allPPanel = new JPanel();
+		allPPanel.setLayout(new GridLayout((m.getParameterStrings().length),1));
+		allPPanel.setBorder(BorderFactory.createTitledBorder("Water parameters"));
 		for (String parameter : m.getParameterStrings())
 		{
 			// make a new panel so that the labels and textfields appear next to each other
@@ -41,17 +50,13 @@ class Parameters extends JPanel implements ActionListener
 			paramPanel.add(t);
 
 			// add the parameter panel to the entire parameter panel
-			this.add(paramPanel);
-			
+			allPPanel.add(paramPanel);	
 		}
+		c.gridx = 0;
+		c.gridy = 0;
+		this.add(allPPanel,c);
 		
-		JButton analyze_button = new JButton("> Analyze <");
-		analyze_button.addActionListener(new addButtonAction(m));
-		this.add(analyze_button);
-
-		JButton clear_button = new JButton("Clear");
-		clear_button.addActionListener(new clearAction(m));
-		this.add(clear_button);
+		
 		
 		JRadioButton F_button = new JRadioButton("Fahrenheit");
 		F_button.setActionCommand("F");
@@ -89,8 +94,20 @@ class Parameters extends JPanel implements ActionListener
 		vol_panel.add(L_button);
 		vol_panel.add(G_button);
 		
-		this.add(temp_panel);
-		this.add(vol_panel);
+		c.gridy = 1;
+		this.add(temp_panel,c);
+		c.gridy = 2;
+		this.add(vol_panel,c);
+		
+		JButton analyze_button = new JButton("> Analyze <");
+		analyze_button.addActionListener(new addButtonAction(m));
+		c.gridy = 3;
+		this.add(analyze_button, c);
+
+		JButton clear_button = new JButton("Clear");
+		clear_button.addActionListener(new clearAction(m));
+		c.gridy = 5;
+		this.add(clear_button, c);
 		
 		Dimension size = new Dimension(m.paramsWidth, m.totalHeight);
 		this.setPreferredSize(size);
