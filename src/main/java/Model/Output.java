@@ -102,13 +102,25 @@ public class Output
         {
             if (tempErrors == 0) temp = removeNoneSoFar(temp);
             tempErrors += 1;
-            temp += f.getMinTemp() + " < " + f.getFishName() + " < " + f.getMaxTemp() + "\n";
+            if(f.getFishName() == "Red Cherry Shrimp"){
+				temp += f.getMinTemp() + " < " + "Cherry Shrimp" + " < " + f.getMaxTemp() + "\n";
+			}else if(f.getFishName() == "Red Crystal Shrimp"){
+				temp += f.getMinTemp() + " < " + "Crystal Shrimp" + " < " + f.getMaxTemp() + "\n";
+			}else{
+				temp += f.getMinTemp() + " < " + f.getFishName() + " < " + f.getMaxTemp() + "\n";
+			}
         }
         if (paramName.equals("PH"))
         {
             if (pHErrors == 0) pH = removeNoneSoFar(pH);
             pHErrors += 1;
-            pH += f.getMinpH() + " < " + f.getFishName() + " < " + f.getMaxpH() + "\n";
+            if(f.getFishName() == "Red Cherry Shrimp"){
+				pH+= f.getMinpH() + " < " + "Cherry Shrimp" + " < " + f.getMaxpH() + "\n";
+			}else if(f.getFishName() == "Red Crystal Shrimp"){
+				pH += f.getMinpH() + " < " + "Crystal Shrimp" + " < " + f.getMaxpH() + "\n";
+			}else{
+				pH += f.getMinpH() + " < " + f.getFishName() + " < " + f.getMaxpH() + "\n";
+			}
         }
     }
 
@@ -119,11 +131,23 @@ public class Output
         socialErrors += 1;
         if (fishCount < f.getMinGroupSize())
         {
-            social += "Min: " + f.getMinGroupSize() + " " + f.getFishName() + "'s. Current: " + fishCount + "\n";
+			if(f.getFishName() == "Red Cherry Shrimp"){
+				social += "Min: " + f.getMinGroupSize() + " " + "Cherry Shrimp" + "'s. Current: " + fishCount + "\n";
+			}else if(f.getFishName() == "Red Crystal Shrimp"){
+				social += "Min: " + f.getMinGroupSize() + " " + "Crystal Shrimp" + "'s. Current: " + fishCount + "\n";
+			}else{	
+				social += "Min: " + f.getMinGroupSize() + " " + f.getFishName() + "'s. Current: " + fishCount + "\n";
+			}
         }
         else
         {
-            social += "Max: " + f.getMaxGroupSize() + " " + f.getFishName() + "'s. Current: " + fishCount + "\n";
+			if(f.getFishName() == "Red Cherry Shrimp"){
+				social += "Max: " + f.getMaxGroupSize() + " " + "Cherry Shrimp" + "'s. Current: " + fishCount + "\n";	
+			}else if(f.getFishName() == "Red Crystal Shrimp"){
+				social += "Max: " + f.getMaxGroupSize() + " " + "Crystal Shrimp" + "'s. Current: " + fishCount + "\n";
+			}else{
+				social += "Max: " + f.getMaxGroupSize() + " " + f.getFishName() + "'s. Current: " + fishCount + "\n";
+			}
         }
     }
 
