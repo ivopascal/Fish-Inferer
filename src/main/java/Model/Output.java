@@ -79,6 +79,18 @@ public class Output
             pHErrors += 1;
             pH += f.getMinpH() + " < " + f.getFishName() + " < " + f.getMaxpH() + "\n";
         }
+        if(paramName.equals("NITRITE"))
+        {
+				//TODO
+		}
+		if(paramName.equals("NITRATE"))
+		{
+				//TODO
+		}
+		if(paramName.equals("CHLORINE"))
+		{
+				//TODO
+		}
     }
 
     // group size (social

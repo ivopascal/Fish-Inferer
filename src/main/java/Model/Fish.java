@@ -6,6 +6,7 @@ public class Fish {
 	private String fishName;
 	private double tempMin, tempMax;
 	private double pHMin, pHMax;
+	public double volumePoints;
 	private int minGroupSize, maxGroupSize;
 	private ArrayList<String> predators = new ArrayList<String>();
 
@@ -17,6 +18,7 @@ public class Fish {
 		setPreferredpH(fishName);
 		setGroupSizeRequirements(fishName);
 		setPredators(fishName);
+		setVolumePoints(fishName);
 	}
 
 	public String getFishName() {
@@ -25,6 +27,22 @@ public class Fish {
 
 	private void setPreferredTemp(String fishName) {
 		switch(fishName){
+			case "Red Crystal Shrimp":
+				this.tempMin = 22;
+				this.tempMax = 26;
+				break;
+			case "Red Cherry Shrimp":
+				this.tempMin = 18.3;
+				this.tempMax = 29.4;
+				break;
+			case "Pleco":
+				this.tempMin =21;
+				this.tempMax =28;
+				break;
+			case "Platy":
+				this.tempMin = 22.2;
+				this.tempMax = 27.8;
+				break;
 			case "Goldfish":
 				this.tempMin = 18.9;
 				this.tempMax = 22.2;
@@ -58,10 +76,12 @@ public class Fish {
 				this.tempMin = 22;
 				this.tempMax = 26;
 				break;
+			/*
 			case "Endler (F)":
 				this.tempMin = 22;
 				this.tempMax = 26;
 				break;
+				**/
 			case "Fire neon":
 				this.tempMin = 22;
 				this.tempMax = 28;
@@ -70,6 +90,9 @@ public class Fish {
 				this.tempMin = 23.9;
 				this.tempMax = 27.8;
 				break;
+			case "Molly":
+				this.tempMin = 23.9;
+				this.tempMax = 26.7;
 			default:
 				this.tempMin = 0;
 				this.tempMax = 100;
@@ -87,6 +110,23 @@ public class Fish {
 
 	private void setPreferredpH(String fishName) {
 		switch(fishName){
+			case "Red Crystal Shrimp":
+				this.pHMin = 6.0;
+				this.pHMax = 7.4;
+				break;
+			case "Red Cherry Shrimp":
+				this.pHMin = 6.5;
+				this.pHMax = 8.0;
+				break;
+			case "Pleco":
+				this.pHMin =6;
+				this.pHMax =7;
+				break;
+			case "Platy":
+				this.pHMin =6.5;
+				this.pHMax =7.5;
+				break;
+				
 			case "Goldfish":
 				this.pHMin = 7.2;
 				this.pHMax = 7.8;
@@ -115,14 +155,15 @@ public class Fish {
 				this.pHMin = 5;
 				this.pHMax = 6;
 				break;
-			case "Endler (M)":
+			case "Endler":
 				this.pHMin = 6.7;
 				this.pHMax = 8.5;
 				break;
-			case "Endler (F)":
+			/*case "Endler (F)":
 				this.pHMin = 6.7;
 				this.pHMax = 8.5;
 				break;
+				*/
 			case "Fire neon":
 				this.pHMin = 6.0;
 				this.pHMax = 7.5;
@@ -130,6 +171,10 @@ public class Fish {
 			case "Moon fish":
 				this.pHMin = 7.2;
 				this.pHMax = 8.5;
+				break;
+			case "Molly":
+				this.pHMin = 7;
+				this.pHMax = 8;
 				break;
 			default:
 				this.pHMin = 0;
@@ -148,6 +193,22 @@ public class Fish {
 
 	public void setGroupSizeRequirements(String fishName) {
 		switch(fishName){
+			case "Red Crystal Shrimp":
+				this.minGroupSize = 5;
+				this.maxGroupSize = 1000;
+				break;
+			case "Red Cherry Shrimp":
+				this.minGroupSize = 5;
+				this.maxGroupSize = 1000;
+				break;
+			case "Pleco":
+				this.minGroupSize = 1;
+				this.maxGroupSize = 1;
+				break;
+			case "Platy":
+				this.pHMin =4;
+				this.pHMax =99;
+				break;
 			case "Moon fish":
 				this.minGroupSize = 5;
 				this.maxGroupSize = 99;
@@ -180,12 +241,18 @@ public class Fish {
 				this.minGroupSize = 6;
 				this.maxGroupSize = 99;
 				break;
-			case "Endler (M)":
-				this.minGroupSize = 1;
+			case "Endler":
+				this.minGroupSize = 4;
 				this.maxGroupSize = 99;
 				break;
+			/*
 			case "Endler (F)":
 				this.minGroupSize = 3;
+				this.maxGroupSize = 99;
+				break;
+				*/
+			case "Molly":
+				this.minGroupSize = 4;
 				this.maxGroupSize = 99;
 				break;
 		
@@ -196,6 +263,63 @@ public class Fish {
 		}
 	}
 
+	public void setVolumePoints(String fishName){
+		switch(fishName){
+			case "Red Crystal Shrimp":
+				this.volumePoints = 0.1;
+				break;
+			case "Red Cherry Shrimp":
+				this.volumePoints = 0.1;
+				break;
+			case "Pleco":
+				this.volumePoints = 5;
+				break;
+			case "Platy":
+				this.volumePoints = 1.5;
+				break;
+			case "Goldfish":
+				this.volumePoints = 25;
+				break;
+			case "Corydora":
+				this.volumePoints = 1.5;
+				break;
+			case "Betta (M)":
+				this.volumePoints = 3;
+				break;
+			case "Betta (F)":
+				this.volumePoints = 1.5;
+				break;
+			case "Guppy (M)":
+				this.volumePoints = 1;
+				break;
+			case "Guppy (F)":
+				this.volumePoints = 1;
+				break;
+			case "Cardinal":
+				this.volumePoints = 2;
+				break;
+			case "Endler":
+				this.volumePoints = 0.7;
+				break;
+			/*
+			case "Endler (F)":
+				this.volumePoints = 0.7;
+				break;
+				**/
+			case "Fire neon":
+				this.volumePoints = 2;
+				break;
+			case "Moon fish":
+				this.volumePoints = 5;
+				break;
+			case "Molly":
+				this.volumePoints = 3;
+			default:
+				this.volumePoints = 0;
+				break;
+			
+		}
+	}
 	public int getMinGroupSize() {
 		return minGroupSize;
 	}
