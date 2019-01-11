@@ -12,10 +12,10 @@ import Model.Output;
  * */
 public class TextPanel extends JPanel
 {
-	private JTextArea tempWarnings = new JTextArea();
-	private JTextArea pHWarnings = new JTextArea();
-	private JTextArea socialWarnings = new JTextArea();
-	private JTextArea predatorsWarnings = new JTextArea();
+	private JEditorPane socialWarnings = new JEditorPane();
+	private JEditorPane waterWarnings = new JEditorPane();
+	private JEditorPane conclusions = new JEditorPane();
+
 	private Output out;
 
 	public TextPanel(Output out){
@@ -23,25 +23,27 @@ public class TextPanel extends JPanel
 		this.setLayout(new GridBagLayout());
 
 		// Total WIDTH ~ 750 to span aquarium pic
-		this.tempWarnings.setText(out.getGeneralWaterWarnings() + "\n" + out.getTempWarnings());
-		this.tempWarnings.setPreferredSize(new Dimension(180, 200));
-		this.tempWarnings.setLineWrap(true);
-		this.add(tempWarnings);
 
-		this.pHWarnings.setText(out.getpHWarnings());
-		this.pHWarnings.setPreferredSize(new Dimension(160, 200));
-		this.pHWarnings.setLineWrap(true);
-		this.add(pHWarnings);
+		this.conclusions.setPreferredSize(new Dimension(250, 200));
+		this.conclusions.setContentType("text/html");
+		JScrollPane c = new JScrollPane(conclusions, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		c.setPreferredSize(new Dimension(250, 200));
+		this.add(c);
+		this.conclusions.setText(out.getConclusions());
 
+		this.socialWarnings.setPreferredSize(new Dimension(250, 200));
+		this.socialWarnings.setContentType("text/html");
+		JScrollPane s = new JScrollPane(socialWarnings, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		s.setPreferredSize(new Dimension(250, 200));
+		this.add(s);
 		this.socialWarnings.setText(out.getSocialWarnings());
-		this.socialWarnings.setPreferredSize(new Dimension(187, 200));
-		this.socialWarnings.setLineWrap(true);
-		this.add(socialWarnings);
 
-		this.predatorsWarnings.setText(out.getPredatorsWarnings());
-		this.predatorsWarnings.setPreferredSize(new Dimension(221, 200));
-		this.predatorsWarnings.setLineWrap(true);
-		this.add(predatorsWarnings);
+		this.waterWarnings.setPreferredSize(new Dimension(250, 200));
+		this.waterWarnings.setContentType("text/html");
+		JScrollPane w = new JScrollPane(waterWarnings, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		w.setPreferredSize(new Dimension(250, 200));
+		this.add(w);
+		this.waterWarnings.setText(out.getWaterWarnings());
 
 		Dimension size = new Dimension(700,200);
 		setPreferredSize(size);
@@ -49,9 +51,8 @@ public class TextPanel extends JPanel
 	
 	public void updateWarnings()
 	{
-		this.tempWarnings.setText(out.getGeneralWaterWarnings() + "\n" + out.getTempWarnings());
-		this.pHWarnings.setText(out.getpHWarnings());
+		this.conclusions.setText(out.getConclusions());
 		this.socialWarnings.setText(out.getSocialWarnings());
-		this.predatorsWarnings.setText(out.getPredatorsWarnings());
+		this.waterWarnings.setText(out.getWaterWarnings());
 	}
 }

@@ -4,16 +4,26 @@ import View.TextPanel;
 
 public class Output
 {
+    private String conclusion;
+
+    private String water;
     private String generalWater;
     private String temp;
     private String pH;
+
     private String social;
+    private String groupSize;
+    private String gender;
+    private String size;
     private String predators;
 
     private int generalWaterErrors;
     private int tempErrors;
     private int pHErrors;
-    private int socialErrors;
+
+    private int groupSizeErrors;
+    private int genderErrors;
+    private int sizeErrors;
     private int predatorErrors;
 
     public TextPanel textPanel;
@@ -26,16 +36,26 @@ public class Output
 
     public void resetWarnings()
     {
-        generalWater = "General Water Issues: \nNone so far\n";
-        temp = "Temperature Issues: \nNone so far\n";
-        pH = "pH Issues: \nNone so far\n";
-        social = "Social Issues: \nNone so far\n";
-        predators = "Predator Issues: \nNone so far\n";
+        conclusion = "Hit &#62Analyze&#60; to evaluate!";
+
+        water = "All Water Issues: <br>";
+        generalWater = "General Water Issues: <br>None so far<br>";
+        temp = "Temperature Issues: <br>None so far<br>";
+        pH = "pH Issues: <br>None so far<br>";
+
+        social = "All Social Issues: <br>";
+        groupSize = "Group size Issues: <br>None so far<br>";
+        gender = "Gender Issues: <br>None so far<br>";
+        size = "Aquarium size Issues: <br>None so far<br>";
+        predators = "Predator Issues: <br>None so far<br>";
 
         generalWaterErrors = 0;
         tempErrors = 0;
         pHErrors = 0;
-        socialErrors = 0;
+
+        groupSizeErrors = 0;
+        genderErrors = 0;
+        sizeErrors = 0;
         predatorErrors = 0;
     }
 
@@ -44,34 +64,38 @@ public class Output
         textPanel.updateWarnings();
     }
 
-    public String getTempWarnings()
-    {
-        return temp;
-    }
-
-    public String getpHWarnings()
-    {
-        return pH;
-    }
-
     public String getSocialWarnings()
     {
-        return social;
+        String totalSocial = social + "<br>";
+        totalSocial += groupSize + "<br>";
+        totalSocial += gender + "<br>";
+        totalSocial += size + "<br>";
+        totalSocial += predators + "<br>";
+        return totalSocial;
     }
 
-    public String getPredatorsWarnings()
+    public String getWaterWarnings()
     {
-        return predators;
+        String totalWater = water + "<br>";
+        totalWater += generalWater + "<br>";
+        totalWater += temp + "<br>";
+        totalWater += pH + "<br>";
+        return totalWater;
     }
 
-    public String getGeneralWaterWarnings()
+    public String getConclusions()
     {
-        return generalWater;
+        return this.conclusion;
+    }
+
+    public void setConclusion(String conclusion)
+    {
+        this.conclusion = conclusion;
     }
 
     private String removeNoneSoFar(String s)
     {
-        return s.substring(0, s.length() - 12);
+        return s.substring(0, s.length() - 15);
     }
 
     public void addGeneralWaterWarning(String paramName, float paramValue, float idealValue)
@@ -80,19 +104,19 @@ public class Output
         {
             if (generalWaterErrors == 0) generalWater = removeNoneSoFar(generalWater);
             generalWaterErrors += 1;
-            generalWater += "Nitrite too high: Max: " + idealValue + "\n";
+            generalWater += "Nitrite too high: Max: " + idealValue + "<br>";
         }
         if (paramName.equals("NITRATE"))
         {
             if (generalWaterErrors == 0) generalWater = removeNoneSoFar(generalWater);
             generalWaterErrors += 1;
-            generalWater += "Nitrate too high: Max: " + idealValue + "\n";
+            generalWater += "Nitrate too high: Max: " + idealValue + "<br>";
         }
         if (paramName.equals("CHLORINE"))
         {
             if (generalWaterErrors == 0) generalWater = removeNoneSoFar(generalWater);
             generalWaterErrors += 1;
-            generalWater += "Chlorine too high: Max: " + idealValue + "\n";
+            generalWater += "Chlorine too high: Max: " + idealValue + "<br>";
         }
     }
 
@@ -102,80 +126,56 @@ public class Output
         {
             if (tempErrors == 0) temp = removeNoneSoFar(temp);
             tempErrors += 1;
-            if(f.getFishName() == "Red Cherry Shrimp"){
-				temp += f.getMinTemp() + " < " + "Cherry Shrimp" + " < " + f.getMaxTemp() + "\n";
-			}else if(f.getFishName() == "Red Crystal Shrimp"){
-				temp += f.getMinTemp() + " < " + "Crystal Shrimp" + " < " + f.getMaxTemp() + "\n";
-			}else{
-				temp += f.getMinTemp() + " < " + f.getFishName() + " < " + f.getMaxTemp() + "\n";
-			}
+            temp += f.getMinTemp() + " &#60 " + shorten(f.getFishName()) + " &#60 " + f.getMaxTemp() + "<br>";
         }
         if (paramName.equals("PH"))
         {
             if (pHErrors == 0) pH = removeNoneSoFar(pH);
             pHErrors += 1;
-            if(f.getFishName() == "Red Cherry Shrimp"){
-				pH+= f.getMinpH() + " < " + "Cherry Shrimp" + " < " + f.getMaxpH() + "\n";
-			}else if(f.getFishName() == "Red Crystal Shrimp"){
-				pH += f.getMinpH() + " < " + "Crystal Shrimp" + " < " + f.getMaxpH() + "\n";
-			}else{
-				pH += f.getMinpH() + " < " + f.getFishName() + " < " + f.getMaxpH() + "\n";
-			}
+            pH += f.getMinpH() + " &#60 " + shorten(f.getFishName()) + " &#60 " + f.getMaxpH() + "<br>";
         }
     }
 
     // group size (social)
     public void addGroupSizeWarning(Fish f, int fishCount)
     {
-        if (socialErrors == 0) social = removeNoneSoFar(social);
-        socialErrors += 1;
+        if (groupSizeErrors == 0) groupSize = removeNoneSoFar(groupSize);
+        groupSizeErrors += 1;
         if (fishCount < f.getMinGroupSize())
         {
-			if(f.getFishName() == "Red Cherry Shrimp"){
-				social += "Min: " + f.getMinGroupSize() + " " + "Cherry Shrimp" + "'s. Current: " + fishCount + "\n";
-			}else if(f.getFishName() == "Red Crystal Shrimp"){
-				social += "Min: " + f.getMinGroupSize() + " " + "Crystal Shrimp" + "'s. Current: " + fishCount + "\n";
-			}else{	
-				social += "Min: " + f.getMinGroupSize() + " " + f.getFishName() + "'s. Current: " + fishCount + "\n";
-			}
+            groupSize += "Min: " + f.getMinGroupSize() + " " + shorten(f.getFishName()) + "'s. (" + fishCount + ")<br>";
         }
         else
         {
-			if(f.getFishName() == "Red Cherry Shrimp"){
-				social += "Max: " + f.getMaxGroupSize() + " " + "Cherry Shrimp" + "'s. Current: " + fishCount + "\n";	
-			}else if(f.getFishName() == "Red Crystal Shrimp"){
-				social += "Max: " + f.getMaxGroupSize() + " " + "Crystal Shrimp" + "'s. Current: " + fishCount + "\n";
-			}else{
-				social += "Max: " + f.getMaxGroupSize() + " " + f.getFishName() + "'s. Current: " + fishCount + "\n";
-			}
+			groupSize += "Max: " + f.getMaxGroupSize() + " " + shorten(f.getFishName()) + "'s. (" + fishCount + ")<br>";
         }
     }
 
     // gender (social)
     public void addGenderWarning(int maleCount, int femaleCount)
     {
-        if (socialErrors == 0) social = removeNoneSoFar(social);
-        socialErrors += 1;
+        if (genderErrors == 0) gender = removeNoneSoFar(gender);
+        genderErrors += 1;
         if (maleCount > 1 && femaleCount % maleCount == 0)
         {
             maleCount /= maleCount;
             femaleCount /= maleCount;
         }
-        social += "Guppy M:F ratio must be at \n    least 1:3. Currently " + maleCount + ":" + femaleCount + "\n";
+        gender += "Guppy M:F ratio must be at <br>    least 1:3. Currently " + maleCount + ":" + femaleCount + "<br>";
     }
 
     // aquarium size (social)
     public void addAquariumSizeWarning(int totalPoints, int tankVolume)
     {
-        if (socialErrors == 0) social = removeNoneSoFar(social);
-        socialErrors += 1;
+        if (sizeErrors == 0) size = removeNoneSoFar(size);
+        sizeErrors += 1;
         if (totalPoints > tankVolume)
         {
-            social += "The aquarium is too full!\n";
+            size += "The aquarium is too full!<br>";
         }
         else
         {
-            social += "The aquarium is nearly full.\n";
+            size += "The aquarium is nearly full.<br>";
         }
     }
 
@@ -185,6 +185,19 @@ public class Output
     {
         if (predatorErrors == 0) predators = removeNoneSoFar(predators);
         predatorErrors += 1;
-        predators += biggerFish.getFishName() + " eats " + smallerFish.getFishName() + "\n";
+        predators += shorten(biggerFish.getFishName()) + " eats " + shorten(smallerFish.getFishName()) + "<br>";
+    }
+
+    private String shorten(String fishname)
+    {
+        if (fishname.equals("Red Crystal Shrimp"))
+        {
+            return "Crystal Shrimp";
+        }
+        if (fishname.equals("Red Cherry Shrimp"))
+        {
+            return "Cherry Shrimp";
+        }
+        return fishname;
     }
 }
