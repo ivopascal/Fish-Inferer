@@ -14,7 +14,7 @@ public class Model {
 	// Parameters
 	public int aquarium_volume = 0;
 	private String[] infoButtonStrings = {"> Analyze <", "Algae Info", "Stress", "Lighting", "Cleaning"};
-	private String[] parameterStrings = {"Temp  ", "pH  ", "GH  ", "Nitrite  ", "Nitrate  ", "Chlorine  ", "Volume "};
+	private String[] parameterStrings = {"Temp  ", "pH  ", "Nitrite  ", "Nitrate  ", "Chlorine  ", "Volume "};
 	private String[] fishStrings = {"Red Crystal Shrimp", "Red Cherry Shrimp", "Pleco",
 			"Moon fish", "Platy", "Guppy (M)", "Guppy (F)" , "Fire neon", "Endler",
 			"Cardinal", "Betta (M)", "Betta (F)" , "Corydora", "Goldfish", "Molly"};
@@ -71,7 +71,6 @@ public class Model {
 				return;
 			}
 		}
-
 	}
 
 	public ArrayList<Fish> getFish() {
@@ -90,6 +89,9 @@ public class Model {
 	}
 
 	private void checkWaterWarnings() {
+		// first check general water warnings, regardless of fish, then fish specific water warnings
+		checkGeneralWaterWarnings();
+
 		// a set does not allow duplicates. if it is possible to add X to it, then X is new to it
 		Set checkDuplicates = new HashSet<Fish>();
 		// for each fishtype
@@ -106,32 +108,41 @@ public class Model {
 						if (p.value > f.getMaxpH() || p.value < f.getMinpH())
 							printer.addWaterWarning("PH", f, p.value);
 					}
-					if (p.name.equals("Nitrite ") && p.value != null) {
-						if(p.value > 10){
-							printer.addWaterWarning("NITRITE", null, p.value);
-						}
-					}
-					if(p.name.equals("Nitrate ") && p.value != null){
-						if(p.value > 50){
-							printer.addWaterWarning("NITRATE", null, p.value);
-						}
-					}
-					if(p.name.equals("Chlorine ") && p.value != null){
-						if(p.value > .2){
-							printer.addWaterWarning("CHLORINE", null, p.value);
-						}
-					}
+				}
+			}
+		}
+	}
+
+	private void checkGeneralWaterWarnings()
+	{
+		for (Param p : this.parameters)
+		{
+			// the following all general requirements across all fish
+			if (p.name.equals("Nitrite  ") && p.value != null) {
+				if(p.value > 10){
+					printer.addGeneralWaterWarning("NITRITE", p.value, 10);
+				}
+			}
+			if(p.name.equals("Nitrate  ") && p.value != null){
+				if(p.value > 50){
+					printer.addGeneralWaterWarning("NITRATE", p.value, 50);
+				}
+			}
+			if(p.name.equals("Chlorine  ") && p.value != null){
+				if(p.value > .2){
+					printer.addGeneralWaterWarning("CHLORINE", p.value, 0.2f);
 				}
 			}
 		}
 	}
 
 	private void checkSocialWarnings() {
+		// first check the aquarium size issues, then predator, groupsize and gender issues
+		checkAquariumSize();
+
 		// a set does not allow duplicates. if it is possible to add X to it, then X is new to it
 		Set checkDuplicates1 = new HashSet<Fish>();
 		Set checkDuplicates2 = new HashSet<Fish>();
-
-		checkAquariumSize();
 
 		// for each fishtype
 		for (Fish f : fish) {
@@ -184,7 +195,7 @@ public class Model {
 			int totalPoints = 0;
 			for (Fish f : fish)
 			{
-				totalPoints += f.volumePoints; // f.volumePoints
+				totalPoints += f.volumePoints;
 			}
 			int almostFull = 10;
 			if (totalPoints + almostFull > this.aquarium_volume/1.48) 

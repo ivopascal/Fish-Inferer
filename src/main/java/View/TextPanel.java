@@ -23,7 +23,7 @@ public class TextPanel extends JPanel
 		this.setLayout(new GridBagLayout());
 
 		// Total WIDTH ~ 750 to span aquarium pic
-		this.tempWarnings.setText(out.getTempWarnings());
+		this.tempWarnings.setText(out.getGeneralWaterWarnings() + "\n" + out.getTempWarnings());
 		this.tempWarnings.setPreferredSize(new Dimension(180, 200));
 		this.tempWarnings.setLineWrap(true);
 		this.add(tempWarnings);
@@ -49,7 +49,7 @@ public class TextPanel extends JPanel
 	
 	public void updateWarnings()
 	{
-		this.tempWarnings.setText(out.getTempWarnings());
+		this.tempWarnings.setText(out.getGeneralWaterWarnings() + "\n" + out.getTempWarnings());
 		this.pHWarnings.setText(out.getpHWarnings());
 		this.socialWarnings.setText(out.getSocialWarnings());
 		this.predatorsWarnings.setText(out.getPredatorsWarnings());
