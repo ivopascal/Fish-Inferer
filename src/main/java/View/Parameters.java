@@ -73,16 +73,34 @@ class parameterAction implements DocumentListener
 
 	private void updateParameter()
 	{
-		Float value = null;
 		String inputString = this.input.getText();
-		if (!inputString.equals(""))
+		if (param.equals("Volume "))
 		{
+			// aquarium volume must be a positive integer
+			int intVal = 0;
 			try {
-				value = Float.parseFloat(inputString);
+				intVal = Integer.parseInt(inputString);
 			} catch (NumberFormatException e) {
 				System.out.println("Invalid Input!");
 			}
+			if (intVal > 0)
+			{
+				m.aquarium_volume = intVal;
+			}
 		}
-		m.updateParameter(param, value);
+		else
+		{
+			// all other parameter values must be valid floats
+			Float value = null;
+			if (!inputString.equals(""))
+			{
+				try {
+					value = Float.parseFloat(inputString);
+				} catch (NumberFormatException e) {
+					System.out.println("Invalid Input!");
+				}
+			}
+			m.updateParameter(param, value);
+		}
 	}
 }

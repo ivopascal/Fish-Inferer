@@ -86,7 +86,14 @@ public class Output
     {
         if (socialErrors == 0) social = removeNoneSoFar(social);
         socialErrors += 1;
-        social += "Min: " + f.getMinGroupSize() + " " + f.getFishName() + "'s. Current: " + fishCount + "\n";
+        if (fishCount < f.getMinGroupSize())
+        {
+            social += "Min: " + f.getMinGroupSize() + " " + f.getFishName() + "'s. Current: " + fishCount + "\n";
+        }
+        else
+        {
+            social += "Max: " + f.getMaxGroupSize() + " " + f.getFishName() + "'s. Current: " + fishCount + "\n";
+        }
     }
 
     // gender (social)
@@ -100,6 +107,20 @@ public class Output
             femaleCount /= maleCount;
         }
         social += "Guppy F:M ratio must be at \n    least 1:3. Currently " + maleCount + ":" + femaleCount + "\n";
+    }
+
+    public void addAquariumSizeWarning(int totalPoints, int tankVolume)
+    {
+        if (socialErrors == 0) social = removeNoneSoFar(social);
+        socialErrors += 1;
+        if (totalPoints > tankVolume)
+        {
+            social += "The aquarium is too full!\n";
+        }
+        else
+        {
+            social += "The aquarium is nearly full.\n";
+        }
     }
 
     // predators
