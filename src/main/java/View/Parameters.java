@@ -1,20 +1,34 @@
 package View;
 
 import Model.Model;
+import Controller.addButtonAction;
+
 
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.util.ConcurrentModificationException;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-class Parameters extends JPanel
+class Parameters extends JPanel implements ActionListener
 {
+	private Model m;
 	Parameters(Model m)
 	{
-		this.setLayout(new FlowLayout());
+		GridBagLayout gbl = new GridBagLayout();
+		GridBagConstraints c = new GridBagConstraints();
+		this.setLayout(gbl);
+		this.m=m;
+		c.fill = GridBagConstraints.BOTH;
+		c.weightx = 0.5;
+		c.weighty = 0.5;
 
 		// for each changeable parameter in the model
+		JPanel allPPanel = new JPanel();
+		allPPanel.setLayout(new GridLayout((m.getParameterStrings().length),1));
+		allPPanel.setBorder(BorderFactory.createTitledBorder("Water parameters"));
 		for (String parameter : m.getParameterStrings())
 		{
 			// make a new panel so that the labels and textfields appear next to each other
@@ -36,11 +50,72 @@ class Parameters extends JPanel
 			paramPanel.add(t);
 
 			// add the parameter panel to the entire parameter panel
-			this.add(paramPanel);
+			allPPanel.add(paramPanel);	
 		}
+		c.gridx = 0;
+		c.gridy = 0;
+		this.add(allPPanel,c);
+		
+		
+		
+		JRadioButton F_button = new JRadioButton("Fahrenheit");
+		F_button.setActionCommand("F");
+		F_button.addActionListener(this);
+		JRadioButton C_button = new JRadioButton("Celsius");
+		C_button.setActionCommand("C");
+		C_button.setSelected(true);
+		C_button.addActionListener(this);
+		
+		ButtonGroup temp_group = new ButtonGroup();
+		temp_group.add(F_button);
+		temp_group.add(C_button);
+		
+		JRadioButton L_button = new JRadioButton("Litres");
+		L_button.setActionCommand("L");
+		L_button.setSelected(true);
+		L_button.addActionListener(this);
+		JRadioButton G_button = new JRadioButton("Gallons");
+		G_button.setActionCommand("G");
+		G_button.addActionListener(this);
+		
+		ButtonGroup vol_group = new ButtonGroup();
+		vol_group.add(L_button);
+		vol_group.add(G_button);
+		
+		JPanel temp_panel = new JPanel();
+		temp_panel.setLayout(new GridLayout(2,1));
+		temp_panel.setBorder(BorderFactory.createTitledBorder("Temp unit"));
+		temp_panel.add(C_button);
+		temp_panel.add(F_button);
+		
+		JPanel vol_panel = new JPanel();
+		vol_panel.setLayout(new GridLayout(2,1));
+		vol_panel.setBorder(BorderFactory.createTitledBorder("Volume unit"));
+		vol_panel.add(L_button);
+		vol_panel.add(G_button);
+		
+		c.gridy = 1;
+		this.add(temp_panel,c);
+		c.gridy = 2;
+		this.add(vol_panel,c);
+		
+		JButton analyze_button = new JButton("> Analyze <");
+		analyze_button.addActionListener(new addButtonAction(m));
+		c.gridy = 3;
+		this.add(analyze_button, c);
 
+		JButton clear_button = new JButton("Clear");
+		clear_button.addActionListener(new clearAction(m));
+		c.gridy = 5;
+		this.add(clear_button, c);
+		
 		Dimension size = new Dimension(m.paramsWidth, m.totalHeight);
 		this.setPreferredSize(size);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		m.setUnit(e.getActionCommand());
 	}
 }
 
@@ -114,4 +189,19 @@ class parameterAction implements DocumentListener
 			} catch (ConcurrentModificationException e) { }
 		}
 	}
+}
+
+class clearAction extends AbstractAction{
+	private Model m;
+	
+	public clearAction(Model m){
+		this.m = m;
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+			m.removeFishByString("All");
+	}
+	
 }
