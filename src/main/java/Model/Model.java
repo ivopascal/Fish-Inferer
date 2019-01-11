@@ -169,10 +169,11 @@ public class Model {
 			int totalPoints = 0;
 			for (Fish f : fish)
 			{
-				totalPoints += 10; // f.volumePoints
+				totalPoints += f.volumePoints; // f.volumePoints
 			}
-			int almostFull = 20;
-			if (totalPoints + almostFull > this.aquarium_volume)
+			int almostFull = 10;
+			if (totalPoints + almostFull > this.aquarium_volume/1.48) 
+			//divisor from converting gallon and inch
 			{
 				printer.addAquariumSizeWarning(totalPoints, this.aquarium_volume);
 			}
