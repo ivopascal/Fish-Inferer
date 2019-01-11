@@ -44,6 +44,17 @@ public class Model {
 		}
 	}
 
+	public void removeParameter(String paramName)
+	{
+		for (Param p : this.parameters)
+		{
+			if (p.name.equals(paramName))
+			{
+				this.parameters.remove(p);
+			}
+		}
+	}
+
 	public String[] getParameterStrings() {
 		return parameterStrings;
 	}

@@ -3,6 +3,7 @@ package View;
 import Model.Model;
 
 import java.awt.*;
+import java.util.ConcurrentModificationException;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -108,7 +109,9 @@ class parameterAction implements DocumentListener
 		}
 		else
 		{
-			m.updateParameter(param, 0f);
+			try {
+				m.removeParameter(param);
+			} catch (ConcurrentModificationException e) { }
 		}
 	}
 }
