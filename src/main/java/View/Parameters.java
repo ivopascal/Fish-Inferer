@@ -1,18 +1,23 @@
 package View;
 
 import Model.Model;
+import Controller.addButtonAction;
+
 
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-class Parameters extends JPanel
+class Parameters extends JPanel implements ActionListener
 {
+	private Model m;
 	Parameters(Model m)
 	{
 		this.setLayout(new FlowLayout());
-
+		this.m=m;
 		// for each changeable parameter in the model
 		for (String parameter : m.getParameterStrings())
 		{
@@ -36,10 +41,56 @@ class Parameters extends JPanel
 
 			// add the parameter panel to the entire parameter panel
 			this.add(paramPanel);
+			
 		}
+		
+		JButton analyze_button = new JButton("> Analyze <");
+		analyze_button.addActionListener(new addButtonAction(m));
+		this.add(analyze_button);
 
+		JButton clear_button = new JButton("Clear");
+		clear_button.addActionListener(new clearAction(m));
+		this.add(clear_button);
+		
+		JRadioButton F_button = new JRadioButton("Fahrenheit");
+		F_button.setActionCommand("F");
+		F_button.addActionListener(this);
+		JRadioButton C_button = new JRadioButton("Celsius");
+		C_button.setActionCommand("C");
+		C_button.setSelected(true);
+		C_button.addActionListener(this);
+		
+		ButtonGroup temp_group = new ButtonGroup();
+		temp_group.add(F_button);
+		temp_group.add(C_button);
+		
+		JRadioButton L_button = new JRadioButton("Litres");
+		L_button.setActionCommand("L");
+		L_button.setSelected(true);
+		L_button.addActionListener(this);
+		JRadioButton G_button = new JRadioButton("Gallons");
+		G_button.setActionCommand("G");
+		G_button.addActionListener(this);
+		
+		ButtonGroup vol_group = new ButtonGroup();
+		vol_group.add(L_button);
+		vol_group.add(G_button);
+		
+		this.add(C_button);
+		this.add(F_button);
+		this.add(L_button);
+		this.add(G_button);
+		
+		
+		
 		Dimension size = new Dimension(m.paramsWidth, m.totalHeight);
 		this.setPreferredSize(size);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		System.out.println("ACTION: " +e.getActionCommand());
+		m.setUnit(e.getActionCommand());
 	}
 }
 
@@ -107,4 +158,19 @@ class parameterAction implements DocumentListener
 			}
 		}
 	}
+}
+
+class clearAction extends AbstractAction{
+	private Model m;
+	
+	public clearAction(Model m){
+		this.m = m;
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+			m.removeFishByString("All");
+	}
+	
 }

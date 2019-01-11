@@ -284,22 +284,22 @@ public class Fish {
 				this.volumePoints = 1.5;
 				break;
 			case "Betta (M)":
-				this.volumePoints = 3;
+				this.volumePoints = 5;
 				break;
 			case "Betta (F)":
-				this.volumePoints = 1.5;
+				this.volumePoints = 3;
 				break;
 			case "Guppy (M)":
-				this.volumePoints = 1;
+				this.volumePoints = 2;
 				break;
 			case "Guppy (F)":
-				this.volumePoints = 1;
+				this.volumePoints = 2;
 				break;
 			case "Cardinal":
 				this.volumePoints = 2;
 				break;
 			case "Endler":
-				this.volumePoints = 0.7;
+				this.volumePoints = 1;
 				break;
 			/*
 			case "Endler (F)":
@@ -310,7 +310,7 @@ public class Fish {
 				this.volumePoints = 2;
 				break;
 			case "Moon fish":
-				this.volumePoints = 5;
+				this.volumePoints = 7;
 				break;
 			case "Molly":
 				this.volumePoints = 3;
@@ -331,7 +331,7 @@ public class Fish {
 	public void setPredators(String fishName) {
 		switch(fishName){
 			case "Red Crystal Shrimp":
-				//this.predators.add("Pleco");
+				this.predators.add("Pleco");
 				this.predators.add("Moon fish");
 				this.predators.add("Guppy");
 				this.predators.add("Fire neon");
@@ -340,10 +340,11 @@ public class Fish {
 				this.predators.add("Cardinal");
 				this.predators.add("GoldFish");
 				this.predators.add("Betta (M)");
-				//this.predators.add("Corydora");
+				this.predators.add("Corydora");
+				this.predators.add("Molly");
 				break;
 			case "Red Cherry Shrimp":
-				//this.predators.add("Pleco");	
+				this.predators.add("Pleco");	
 				this.predators.add("Moon fish");
 				this.predators.add("Guppy");
 				this.predators.add("Fire neon");
@@ -353,10 +354,12 @@ public class Fish {
 				this.predators.add("Goldfish");
 				this.predators.add("Betta (M)");
 				this.predators.add("Betta (F)");
-				//this.predators.add("Corydora");
+				this.predators.add("Corydora");
+				this.predators.add("Molly");
 				break;
 			case "Guppy":
 				this.predators.add("Moon fish");
+				this.predators.add("Betta (M)");
 				break;
 			case "Endler":
 				this.predators.add("Betta (M)");

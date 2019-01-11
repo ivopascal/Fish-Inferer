@@ -17,9 +17,11 @@ public class Output
     private int predatorErrors;
 
     public TextPanel textPanel;
+    public Model m;
 
-    public Output()
+    public Output(Model m)
     {
+		this.m=m;
         resetWarnings();
         this.textPanel = new TextPanel(this);
     }
@@ -102,12 +104,18 @@ public class Output
         {
             if (tempErrors == 0) temp = removeNoneSoFar(temp);
             tempErrors += 1;
+            double min = f.getMinTemp();
+            double max = f.getMaxTemp();
+            if(m.temp_unit == "F"){
+				min = min * 9 / 5 + 32;
+				max = max * 9 / 5 + 32;
+			}
             if(f.getFishName() == "Red Cherry Shrimp"){
-				temp += f.getMinTemp() + " < " + "Cherry Shrimp" + " < " + f.getMaxTemp() + "\n";
+				temp += min + " < " + "Cherry Shrimp" + " < " + max + "\n";
 			}else if(f.getFishName() == "Red Crystal Shrimp"){
-				temp += f.getMinTemp() + " < " + "Crystal Shrimp" + " < " + f.getMaxTemp() + "\n";
+				temp += min + " < " + "Crystal Shrimp" + " < " + max + "\n";
 			}else{
-				temp += f.getMinTemp() + " < " + f.getFishName() + " < " + f.getMaxTemp() + "\n";
+				temp += min + " < " + f.getFishName() + " < " + max + "\n";
 			}
         }
         if (paramName.equals("PH"))

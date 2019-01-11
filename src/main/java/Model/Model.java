@@ -13,8 +13,8 @@ public class Model {
 
 	// Parameters
 	public int aquarium_volume = 0;
-	private String[] infoButtonStrings = {"> Analyze <", "Algae Info", "Stress", "Lighting", "Cleaning"};
-	private String[] parameterStrings = {"Temp  ", "pH  ", "Nitrite  ", "Nitrate  ", "Chlorine  ", "Volume "};
+	private String[] infoButtonStrings = {"Info", "Algae Info", "Stress", "Lighting", "Cleaning"};
+	private String[] parameterStrings = {"Temp  ", "pH  ", "Nitrite  ", "Nitrate  ", "Chlorine  ", "Volume  "};
 	private String[] fishStrings = {"Red Crystal Shrimp", "Red Cherry Shrimp", "Pleco",
 			"Moon fish", "Platy", "Guppy (M)", "Guppy (F)" , "Fire neon", "Endler",
 			"Cardinal", "Betta (M)", "Betta (F)" , "Corydora", "Goldfish", "Molly"};
@@ -22,8 +22,11 @@ public class Model {
 	private ArrayList<Fish> fish = new ArrayList<Fish>();
 	private ArrayList<Param> parameters = new ArrayList<Param>();
 	private Fishtank tankPanel;
+	
+	public String temp_unit;
+	public String vol_unit;
 
-	public Output printer = new Output();
+	public Output printer = new Output(this);
 
 	public Model() {
 		makeParameters();
@@ -39,7 +42,15 @@ public class Model {
 	public void updateParameter(String paramName, Float newValue) {
 		for (Param p : this.parameters) {
 			if (p.name.equals(paramName)) {
-				p.value = newValue;
+				if(paramName == "Temp  " && temp_unit == "F"){
+					p.value = (newValue - 32) * 5 / 9; //adjust for fahrenheit
+					System.out.println("Temp set to " + p.value);
+				}else if(paramName == "Volume  " && vol_unit == "G"){
+					p.value = newValue * (float) 3.78541178; //adjust for gallons
+					System.out.println("Vol set to " + p.value);
+				}else{
+					p.value = newValue;
+				}
 			}
 		}
 	}
@@ -65,7 +76,10 @@ public class Model {
 		Iterator<Fish> it = fish.iterator();
 		while (it.hasNext()) {
 			Fish f = it.next();
-			if (f.getFishName().equals(FishName)) {
+			if(FishName == "All"){
+					it.remove();
+					tankPanel.loadFish();
+			}else if (f.getFishName().equals(FishName)) {
 				it.remove();
 				tankPanel.loadFish();
 				return;
@@ -202,6 +216,37 @@ public class Model {
 			//divisor from converting gallon and inch
 			{
 				printer.addAquariumSizeWarning(totalPoints, this.aquarium_volume);
+			}
+		}
+	}
+	
+	public void setUnit(String u){
+		String prev;
+		if(u == "L" || u == "G"){
+			prev = vol_unit;
+			vol_unit = u;
+		}else{
+			prev = temp_unit;
+			temp_unit = u;
+		}	
+		if(prev != u){
+			System.out.println("Change in Unit: " + prev + " to " + u);
+			for(Param p : parameters){
+				if((p.name.equals("Temp  ") || p.name.equals("Volume  ")) && p.value != null){
+					if(u == "F" && p.name.equals("Temp  ")){
+						p.value = (p.value - 32) * 5 / 9;
+					}
+					if(u == "C" && p.name.equals("Temp  ")){
+						p.value = p.value * 9 / 5 + 32;
+					}
+					if(u == "G" && p.name.equals("Volume  ")){
+						p.value = p.value * (float) 3.78541178;
+					}
+					if(u == "L" && p.name.equals("Volume  ")){
+						p.value = p.value / (float) 3.78541178;
+					}
+					System.out.println(p.name + " = " + p.value); 
+				}
 			}
 		}
 	}
