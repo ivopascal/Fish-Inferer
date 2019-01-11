@@ -16,7 +16,7 @@ class Parameters extends JPanel implements ActionListener
 	private Model m;
 	Parameters(Model m)
 	{
-		this.setLayout(new FlowLayout());
+		this.setLayout(new GridLayout(10,1));
 		this.m=m;
 		// for each changeable parameter in the model
 		for (String parameter : m.getParameterStrings())
@@ -76,12 +76,20 @@ class Parameters extends JPanel implements ActionListener
 		vol_group.add(L_button);
 		vol_group.add(G_button);
 		
-		this.add(C_button);
-		this.add(F_button);
-		this.add(L_button);
-		this.add(G_button);
+		JPanel temp_panel = new JPanel();
+		temp_panel.setLayout(new GridLayout(2,1));
+		temp_panel.setBorder(BorderFactory.createTitledBorder("Temp unit"));
+		temp_panel.add(C_button);
+		temp_panel.add(F_button);
 		
+		JPanel vol_panel = new JPanel();
+		vol_panel.setLayout(new GridLayout(2,1));
+		vol_panel.setBorder(BorderFactory.createTitledBorder("Volume unit"));
+		vol_panel.add(L_button);
+		vol_panel.add(G_button);
 		
+		this.add(temp_panel);
+		this.add(vol_panel);
 		
 		Dimension size = new Dimension(m.paramsWidth, m.totalHeight);
 		this.setPreferredSize(size);
@@ -89,7 +97,6 @@ class Parameters extends JPanel implements ActionListener
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("ACTION: " +e.getActionCommand());
 		m.setUnit(e.getActionCommand());
 	}
 }

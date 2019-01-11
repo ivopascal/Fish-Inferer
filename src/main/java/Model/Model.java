@@ -230,7 +230,6 @@ public class Model {
 			temp_unit = u;
 		}	
 		if(prev != u){
-			System.out.println("Change in Unit: " + prev + " to " + u);
 			for(Param p : parameters){
 				if((p.name.equals("Temp  ") || p.name.equals("Volume  ")) && p.value != null){
 					if(u == "F" && p.name.equals("Temp  ")){
