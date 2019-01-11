@@ -109,6 +109,20 @@ public class Output
         social += "Guppy F:M ratio must be at \n    least 1:3. Currently " + maleCount + ":" + femaleCount + "\n";
     }
 
+    public void addAquariumSizeWarning(int totalPoints, int tankVolume)
+    {
+        if (socialErrors == 0) social = removeNoneSoFar(social);
+        socialErrors += 1;
+        if (totalPoints > tankVolume)
+        {
+            social += "The aquarium is too full!\n";
+        }
+        else
+        {
+            social += "The aquarium is nearly full.\n";
+        }
+    }
+
     // predators
     // combine these warnings? if two fish types eat one, say that in one warning not two
     public void addPredatorWarning(Fish smallerFish, Fish biggerFish)

@@ -12,11 +12,9 @@ public class Model {
 	public int paramsWidth = 150;
 
 	// Parameters
-	private int aquarium_width;
-	private int aquarium_length;
-	private int aquarium_height;
+	public int aquarium_volume = 0;
 	private String[] infoButtonStrings = {"> Analyze <", "Algae Info", "Stress", "Lighting", "Cleaning"};
-	private String[] parameterStrings = {"Temp  ", "pH  ", "GH  ", "Nitrite  ", "Nitrate  ", "Chlorine  "};
+	private String[] parameterStrings = {"Temp  ", "pH  ", "GH  ", "Nitrite  ", "Nitrate  ", "Chlorine  ", "Volume "};
 	private String[] fishStrings = {"Red Crystal Shrimp", "Red Cherry Shrimp", "Pleco",
 			"Moon fish", "Platy", "Guppy (M)", "Guppy (F)" , "Fire neon", "Endler",
 			"Cardinal", "Betta (M)", "Betta (F)" , "Corydora", "Goldfish", "Molly"};
@@ -116,6 +114,8 @@ public class Model {
 		Set checkDuplicates1 = new HashSet<Fish>();
 		Set checkDuplicates2 = new HashSet<Fish>();
 
+		checkAquariumSize();
+
 		// for each fishtype
 		for (Fish f : fish) {
 			if (checkDuplicates1.add(f)) {
@@ -156,6 +156,23 @@ public class Model {
 						printer.addGenderWarning(maleCount, femaleCount);
 					}
 				}
+			}
+		}
+	}
+
+	private void checkAquariumSize()
+	{
+		if (this.aquarium_volume > 0)
+		{
+			int totalPoints = 0;
+			for (Fish f : fish)
+			{
+				totalPoints += 10; // f.volumePoints
+			}
+			int almostFull = 20;
+			if (totalPoints + almostFull > this.aquarium_volume)
+			{
+				printer.addAquariumSizeWarning(totalPoints, this.aquarium_volume);
 			}
 		}
 	}
