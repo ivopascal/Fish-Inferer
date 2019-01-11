@@ -110,6 +110,7 @@ public class Model {
 		printer.resetWarnings();
 		checkWaterWarnings();
 		checkSocialWarnings();
+		deriveConclusion();
 		printer.printWarnings();
 	}
 
@@ -229,6 +230,13 @@ public class Model {
 				printer.addAquariumSizeWarning(totalPoints, this.aquarium_volume);
 			}
 		}
+	}
+
+	private void deriveConclusion()
+	{
+		Output errors = printer.getSelf();
+		String conclusion = "Not implemented yet";
+		printer.setConclusion(conclusion);
 	}
 	
 	public void setUnit(String u){

@@ -95,6 +95,11 @@ public class Output
         this.conclusion = conclusion;
     }
 
+    public Output getSelf()
+    {
+        return this;
+    }
+
     private String removeNoneSoFar(String s)
     {
         return s.substring(0, s.length() - 15);
