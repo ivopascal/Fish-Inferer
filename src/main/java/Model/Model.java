@@ -67,9 +67,11 @@ public class Model {
 			Fish f = it.next();
 			if (f.getFishName().equals(FishName)) {
 				it.remove();
+				tankPanel.loadFish();
+				return;
 			}
 		}
-		tankPanel.loadFish();
+
 	}
 
 	public ArrayList<Fish> getFish() {
