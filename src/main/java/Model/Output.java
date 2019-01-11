@@ -4,11 +4,13 @@ import View.TextPanel;
 
 public class Output
 {
+    private String generalWater;
     private String temp;
     private String pH;
     private String social;
     private String predators;
 
+    private int generalWaterErrors;
     private int tempErrors;
     private int pHErrors;
     private int socialErrors;
@@ -24,11 +26,13 @@ public class Output
 
     public void resetWarnings()
     {
-        temp = "Temperature Issues: \nNone so far";
-        pH = "pH Issues: \nNone so far";
-        social = "Social Issues: \nNone so far";
-        predators = "Predator Issues: \nNone so far";
+        generalWater = "General Water Issues: \nNone so far\n";
+        temp = "Temperature Issues: \nNone so far\n";
+        pH = "pH Issues: \nNone so far\n";
+        social = "Social Issues: \nNone so far\n";
+        predators = "Predator Issues: \nNone so far\n";
 
+        generalWaterErrors = 0;
         tempErrors = 0;
         pHErrors = 0;
         socialErrors = 0;
@@ -60,9 +64,36 @@ public class Output
         return predators;
     }
 
+    public String getGeneralWaterWarnings()
+    {
+        return generalWater;
+    }
+
     private String removeNoneSoFar(String s)
     {
-        return s.substring(0, s.length() - 11);
+        return s.substring(0, s.length() - 12);
+    }
+
+    public void addGeneralWaterWarning(String paramName, float paramValue, float idealValue)
+    {
+        if (paramName.equals("NITRITE"))
+        {
+            if (generalWaterErrors == 0) generalWater = removeNoneSoFar(generalWater);
+            generalWaterErrors += 1;
+            generalWater += "Nitrite too high: Max: " + idealValue + "\n";
+        }
+        if (paramName.equals("NITRATE"))
+        {
+            if (generalWaterErrors == 0) generalWater = removeNoneSoFar(generalWater);
+            generalWaterErrors += 1;
+            generalWater += "Nitrate too high: Max: " + idealValue + "\n";
+        }
+        if (paramName.equals("CHLORINE"))
+        {
+            if (generalWaterErrors == 0) generalWater = removeNoneSoFar(generalWater);
+            generalWaterErrors += 1;
+            generalWater += "Chlorine too high: Max: " + idealValue + "\n";
+        }
     }
 
     public void addWaterWarning(String paramName, Fish f, float paramValue)
@@ -79,21 +110,9 @@ public class Output
             pHErrors += 1;
             pH += f.getMinpH() + " < " + f.getFishName() + " < " + f.getMaxpH() + "\n";
         }
-        if(paramName.equals("NITRITE"))
-        {
-				//TODO
-		}
-		if(paramName.equals("NITRATE"))
-		{
-				//TODO
-		}
-		if(paramName.equals("CHLORINE"))
-		{
-				//TODO
-		}
     }
 
-    // group size (social
+    // group size (social)
     public void addGroupSizeWarning(Fish f, int fishCount)
     {
         if (socialErrors == 0) social = removeNoneSoFar(social);
@@ -118,9 +137,10 @@ public class Output
             maleCount /= maleCount;
             femaleCount /= maleCount;
         }
-        social += "Guppy F:M ratio must be at \n    least 1:3. Currently " + maleCount + ":" + femaleCount + "\n";
+        social += "Guppy M:F ratio must be at \n    least 1:3. Currently " + maleCount + ":" + femaleCount + "\n";
     }
 
+    // aquarium size (social)
     public void addAquariumSizeWarning(int totalPoints, int tankVolume)
     {
         if (socialErrors == 0) social = removeNoneSoFar(social);
