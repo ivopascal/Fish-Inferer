@@ -157,6 +157,10 @@ class parameterAction implements DocumentListener
 				m.updateParameter(param, value);
 			}
 		}
+		else
+		{
+			m.updateParameter(param, 0f);
+		}
 	}
 }
 
