@@ -180,7 +180,7 @@ public class Output
 				min = min * 9 / 5 + 32;
 				max = max * 9 / 5 + 32;
 			}
-            temp += min + " &#60 " + shorten(f.getFishName()) + " &#60 " + max + "\n";
+            temp += min + " &#60 " + shorten(f.getFishName()) + " &#60 " + max + "<br>";
         }
         if (paramName.equals("PH"))
         {
@@ -223,7 +223,7 @@ public class Output
     {
         if (sizeErrors == 0) size = removeNoneSoFar(size);
         sizeErrors += 1;
-        if (totalPoints > tankVolume)
+        if (totalPoints > tankVolume/1.48)
         {
             size += "The aquarium is too full!<br>";
         }

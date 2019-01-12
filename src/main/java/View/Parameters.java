@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ConcurrentModificationException;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -15,7 +16,9 @@ import javax.swing.event.DocumentListener;
 class Parameters extends JPanel implements ActionListener
 {
 	private Model m;
-	Parameters(Model m)
+	private ArrayList<JTextField> paramFields = new ArrayList<JTextField>();
+	
+	public Parameters(Model m)
 	{
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints c = new GridBagConstraints();
@@ -45,6 +48,9 @@ class Parameters extends JPanel implements ActionListener
 			t.setColumns(3);
 			l.setLabelFor(t);
 			t.getDocument().addDocumentListener(new parameterAction(m, t, parameter));
+			
+			// add the field to a list so we can clear it later
+			paramFields.add(t);
 
 			// and add it to the parameter panel
 			paramPanel.add(t);
@@ -105,7 +111,7 @@ class Parameters extends JPanel implements ActionListener
 		this.add(analyze_button, c);
 
 		JButton clear_button = new JButton("Clear");
-		clear_button.addActionListener(new clearAction(m));
+		clear_button.addActionListener(new clearAction(m, this));
 		c.gridy = 5;
 		this.add(clear_button, c);
 		
@@ -116,6 +122,12 @@ class Parameters extends JPanel implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		m.setUnit(e.getActionCommand());
+	}
+	
+	public void clearParameters(){
+		for(JTextField t : paramFields){
+			t.setText("");
+		}
 	}
 }
 
@@ -193,15 +205,19 @@ class parameterAction implements DocumentListener
 
 class clearAction extends AbstractAction{
 	private Model m;
+	private Parameters p;
 	
-	public clearAction(Model m){
+	public clearAction(Model m, Parameters p){
 		this.m = m;
+		this.p = p;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		m.removeFishByString("All");
+		p.clearParameters();
+		m.clearParameters();
 		m.printer.resetWarnings();
 		m.printer.printWarnings();
 	}

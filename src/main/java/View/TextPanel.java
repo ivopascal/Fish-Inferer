@@ -26,6 +26,7 @@ public class TextPanel extends JPanel
 
 		conclusions.setPreferredSize(new Dimension(250, 200));
 		conclusions.setContentType("text/html");
+		conclusions.setEditable(false);
 		JScrollPane conclusionScroller = new JScrollPane(conclusions, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		conclusionScroller.setPreferredSize(new Dimension(250, 200));
 		this.add(conclusionScroller);
@@ -33,6 +34,7 @@ public class TextPanel extends JPanel
 
 		socialWarnings.setPreferredSize(new Dimension(250, 200));
 		socialWarnings.setContentType("text/html");
+		socialWarnings.setEditable(false);
 		JScrollPane socialScroller = new JScrollPane(socialWarnings, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		socialScroller.setPreferredSize(new Dimension(250, 200));
 		this.add(socialScroller);
@@ -40,6 +42,7 @@ public class TextPanel extends JPanel
 
 		waterWarnings.setPreferredSize(new Dimension(250, 200));
 		waterWarnings.setContentType("text/html");
+		waterWarnings.setEditable(false);
 		JScrollPane waterScroller = new JScrollPane(waterWarnings, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		waterScroller.setPreferredSize(new Dimension(250, 200));
 		this.add(waterScroller);
