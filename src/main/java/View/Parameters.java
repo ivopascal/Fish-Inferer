@@ -201,7 +201,8 @@ class clearAction extends AbstractAction{
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-			m.removeFishByString("All");
+		m.removeFishByString("All");
+		m.printer.resetWarnings();
+		m.printer.printWarnings();
 	}
-	
 }
