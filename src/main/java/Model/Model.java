@@ -163,7 +163,7 @@ public class Model {
 	}
 
 	private void checkSocialWarnings() {
-		// first check the aquarium size issues, then predator, groupsize and gender issues
+		// first check the aquarium size issues, then predator, groupsize, gender issues, and finally incompatible fish
 		checkAquariumSize();
 
 		// a set does not allow duplicates. if it is possible to add X to it, then X is new to it
@@ -212,6 +212,7 @@ public class Model {
 				}
 			}
 		}
+		checkForIncompatibleFish();
 	}
 
 	private void checkAquariumSize()
@@ -232,10 +233,54 @@ public class Model {
 		}
 	}
 
+	private void checkForIncompatibleFish()
+	{
+		HashSet checkDuplicates = new HashSet<Fish>();
+		for (Fish f1 : fish)
+		{
+			if (checkDuplicates.add(f1))
+			{
+				for (Fish f2 : fish)
+				{
+					if (!checkDuplicates.contains(f2))
+					{
+						if (f1.getMinpH() > f2.getMaxpH() || f2.getMinpH() > f1.getMaxpH())
+						{
+							printer.addIncompatibleFishWarning(f1, f2, "pH");
+						}
+						if (f1.getMinTemp() > f2.getMaxTemp() || f2.getMinTemp() > f1.getMaxTemp())
+						{
+							printer.addIncompatibleFishWarning(f1, f2, "temperature");
+						}
+					}
+				}
+			}
+		}
+	}
+
 	private void deriveConclusion()
 	{
-		Output errors = printer.getSelf();
-		String conclusion = "Not implemented yet";
+		int totalWaterErrors = printer.getGeneralWaterErrors()
+				+ printer.getTempErrors()
+				+ printer.getpHErrors();
+
+		int totalSocialErrors = printer.getGroupSizeErrors()
+				+ printer.getGenderErrors()
+				+ printer.getSizeErrors()
+				+ printer.getPredatorErrors()
+				+ printer.getIncompatibleFishErrors();
+
+		String conclusion;
+		if (totalWaterErrors + totalSocialErrors == 0)
+		{
+			conclusion = "<h4>There are no issues with the current setup!</h4><br>" +
+					"Your fish are healthy, ignoring any unset parameters.";
+		}
+		else
+		{
+			conclusion = "<h4>There are some issues with your current setup.</h4><br>" +
+					"See the details on the right to figure out the problem.";
+		}
 		printer.setConclusion(conclusion);
 	}
 	

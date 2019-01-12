@@ -42,7 +42,7 @@ class Parameters extends JPanel implements ActionListener
 
 			// and the textfield
 			JFormattedTextField t = new JFormattedTextField();
-			t.setColumns(5);
+			t.setColumns(3);
 			l.setLabelFor(t);
 			t.getDocument().addDocumentListener(new parameterAction(m, t, parameter));
 
