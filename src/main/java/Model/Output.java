@@ -40,16 +40,16 @@ public class Output
     {
         conclusion = "Hit &#62Analyze&#60; to evaluate!";
 
-        water = "All Water Issues: <br>";
-        generalWater = "General Water Issues: <br>None so far<br>";
-        temp = "Temperature Issues: <br>None so far<br>";
-        pH = "pH Issues: <br>None so far<br>";
+        water = "<h1>All Water Issues:</h1> <br>";
+        generalWater = "<h3>General Water Issues:</h3> <br>None so far<br>";
+        temp = "<h3>Temperature Issues:</h3> <br>None so far<br>";
+        pH = "<h3>pH Issues:</h3? <br>None so far<br>";
 
-        social = "All Social Issues: <br>";
-        groupSize = "Group size Issues: <br>None so far<br>";
-        gender = "Gender Issues: <br>None so far<br>";
-        size = "Aquarium size Issues: <br>None so far<br>";
-        predators = "Predator Issues: <br>None so far<br>";
+        social = "<h1>All Social Issues:</h1> <br>";
+        groupSize = "<h3>Group size Issues:</h3> <br>None so far<br>";
+        gender = "<h3>Gender Issues:</h3> <br>None so far<br>";
+        size = "<h3>Aquarium size Issues:</h3> <br>None so far<br>";
+        predators = "<h3>Predator Issues:</h3> <br>None so far<br>";
 
         generalWaterErrors = 0;
         tempErrors = 0;

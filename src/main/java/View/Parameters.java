@@ -50,7 +50,7 @@ class Parameters extends JPanel implements ActionListener
 			paramPanel.add(t);
 
 			// add the parameter panel to the entire parameter panel
-			allPPanel.add(paramPanel);	
+			allPPanel.add(paramPanel);	 
 		}
 		c.gridx = 0;
 		c.gridy = 0;
