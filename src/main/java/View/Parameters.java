@@ -42,7 +42,7 @@ class Parameters extends JPanel implements ActionListener
 
 			// and the textfield
 			JFormattedTextField t = new JFormattedTextField();
-			t.setColumns(5);
+			t.setColumns(3);
 			l.setLabelFor(t);
 			t.getDocument().addDocumentListener(new parameterAction(m, t, parameter));
 
@@ -201,7 +201,8 @@ class clearAction extends AbstractAction{
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-			m.removeFishByString("All");
+		m.removeFishByString("All");
+		m.printer.resetWarnings();
+		m.printer.printWarnings();
 	}
-	
 }
