@@ -16,6 +16,7 @@ public class Output
     private String gender;
     private String size;
     private String predators;
+    private String incompatibleFish;
 
     private int generalWaterErrors;
     private int tempErrors;
@@ -25,6 +26,7 @@ public class Output
     private int genderErrors;
     private int sizeErrors;
     private int predatorErrors;
+    private int incompatibleFishErrors;
 
     public TextPanel textPanel;
     public Model m;
@@ -38,18 +40,20 @@ public class Output
 
     public void resetWarnings()
     {
-        conclusion = "Hit &#62Analyze&#60; to evaluate!";
+        conclusion = "<h1><center>Hit &#62Analyze&#60;<br> to evaluate!</center><h1>";
 
-        water = "<h1>All Water Issues:</h1> <br>";
-        generalWater = "<h3>General Water Issues:</h3> <br>None so far<br>";
-        temp = "<h3>Temperature Issues:</h3> <br>None so far<br>";
-        pH = "<h3>pH Issues:</h3? <br>None so far<br>";
 
-        social = "<h1>All Social Issues:</h1> <br>";
-        groupSize = "<h3>Group size Issues:</h3> <br>None so far<br>";
-        gender = "<h3>Gender Issues:</h3> <br>None so far<br>";
-        size = "<h3>Aquarium size Issues:</h3> <br>None so far<br>";
-        predators = "<h3>Predator Issues:</h3> <br>None so far<br>";
+        water = "<h2>All Water Issues:</h2>";
+        generalWater = "<h4>General Water Issues: </h4>None so far<br>";
+        temp = "<h4>Temperature Issues: </h4>None so far<br>";
+        pH = "<h4>pH Issues: </h4>None so far<br>";
+
+        social = "<h2>All Social Issues:</h2>";
+        groupSize = "<h4>Group size Issues: </h4>None so far<br>";
+        gender = "<h4>Gender Issues: </h4>None so far<br>";
+        size = "<h4>Aquarium size Issues: </h4>None so far<br>";
+        predators = "<h4>Predator Issues: </h4>None so far<br>";
+        incompatibleFish = "<h4>Incompatible Fish: </h4>None so far<br>";
 
         generalWaterErrors = 0;
         tempErrors = 0;
@@ -59,30 +63,31 @@ public class Output
         genderErrors = 0;
         sizeErrors = 0;
         predatorErrors = 0;
+        incompatibleFishErrors = 0;
     }
 
     public void printWarnings()
     {
         textPanel.updateWarnings();
+        textPanel.scrollToTop();
     }
 
     public String getSocialWarnings()
     {
-        String totalSocial = social + "<br>";
-        totalSocial += groupSize + "<br>";
-        totalSocial += gender + "<br>";
-        totalSocial += size + "<br>";
-        totalSocial += predators + "<br>";
-        return totalSocial;
+        return social + "<br>"
+                + groupSize + "<br>"
+                + gender + "<br>"
+                + size + "<br>"
+                + predators + "<br>"
+                + incompatibleFish + "<br>";
     }
 
     public String getWaterWarnings()
     {
-        String totalWater = water + "<br>";
-        totalWater += generalWater + "<br>";
-        totalWater += temp + "<br>";
-        totalWater += pH + "<br>";
-        return totalWater;
+        return  water + "<br>"
+                + generalWater + "<br>"
+                + temp + "<br>"
+                + pH + "<br>";
     }
 
     public String getConclusions()
@@ -95,9 +100,44 @@ public class Output
         this.conclusion = conclusion;
     }
 
-    public Output getSelf()
+    public int getGeneralWaterErrors()
     {
-        return this;
+        return generalWaterErrors;
+    }
+
+    public int getTempErrors()
+    {
+        return tempErrors;
+    }
+
+    public int getpHErrors()
+    {
+        return pHErrors;
+    }
+
+    public int getGroupSizeErrors()
+    {
+        return groupSizeErrors;
+    }
+
+    public int getGenderErrors()
+    {
+        return genderErrors;
+    }
+
+    public int getSizeErrors()
+    {
+        return sizeErrors;
+    }
+
+    public int getPredatorErrors()
+    {
+        return predatorErrors;
+    }
+
+    public int getIncompatibleFishErrors()
+    {
+        return incompatibleFishErrors;
     }
 
     private String removeNoneSoFar(String s)
@@ -193,13 +233,21 @@ public class Output
         }
     }
 
-    // predators
+    // predators (social)
     // combine these warnings? if two fish types eat one, say that in one warning not two
     public void addPredatorWarning(Fish smallerFish, Fish biggerFish)
     {
         if (predatorErrors == 0) predators = removeNoneSoFar(predators);
         predatorErrors += 1;
         predators += shorten(biggerFish.getFishName()) + " eats " + shorten(smallerFish.getFishName()) + "<br>";
+    }
+
+    public void addIncompatibleFishWarning(Fish f1, Fish f2, String conflictingParamName)
+    {
+        if (incompatibleFishErrors == 0) incompatibleFish = removeNoneSoFar(incompatibleFish);
+        incompatibleFishErrors += 1;
+        incompatibleFish += shorten(f1.getFishName()) + " can never be kept with " + shorten(f2.getFishName())
+                + " because of incompatible " + conflictingParamName + " requirements. <br><br>";
     }
 
     private String shorten(String fishname)
