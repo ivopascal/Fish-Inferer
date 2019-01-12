@@ -1,6 +1,7 @@
 package Model;
 
 import View.TextPanel;
+import java.lang.Math;
 
 public class Output
 {
@@ -180,6 +181,9 @@ public class Output
 				min = min * 9 / 5 + 32;
 				max = max * 9 / 5 + 32;
 			}
+			//Round to 1 decimal
+			min = Math.round(10 * min) / 10;
+			max = Math.round(10* max) / 10;
             temp += min + " &#60 " + shorten(f.getFishName()) + " &#60 " + max + "<br>";
         }
         if (paramName.equals("PH"))
