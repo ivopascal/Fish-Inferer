@@ -23,8 +23,8 @@ public class Model {
 	private ArrayList<Param> parameters = new ArrayList<Param>();
 	private Fishtank tankPanel;
 	
-	public String temp_unit;
-	public String vol_unit;
+	public String temp_unit = "C";
+	public String vol_unit = "L";
 
 	public Output printer = new Output(this);
 
@@ -312,5 +312,12 @@ public class Model {
 				}
 			}
 		}
+	}
+	
+	public void clearParameters(){
+		for(Param p : parameters){
+			p.value = null;
+		}
+		
 	}
 }
