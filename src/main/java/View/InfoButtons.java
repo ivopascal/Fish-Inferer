@@ -258,6 +258,33 @@ class popUpAction extends AbstractAction
 		"filter media and if you have live plants, fertilizer, and small scissors to trim the plants.</p> <p> " +
 		"Source: https://www.thesprucepets.com/routine-aquarium-maintenance-1381084 </p>";
 				break;
+			case "Info":
+				text =
+		"<h1> How to use </h1> "+
+		"<p> The Aquarium diagnoser is a tool to help you identify problems with your aquarium, " +
+		"or to help you select a community of fish that would live together harmoniously in a tank. <br>" +
+		"If you want to diagnose any issues with your aquarium you can enter the data in the text boxes on the left. " +
+		"The units for temperature and volume can be set with the buttons below, the units for nitrite, nitrate and chlorine " +
+		"are set to parts per million (ppm), and pH to mol per liter. To measure these values in the appropriate units you can "+
+		"buy a set of test strips or use any other water measuring techniques. They will generally output in the right units. <br>"+
+		"You can add the fish that you currently have in your aquarium with the Add Fish button at the top, and then select the fish "+
+		"that you want to add. Also be aware of the gender that you select. If you have more than one of the same fish you should add "+
+		"it the correct number of times. <br>" +
+		"When all the parameters are set and all the fish are added you can click the analyze butten on the lower left and any errors "+
+		"will show up in the white areas below the aquarium. <br>" +
+		"If you want to remove a fish you can double click the image of the fish in the aquarium. If you want to remove all fish and "+
+		"the parameters you should click the clear button in the lower left corner. You can remove and change individual parameters "+
+		"at any time, just make sure that you click analyze when you are done. <br>" +
+		"If you are interested in more aquarium related info you can click the buttons on the right side, which will show some more "+
+		"information on how to set up and maintain your tank.</p>"+
+		"<h3> Development </h3> "+
+		"This project was developed by Travis Hammond, Helma Koops and Ivo de Jong, in an attempt to center the information " +
+		"about fish keeping and fish parameters, and to perform the logical operations to determine whether the tank is "+
+		"in a good set up. It was developed as a project for University Groningen." +
+		"<h3> Sources </h3> " +
+		"This project has used several online sources and an expert source. Article sources at the info popups are shown at the bottom " +
+		"of these popups. Below we will compile all the sources used for the images of our fish and the aquarium.";
+				break;
 			default:
 				text = "No text dialog found.";
 				break;
