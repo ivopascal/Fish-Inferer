@@ -164,7 +164,6 @@ class parameterAction implements DocumentListener
 		String inputString = this.input.getText();
 		if (!inputString.equals(""))
 		{
-			System.out.println(param + " : " + inputString);
 			if (param.equals("Volume  "))
 			{
 				// aquarium volume must be a positive integer
@@ -197,9 +196,7 @@ class parameterAction implements DocumentListener
 		}
 		else
 		{
-			try {
-				m.removeParameter(param);
-			} catch (ConcurrentModificationException e) { }
+			m.removeParameter(param);
 		}
 	}
 }

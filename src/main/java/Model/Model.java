@@ -61,8 +61,14 @@ public class Model {
 		{
 			if (p.name.equals(paramName))
 			{
-				this.parameters.remove(p);
+				p.value = null;
 			}
+		}
+	}
+
+	public void clearParameters(){
+		for(Param p : this.parameters){
+			p.value = null;
 		}
 	}
 
@@ -312,12 +318,5 @@ public class Model {
 				}
 			}
 		}
-	}
-	
-	public void clearParameters(){
-		for(Param p : parameters){
-			p.value = null;
-		}
-		
 	}
 }
