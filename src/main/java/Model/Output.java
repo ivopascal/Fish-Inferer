@@ -182,8 +182,8 @@ public class Output
 				max = max * 9 / 5 + 32;
 			}
 			//Round to 1 decimal
-			min = Math.round(10 * min) / 10f;
-			max = Math.round(10 * max) / 10f;
+			min = Math.round(10 * min) / 10;
+			max = Math.round(10 * max) / 10;
             temp += min + " &#60 " + shorten(f.getFishName()) + " &#60 " + max + "<br>";
         }
         if (paramName.equals("PH"))
