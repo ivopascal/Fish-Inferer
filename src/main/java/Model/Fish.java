@@ -61,20 +61,20 @@ public class Fish {
 				this.tempMax = 26.7;
 				break;
 			case "Guppy (M)":
-				this.tempMin = 22;
-				this.tempMax = 26;
+				this.tempMin = 22.0;
+				this.tempMax = 26.0;
 				break;
 			case "Guppy (F)":
-				this.tempMin = 22;
-				this.tempMax = 26;
+				this.tempMin = 22.0;
+				this.tempMax = 26.0;
 				break;
 			case "Cardinal":
 				this.tempMin = 22.8;
 				this.tempMax = 27.2;
 				break;
 			case "Endler":
-				this.tempMin = 22;
-				this.tempMax = 26;
+				this.tempMin = 22.0;
+				this.tempMax = 26.0;
 				break;
 			/*
 			case "Endler (F)":
@@ -83,8 +83,8 @@ public class Fish {
 				break;
 				**/
 			case "Fire neon":
-				this.tempMin = 22;
-				this.tempMax = 28;
+				this.tempMin = 22.0;
+				this.tempMax = 28.0;
 				break;
 			case "Moon fish":
 				this.tempMin = 23.9;
@@ -94,8 +94,8 @@ public class Fish {
 				this.tempMin = 23.9;
 				this.tempMax = 26.7;
 			default:
-				this.tempMin = 0;
-				this.tempMax = 100;
+				this.tempMin = 0.0;
+				this.tempMax = 100.0;
 				break;
 		}
 	}
@@ -119,8 +119,8 @@ public class Fish {
 				this.pHMax = 8.0;
 				break;
 			case "Pleco":
-				this.pHMin =6;
-				this.pHMax =7;
+				this.pHMin =6.0;
+				this.pHMax =7.0;
 				break;
 			case "Platy":
 				this.pHMin =6.5;
@@ -152,8 +152,8 @@ public class Fish {
 				this.pHMax = 8.5;
 				break;
 			case "Cardinal":
-				this.pHMin = 5;
-				this.pHMax = 6;
+				this.pHMin = 5.0;
+				this.pHMax = 6.0;
 				break;
 			case "Endler":
 				this.pHMin = 6.7;
@@ -173,12 +173,12 @@ public class Fish {
 				this.pHMax = 8.5;
 				break;
 			case "Molly":
-				this.pHMin = 7;
-				this.pHMax = 8;
+				this.pHMin = 7.0;
+				this.pHMax = 8.0;
 				break;
 			default:
-				this.pHMin = 0;
-				this.pHMax = 14;
+				this.pHMin = 0.0;
+				this.pHMax = 14.0;
 				break;
 		}
 	}
@@ -206,8 +206,8 @@ public class Fish {
 				this.maxGroupSize = 1;
 				break;
 			case "Platy":
-				this.pHMin =4;
-				this.pHMax =99;
+				this.minGroupSize =4;
+				this.maxGroupSize =99;
 				break;
 			case "Moon fish":
 				this.minGroupSize = 5;
@@ -272,50 +272,50 @@ public class Fish {
 				this.volumePoints = 0.1;
 				break;
 			case "Pleco":
-				this.volumePoints = 5;
+				this.volumePoints = 5.0;
 				break;
 			case "Platy":
 				this.volumePoints = 1.5;
 				break;
 			case "Goldfish":
-				this.volumePoints = 25;
+				this.volumePoints = 25.0;
 				break;
 			case "Corydora":
 				this.volumePoints = 1.5;
 				break;
 			case "Betta (M)":
-				this.volumePoints = 5;
+				this.volumePoints = 5.0;
 				break;
 			case "Betta (F)":
-				this.volumePoints = 3;
+				this.volumePoints = 3.0;
 				break;
 			case "Guppy (M)":
-				this.volumePoints = 2;
+				this.volumePoints = 2.0;
 				break;
 			case "Guppy (F)":
-				this.volumePoints = 2;
+				this.volumePoints = 2.0;
 				break;
 			case "Cardinal":
-				this.volumePoints = 2;
+				this.volumePoints = 2.0;
 				break;
 			case "Endler":
-				this.volumePoints = 1;
+				this.volumePoints = 1.0;
 				break;
-			/*
+		
 			case "Endler (F)":
-				this.volumePoints = 0.7;
+				this.volumePoints = 1.0;
 				break;
-				**/
+			
 			case "Fire neon":
-				this.volumePoints = 2;
+				this.volumePoints = 2.0;
 				break;
 			case "Moon fish":
-				this.volumePoints = 7;
+				this.volumePoints = 7.0;
 				break;
 			case "Molly":
-				this.volumePoints = 3;
+				this.volumePoints = 3.0;
 			default:
-				this.volumePoints = 0;
+				this.volumePoints = 0.0;
 				break;
 			
 		}

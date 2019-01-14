@@ -186,7 +186,7 @@ class parameterAction implements DocumentListener
 				Float value = null;
 				try
 				{
-					value = Float.parseFloat(inputString);
+					value = Float.parseFloat(inputString.replaceAll("," , "."));
 				} catch (NumberFormatException e)
 				{
 					System.out.println("Invalid Input!");
