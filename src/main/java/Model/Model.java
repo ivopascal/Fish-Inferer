@@ -70,6 +70,7 @@ public class Model {
 		for(Param p : this.parameters){
 			p.value = null;
 		}
+		aquarium_volume = 0;
 	}
 
 	public String[] getParameterStrings() {
