@@ -277,13 +277,64 @@ class popUpAction extends AbstractAction
 		"at any time, just make sure that you click analyze when you are done. <br>" +
 		"If you are interested in more aquarium related info you can click the buttons on the right side, which will show some more "+
 		"information on how to set up and maintain your tank.</p>"+
+		"<h3>LOWERING PH LEVEL:</h3>"+
+
+"<p>"+
+"You can reduce the pH level of your aquarium water by adding 1-2 pieces of driftwood, which naturally remove contaminants that raise the pH in the first place. Make sure you buy driftwood that is made for fish tanks, and not for reptiles, to make sure they don't contain harmful chemicals. Before adding the driftwood, boil it for 5-10 minutes to prevent it from coloring the tank. You can leave it in your tank for several years.<br>"+
+
+"Another way to reduce the pH level is to add 2-3 almond leaves from your local pet store or online. They have the added benefit of containing anti-inflammatory properties and providing natural hiding spots for your fish. Soak them in water for 24 hours before adding to prevent yellow coloring, and replace them every 6 months to a year or when they look ragged or damaged."+
+"</p>"+
+
+
+"<h3>INCREASING PH LEVEL:</h3>"+
+
+"<p>"+
+"You can add one or more bags of crushed corals to your aquarium which will gradually increase the pH level without putting your fish at risk. Crushed corals can be found at your local pet / aquarium store or online.<br>"+
+
+"You can also use dolomite chips, which can just be dropped into the tank and look like different colored stones (maybe more asthetic than the bag of crushed corals). Dolomite chips can also be found at your local pet store or online."+
+"</p>"+
+
+
+"<h3>MAINTAINING WATER TEMPERATURE:</h3>"+
+
+"<p>"+
+"To keep the water temperature consistent, the simplest way is to just buy an aquarium heater and adjust the temperature."+
+"</p>"+
+
+"<h3>LOWERING NITRATE/NITRITE LEVEL:</h3>"+
+
+"<p>"+
+"Food waste and dirt causes ammonia, which breaks down into nitrite, which again breaks down into nitrate. Ammonia and nitrite are the most poisonous for your fish, but all three are bad.<br>"+
+"So to reduce the nitrate and nitrite levels in your aquarium: Keep the tank clean, don't overfeed the fish and regularly change out some water with new, clean water. <br>"+
+"If, however, you already have high levels of these elements, then you can perform a 30-50% water change until you do one of the following: Buy or upgrade your filter, which contains bacteria that break down these elements, or buy water conditioner which binds nitrite and makes it harmless. Either way, keep your tank clean in the future! "+
+"</p>"+
+
+
+"<h3>LOWERING CHLORINE LEVEL:</h3>"+
+"<p>"+
+"A simple, inexpensive dechlorinator which can be bought at your local pet store will be sufficient to reduce the chlorine levels to a healthy level. Place the dechlorinator in a bucket of clean, new water overnight and then replace that into your tank.</p>" +
 		"<h3> Development </h3> "+
 		"This project was developed by Travis Hammond, Helma Koops and Ivo de Jong, in an attempt to center the information " +
 		"about fish keeping and fish parameters, and to perform the logical operations to determine whether the tank is "+
 		"in a good set up. It was developed as a project for University Groningen." +
 		"<h3> Sources </h3> " +
 		"This project has used several online sources and an expert source. Article sources at the info popups are shown at the bottom " +
-		"of these popups. Below we will compile all the sources used for the images of our fish and the aquarium.";
+		"of these popups. Below we will compile all the sources used for the images of our fish and the aquarium.<br>"+
+"Fish tank with dog: http://tank.nwon.us/fish-tank-com/<br>"+
+"Crystal Red Shrimp: http://aquagiftshop.blogspot.com/2011/12/crystal-red-shrimp.html<br>"+
+"Red Cherry Shrimp: https://i.ytimg.com/vi/P3kI5iDbMlU/hqdefault.jpg<br>"+
+"Pleco: https://www.harcresearch.org/features/HARC_develops_scorecard_to_rank_aquarium_species_hazards_if_released<br>"+
+"Platy: http://freepngimages.com/platy-fish-transparent-background/<br>"+
+"Moon Fish: https://www.researchgate.net/figure/Pterophyllum-scalare-from-Pangsua-Pond-a-745-mm-SL-specimen-ZRC-53407-b-554-mm_fig6_311971319<br>"+
+"Molly: https://static.memrise.com/uploads/items/Molly_Fish.jpg<br>"+
+"Guppy (male): https://d.facebook.com/1014906685267714/photos/pcb.1148554635236251/1148548398570208<br>"+
+"Guppy (female): https://www.petco.com/shop/en/petcostore/product/fish/live-fish/freshwater-fish-guppies/sunrise-guppy<br>"+
+"Goldfish: https://pngtree.com/freepng/goldfish_1266465.html<br>"+
+"Fire Neon: https://www.diertotaal.nl/producten/vissen/vissenvissen/vissenvissentropischevissen/hemigr.gracilis-vuurneon-m-detail<br>"+
+"Endler: http://petbg.com/2637/<br>"+
+"Corydora: https://ronsaquatics.wordpress.com/category/home-page/page/2/<br>"+
+"Betta (male): https://www.liyixiangguan.com/kantu/cce7bXAcLCgtQ/26.html<br>"+
+"Betta (female): https://www.clipartmax.com/so/betta-fish-clipart/<br>";
 				break;
 			default:
 				text = "No text dialog found.";
