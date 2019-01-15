@@ -314,27 +314,28 @@ class popUpAction extends AbstractAction
 "<p>"+
 "A simple, inexpensive dechlorinator which can be bought at your local pet store will be sufficient to reduce the chlorine levels to a healthy level. Place the dechlorinator in a bucket of clean, new water overnight and then replace that into your tank.</p>" +
 		"<h3> Development </h3> "+
-		"This project was developed by Travis Hammond, Helma Koops and Ivo de Jong, in an attempt to center the information " +
+		"<p>This project was developed by Travis Hammond, Helma Koops and Ivo de Jong, in an attempt to center the information " +
 		"about fish keeping and fish parameters, and to perform the logical operations to determine whether the tank is "+
-		"in a good set up. It was developed as a project for University Groningen." +
+		"in a good set up. It was developed as a project for University Groningen.</p>" +
 		"<h3> Sources </h3> " +
-		"This project has used several online sources and an expert source. Article sources at the info popups are shown at the bottom " +
-		"of these popups. Below we will compile all the sources used for the images of our fish and the aquarium.<br>"+
+		"<p>This project has used several online sources and an expert source. <br>Article sources at the info popups are shown at the bottom " +
+		"of these popups. <br>Below we will compile all the sources used for the images of our fish and the aquarium.<br>"+
 "Fish tank with dog: http://tank.nwon.us/fish-tank-com/<br>"+
 "Crystal Red Shrimp: http://aquagiftshop.blogspot.com/2011/12/crystal-red-shrimp.html<br>"+
 "Red Cherry Shrimp: https://i.ytimg.com/vi/P3kI5iDbMlU/hqdefault.jpg<br>"+
-"Pleco: https://www.harcresearch.org/features/HARC_develops_scorecard_to_rank_aquarium_species_hazards_if_released<br>"+
+"Pleco: https://www.harcresearch.org/features/<br>HARC_develops_scorecard_to_rank_aquarium_species_hazards_if_released<br>"+
 "Platy: http://freepngimages.com/platy-fish-transparent-background/<br>"+
-"Moon Fish: https://www.researchgate.net/figure/Pterophyllum-scalare-from-Pangsua-Pond-a-745-mm-SL-specimen-ZRC-53407-b-554-mm_fig6_311971319<br>"+
+"Moon Fish: https://www.researchgate.net/figure/<br>Pterophyllum-scalare-from-Pangsua-Pond-a-745-mm-SL-specimen-ZRC-53407-b-554-<br>mm_fig6_311971319<br>"+
 "Molly: https://static.memrise.com/uploads/items/Molly_Fish.jpg<br>"+
-"Guppy (male): https://d.facebook.com/1014906685267714/photos/pcb.1148554635236251/1148548398570208<br>"+
-"Guppy (female): https://www.petco.com/shop/en/petcostore/product/fish/live-fish/freshwater-fish-guppies/sunrise-guppy<br>"+
+"Guppy (male): https://d.facebook.com/1014906685267714/photos/pcb.1148554635236251/<br>1148548398570208<br>"+
+"Guppy (female): https://www.petco.com/shop/en/petcostore/product/fish/<br>live-fish/freshwater-fish-guppies/sunrise-guppy<br>"+
 "Goldfish: https://pngtree.com/freepng/goldfish_1266465.html<br>"+
-"Fire Neon: https://www.diertotaal.nl/producten/vissen/vissenvissen/vissenvissentropischevissen/hemigr.gracilis-vuurneon-m-detail<br>"+
+"Fire Neon: https://www.diertotaal.nl/producten/vissen/vissenvissen/vissenvissentropischevissen/<br>hemigr.gracilis-vuurneon-m-detail<br>"+
 "Endler: http://petbg.com/2637/<br>"+
+"Cardinal: https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.koenisbv.nl/wp-content/<br>uploads/2014/11/Kardinaaltetra_bijsluiter6_02RWT.pdf&ved=2ahUKEwidusbNke<br>_fAhXBLFAKHSeVCAgQFjABegQIBRAB&usg=AOvVaw3qvmiDUMTd0cuY5HXP_GvF<br>"+
 "Corydora: https://ronsaquatics.wordpress.com/category/home-page/page/2/<br>"+
 "Betta (male): https://www.liyixiangguan.com/kantu/cce7bXAcLCgtQ/26.html<br>"+
-"Betta (female): https://www.clipartmax.com/so/betta-fish-clipart/<br>";
+"Betta (female): https://www.clipartmax.com/so/betta-fish-clipart/<br></p>";
 				break;
 			default:
 				text = "No text dialog found.";

@@ -229,6 +229,9 @@ public class Fish {
 				this.minGroupSize = 3;
 				this.maxGroupSize = 99;
 				break;
+			case "Fire neon":
+				this.minGroupSize = 5;
+				this.maxGroupSize = 99;
 			case "Guppy (M)":
 				this.minGroupSize = 1;
 				this.maxGroupSize = 99;
@@ -357,7 +360,11 @@ public class Fish {
 				this.predators.add("Corydora");
 				this.predators.add("Molly");
 				break;
-			case "Guppy":
+			case "Guppy (M)":
+				this.predators.add("Moon fish");
+				this.predators.add("Betta (M)");
+				break;
+			case "Guppy (F)":
 				this.predators.add("Moon fish");
 				this.predators.add("Betta (M)");
 				break;
