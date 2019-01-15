@@ -20,7 +20,7 @@ public class TextPanel extends JPanel
 
 	public TextPanel(Output out){
 		this.out = out;
-		this.setLayout(new GridBagLayout());
+		this.setLayout(new GridLayout(1,3));
 
 		// Total WIDTH 750 to span aquarium pic
 
